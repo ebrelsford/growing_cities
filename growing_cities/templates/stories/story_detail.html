@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-wrapper">
+    <a href="{% url "pages_learn" %}">back</a>
+    <h2>{{ story.title }}</h2>
+    <img src="{{ story.image.url }}" />
+    {{ story.text|striptags|linebreaks }}
+</div>
+{% endblock %}

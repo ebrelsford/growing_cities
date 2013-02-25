@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load place_map %}
+
+{% block content %}
+
+    <div id="map-drawer-show">
+        <a href="#" class="map-drawer-toggle">show</a>
+    </div>
+
+    {% with growingplace_list.0.get_list_geojson_url as places_url %}
+        {% place_map places_url 100% 600px %}
+    {% endwith %}
+{% endblock %}
+
+{% block extra_markup %}
+    <div class="full-height grid" id="map-drawer" style="display: none;">
+        <a href="#" id="map-drawer-hide" class="map-drawer-toggle">hide</a>
+        <h2>Grow Where You Are</h2>
+
+        <div class="map-drawer-section">
+            Where are you?
+        </div>
+
+        <div class="map-drawer-section">
+            What do you want to do?
+        </div>
+
+        <div class="map-drawer-section">
+            Results:
+        </div>
+    </div>
+{% endblock %}

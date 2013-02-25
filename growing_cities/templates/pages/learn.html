@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load fiber_tags %}
+
+{% block content %}
+    <div class="article-wrapper">
+        <h2>{{ fiber_page.title }}</h2>
+
+        {% include "_submenu.html" %}
+
+        <div class="learn lead-in">
+            {% show_page_content "lead-in" %}
+        </div>
+
+        <h3 style="display: none;">Stories</h3>
+        <div class="story-list-wrapper">
+            <ul class="story-list">
+            {% for story in stories %}
+                <li class="grid grid-1-3 story">
+                    {% include "stories/_story_detail.html" %}
+                </li>
+            {% endfor %}
+            </ul>
+            <div class="clear"></div>
+        </div>
+
+        <div class="story-submit">
+            <div class="grid grid-1-2 story-lead-in">
+                {% show_page_content "story-lead-in" %}
+            </div>
+            <div class="grid grid-1-2 story-form ajax-form-wrapper">
+                {% with form=story_form %}
+                {% include "stories/story_form.html" %}
+                {% endwith %}
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <h3>Books</h3>
+        <p>Blah blah books</p>
+
+        <h3>How-tos</h3>
+        <p>Blah blah how-tos</p>
+
+        <h3>Links</h3>
+
+        <div class="learn links">
+            {% show_page_content "links" %}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load fiber_tags %}
+
+{% block content %}
+<div class="article-wrapper">
+    <h2>{{ fiber_page.title }}</h2>
+
+    {% include "_submenu.html" %}
+
+    {% show_page_content "main" %}
+</div>
+{% endblock %}

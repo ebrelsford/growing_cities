@@ -1,0 +1,16 @@
+{% extends "places/cloudmade/base.html" %}
+
+{% block layer_options %}
+onEachFeature: function(data, layer) {
+    layer.on('click', function(e) {
+        $.get(layer.feature.properties.popup_url, function(data) {
+            layer.bindPopup(data).openPopup();
+        });
+    });
+},
+
+pointToLayer: function(data, latlng) {
+    latlngs.push(latlng);
+    return new L.marker(latlng);
+},
+{% endblock %}

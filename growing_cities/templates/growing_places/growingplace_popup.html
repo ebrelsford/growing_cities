@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<div>
+    <h3>{{ growingplace.name|default:"" }}</h3>
+    <br />
+    {{ growingplace.address_line1|default:"" }}
+    {{ growingplace.city|default:"" }},
+    {{ growingplace.state_province|default:"" }}
+    {{ growingplace.postal_code|default:"" }}
+
+    <p>
+        {{ growingplace.mission|default:"" }}
+    </p>
+</div>
+
+{% if growingplace.url %}
+<a href="{{ growingplace.url }}" target="_blank">
+    {% trans "their website" %}
+</a>
+{% endif %}

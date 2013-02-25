@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load fiber_tags %}
+
+{% block content %}
+    <div class="article-wrapper">
+        <h2>{{ fiber_page.title }}</h2>
+
+        {% include "_submenu.html" %}
+
+        <div class="screenings lead-in">
+            {% show_page_content "screenings-lead-in" %}
+        </div>
+
+        <div class="screening-list-wrapper">
+            <ul class="screening-list">
+            {% for screening in screenings %}
+                <li class="screening">
+                    {% include "screenings/_screening_detail.html" %}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if 'add_screening' in perms %}
+            <a href="{% url "admin:screenings_screening_add" %}" class="no-ajax">add screening</a>
+            {% endif %}
+            <div class="clear"></div>
+        </div>
+
+    </div>
+{% endblock %}

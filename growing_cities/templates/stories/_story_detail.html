@@ -1,0 +1,11 @@
+{% if story.image %}
+<a href="{{ story.get_absolute_url }}">
+    {% comment %}
+    TODO easy_thumbnails?
+    {% endcomment %}
+    <img src="{{ story.image.url }}" />
+</a>
+{% else %}
+<p>{{ story.title }}</p>
+<a href="{{ story.get_absolute_url }}">read more</a>
+{% endif %}

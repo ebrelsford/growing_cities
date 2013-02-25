@@ -1,0 +1,21 @@
+{% load fiber_tags %}
+
+<div>
+    <span class="product-name">
+        {{ product.name }}
+    </span><br />
+
+    <div>
+        <img src="{{ product.image.url }}" style="float: left; padding-right: 20px;" />
+        {{ product.text|safe }}
+        <div class="clear"></div>
+    </div>
+
+    {{ product.paypal_button|safe }}
+</div>
+
+{% if 'change_product' in perms %}
+<a href="{% url "admin:products_product_change" product.pk %}" class="no-ajax">
+    edit
+</a>
+{% endif %}

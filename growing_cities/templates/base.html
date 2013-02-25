@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+{% load fiber_tags %}
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>{% block title %}{{ fiber_page.title }}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+    {% block scripts %}{% endblock %}
+
+    <!-- Dynamically load pages -->
+    <script defer src="http://balupton.github.com/jquery-scrollto/scripts/jquery.scrollto.min.js"></script>
+    <script defer src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+    <script defer src="{{ STATIC_URL }}js/jquery.ajaxpages.js"></script>  
+
+    {% comment %}
+    Only load jquery.form.js if not logged in--conflicts with Django Fiber 
+    version. (TODO fix this?)
+    {% endcomment %}
+    {% if not fiber_page|can_edit:user %}
+    <script defer src="{{ STATIC_URL }}js/lib/jquery.form.js"></script>  
+    {% endif %}
+    <script defer src="{{ STATIC_URL }}js/lib/jquery.placeholder.js"></script>  
+    <script defer src="{{ STATIC_URL }}js/lib/jquery.smartresize.js"></script>  
+    <script src="{{ STATIC_URL }}js/lib/jquery.waypoints.min.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/jquery.waypoints-sticky.min.js"></script>
+
+    {% comment %}
+    For Django Fiber code that uses bits jQuery no longer supports.
+    {% endcomment %}
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+
+    <script>
+        function configureCKEditor() {
+            window.CKEDITOR_CONFIG_ZINDEX = 2001;
+
+            window.CKEDITOR_CONFIG_STYLES_SET = [
+                { name: 'Submenu', element: 'h3', },
+                {
+                    name: 'Left',
+                    element: 'img',
+                    attributes: { style: 'float: left; padding-right: 10px;' }, 
+                },
+            ];
+
+            window.CKEDITOR_CONFIG_TOOLBAR = window.CKEDITOR_CONFIG_TOOLBAR || [
+                ['Format'],
+                window.CKEDITOR_CONFIG_STYLES_SET ? ['Styles'] : null,
+                ['Bold','Italic'],
+                ['NumberedList','BulletedList','Outdent','Indent'],
+                ['fPageLink','fFileLink','fImageLink','fCustomLink','fUnlink'],
+                ['fImage',],
+                ['PasteText','PasteFromWord','RemoveFormat'],
+                ['Source'],
+            ];
+        }
+
+        configureCKEditor();
+
+        $(window).on('statechangestart', function(event) {
+            console.log('statechangestart');
+            // If map-drawer is out, hide it
+            hideMapDrawer($('#map-drawer'));
+
+        });
+
+        function initializeFiber() {
+            // Make Django Fiber do its thing for every page (only when logged 
+            // in)
+            console.log('initializeFiber');
+            if ($.fn.dataset) {
+                var body_fiber_data = $.parseJSON($('body').dataset('fiber-data'));
+
+                if (!$('body').hasClass('df-admin')) {
+                    // let Fiber do everything (sidebar + content editing)
+                    Fiber.adminPage.init(body_fiber_data);
+                    fiberAdminLoaded = true;
+                }
+                else {
+                    // just let Fiber initialize content editing
+                    Fiber.adminPage.body_fiber_data = body_fiber_data;
+                    Fiber.adminPage.init_admin_elements();
+                }
+
+                if (body_fiber_data.show_login) {
+                    $('body').addClass('df-admin');
+                    new LoginFormDialog();
+                }
+            }
+        }
+
+        $(window).on('statechangecomplete', function(event) {
+            initializeFiber();
+        });
+
+        function setHeights() {
+            var height = $(window).height();
+            $('#map').outerHeight(height);
+            $('.full-height').outerHeight(height);
+        }
+
+        function positionMapDrawer() {
+            $('#map-drawer').position({
+                my: 'left top',
+                at: 'left top',
+                of: '#content',
+            });
+        }
+
+        function showMapDrawer($mapDrawer) {
+            $mapDrawer
+                .show()
+                .position({
+                    my: 'left top',
+                    at: 'left top',
+                    of: '#content',
+                    using: function(pos) {
+                        $mapDrawer.animate({ left: pos.left, });
+                    },
+                })
+                .addClass('is-open');
+            $('#map-drawer-show').hide();
+        }
+
+        function hideMapDrawer($mapDrawer) {
+            $mapDrawer
+                .position({
+                    my: 'left top',
+                    at: 'left top',
+                    of: '#sidebar',
+                    using: function(pos) {
+                        $mapDrawer.animate({ left: pos.left, });
+                    },
+                })
+                .removeClass('is-open');
+
+            $('#map-drawer-show')
+                .show()
+                .position({
+                    my: 'left top',
+                    at: 'left top',
+                    of: '#content',
+                });
+        }
+
+        function addSubmenu() {
+            if ($('.submenu').length) {
+                $('#content h3').each(function() {
+                    var text = $(this).text();
+                    var $li = $('<li></li>');
+                    $li.append(
+                        $('<a></a>')
+                            .attr('href', '#' + text)
+                            .text(text)
+                    );
+                    $('.submenu ul').append($li);
+                });
+
+                $('.submenu a').click(function() {
+                    var headerText = $(this).text().slice(1);
+                    var header = $('#content h3:contains("' + headerText + '")');
+                    header.ScrollTo({
+                        offsetTop: header.outerHeight(),   
+                    });
+                });
+
+                $('.submenu').waypoint('sticky', { context: '#content' });
+            }
+        }
+
+        function enableMapDrawerTogglers() {
+            $('#map-drawer-show')
+                .show()
+                .position({
+                    my: 'left top',
+                    at: 'left top',
+                    of: '#content',
+                });
+            $('.map-drawer-toggle:not(.initialized)')
+                .click(function() {
+                    var $mapDrawer = $('#map-drawer');
+                    if ($mapDrawer.hasClass('is-open')) {
+                        hideMapDrawer($mapDrawer);
+                    }
+                    else {
+                        showMapDrawer($mapDrawer);
+                    }
+                })
+                .addClass('initialized');
+        }
+
+        $(document).ready(function() {
+
+            // make sidebar and map take up entire window height
+            setHeights();
+            $(window).smartresize(setHeights);
+            $(window).on('statechangecomplete', setHeights);
+
+            // keep map drawer in the proper position
+            positionMapDrawer();
+            $(window).smartresize(positionMapDrawer);
+            //$(window).on('statechangecomplete', positionMapDrawer);
+
+            addSubmenu();
+            $(window).on('statechangecomplete', addSubmenu);
+
+            enableMapDrawerTogglers();
+            $(window).on('statechangecomplete', enableMapDrawerTogglers);
+
+            $('input, textarea').placeholder();
+
+        });
+    </script>
+</head>
+<body class="{% block body_class %}{{ fiber_page.title|slugify }}{% endblock %}">
+	<div>
+		<div>
+			<div id="sidebar" class="full-height grid grid-1-4">
+                <section id="logo">
+                    <h1>
+                        <a href="/">Growing Cities</a>
+                    </h1>
+                    <div class="subtitle">A film about urban agriculture</div>
+                </section>
+				<nav id="mainmenu" class="clearfix">
+					{% show_menu "mainmenu" 1 1 %}
+				</nav>
+
+                <div class="sidebar-section">
+                    <a href="#" id="trailer-button">watch trailer</a>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-name">Latest News</div>
+                    <div>
+                        {% show_content "latest_news" %}
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-name">Sign up to get involved</div>
+                    <div>
+                        <form>
+                            <input name="email" placeholder="Your email address" style="width: 100%;" type="text" /><br />
+                            <input type="submit" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    {% show_content "terms" %}
+                </div>
+
+			</div>
+
+            <div id="content" class="full-height grid grid-3-4">
+				<article>
+                    {% block content %}
+					{% show_page_content "main" %}
+                    {% endblock %}
+				</article>
+			</div>
+
+		</div>
+	</div>
+    {% block extra_markup %}{% endblock %}
+</body>
+</html>

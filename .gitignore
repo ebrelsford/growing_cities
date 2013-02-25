@@ -1,0 +1,6 @@
+*.pyc
+*.swp
+collected_static
+data
+logs
+media

@@ -1,0 +1,11 @@
+<div>
+    <span class="screening-location">
+        {{ screening.venue.city }}, {{ screening.venue.state_province }}
+    </span><br />
+    {{ screening.venue.name }}<br />
+    {{ screening.time }}
+</div>
+
+{% if 'change_screening' in perms %}
+<a href="{% url "admin:screenings_screening_change" screening.pk %}" class="no-ajax">edit</a>
+{% endif %}
