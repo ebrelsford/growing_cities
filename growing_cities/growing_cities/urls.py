@@ -26,7 +26,7 @@ urlpatterns += patterns('',
     # first-party views
     url(r'^contact/', include('contact.urls', 'contact_form')),
     url(r'^growing_places/', include('growing_places.urls')),
-    url(r'^places/', include('places.urls', 'places')),
+    url(r'^inplace/', include('inplace.urls', 'inplace')),
     url(r'^stories/', include('stories.urls', 'stories')),
 
     # admin views

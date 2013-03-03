@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from places.models import Place
+from inplace.models import Place
 
 
 class GrowingPlace(Place):

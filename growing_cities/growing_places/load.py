@@ -4,7 +4,7 @@ import re
 from django.conf import settings
 from django.contrib.gis.geos import Point
 
-from places.geocode.mapquest import geocode
+from inplace.geocode.mapquest import geocode
 from .models import GrowingPlace
 
 

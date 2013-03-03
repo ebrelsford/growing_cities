@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from places.admin import PlaceAdmin
+from inplace.admin import PlaceAdmin
 from .models import GrowingPlace
 
 

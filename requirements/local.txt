@@ -7,6 +7,7 @@ django-compressor==1.2
 django-contact-form-gv==0.4.1
 django-debug-toolbar==0.9.4
 -e git://github.com/ebrelsford/django-fiber.git@fa24be63859e31a9da8cd8d499950a43dcbbef0c#egg=django_fiber-dev
+-e git://github.com/ebrelsford/django-inplace.git@fd2e271025718862383ee6157e150d6b30c2d739#egg=django_inplace-dev
 django-moderation==0.3.2
 django-mptt==0.5.5
 djangorestframework==2.1.17

@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 
 from fiber.views import FiberPageMixin
-from places.views import PlacesListView
+from inplace.views import PlacesListView
 
 from .models import GrowingPlace
 
