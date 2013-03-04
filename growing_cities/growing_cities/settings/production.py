@@ -2,6 +2,8 @@ import os
 
 from .base import *
 
+ALLOWED_HOSTS = [get_env_variable('GROWING_CITIES_ALLOWED_HOSTS')]
+
 #
 # johnny cache
 #
