@@ -210,6 +210,16 @@ ul.story-list li {
     color: red;
 }
 
+.news-post {
+    margin-bottom: 25px;
+}
+
+.news-post .date {
+    font-size: 85%;
+    font-weight: bold;
+}
+
+
 /*
  * _jqueryui_
  */

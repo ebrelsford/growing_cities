@@ -1,0 +1,11 @@
+<ul>
+    {% for post in posts %}
+    <li class="news-post">
+        <h4>
+            <a href="{{ post.link }}" target="_blank">{{ post.title }}</a>
+        </h4>
+        <span class="date">{{ post.date }}</span>
+        <p>{{ post.summary|safe }}</p>
+    </li>
+    {% endfor %}
+</ul>

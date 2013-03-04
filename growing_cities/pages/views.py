@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now
 from django.views.generic import TemplateView
@@ -58,3 +59,15 @@ class ContactPage(FiberPageMixin, TemplateView):
 
     def get_fiber_page_url(self):
         return reverse('pages_contact')
+
+
+class NewsPage(FiberPageMixin, TemplateView):
+    template_name = 'pages/news.html'
+
+    def get_context_data(self):
+        context = super(NewsPage, self).get_context_data()
+        context['feed_url'] = settings.GROWING_CITIES_BLOG_RSS_URL
+        return context
+
+    def get_fiber_page_url(self):
+        return reverse('pages_news')
