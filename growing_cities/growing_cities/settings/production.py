@@ -1,9 +1,9 @@
 from .base import *
 
-MIDDLEWARE_CLASSES += (
+MIDDLEWARE_CLASSES = (
     'johnny.middleware.LocalStoreClearMiddleware',
     'johnny.middleware.QueryCacheMiddleware',
-)
+) + MIDDLEWARE_CLASSES
 
 CACHES = {
     'default' : dict(
