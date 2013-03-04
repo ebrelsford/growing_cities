@@ -121,7 +121,6 @@ function addSubmenu() {
  */
 
 $(window).on('statechangestart', function(event) {
-    console.log('statechangestart');
     // If map-drawer is out, hide it
     hideMapDrawer($('#map-drawer'));
 });
