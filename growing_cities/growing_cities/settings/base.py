@@ -135,30 +135,6 @@ INSTALLED_APPS = (
     'stories',
 )
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
-
 PLACES_CLOUDMADE_KEY = '781b27aa166a49e1a398cd9b38a81cdf'
 PLACES_CLOUDMADE_STYLE = '69828'
 
