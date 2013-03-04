@@ -37,6 +37,11 @@ DEFAULT_FROM_EMAIL = get_env_variable('GROWING_CITIES_DEFAULT_FROM_EMAIL')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
