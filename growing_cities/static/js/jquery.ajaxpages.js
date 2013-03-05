@@ -86,29 +86,6 @@
 			// Prepare
 			var $this = $(this);
 
-			// Ajaxify
-			$this.find('a:internal').not(excludedLinksSelector).each(function() {
-				// Prepare
-				var
-					$this = $(this),
-					url = $this.attr('href'),
-					title = $this.attr('title')||null;
-
-                // only add click handler to new links on the page
-                if ($this.hasClass(ajaxifiedLinkClass)) return;
-                $this.addClass(ajaxifiedLinkClass);
-
-                $this.click(function(event) {
-                    // Continue as normal for cmd clicks etc
-                    if ( event.which == 2 || event.metaKey ) { return true; }
-				
-                    // Ajaxify this link
-                    History.pushState(null,title,url);
-                    event.preventDefault();
-                    return false;
-                });
-			});
-
             // Ajaxify forms--submit them behind the scenes and replace their
             // wrapper with the content returned.
 
@@ -116,7 +93,6 @@
             // TODO fade in/out, show that something is happening
             //
             $this.find(formWrapperSelector).each(function() {
-                console.log($(this));
                 $(this).find('form').ajaxForm({
                     target: $(this), 
                     success: function() {
@@ -147,7 +123,7 @@
 			// Start Fade Out
 			// Animating to opacity to 0 still keeps the element's height intact
 			// Which prevents that annoying pop bang issue when loading in new content
-			$content.animate({ opacity: 0 },800);
+			//$content.animate({ opacity: 0 },800);
 
             $window.trigger(startedEventName);
 
@@ -213,7 +189,6 @@
 					if ( typeof window._gaq !== 'undefined' ) {
 						window._gaq.push(['_trackPageview', relativeUrl]);
 					}
-
 				},
 				error: function(jqXHR, textStatus, errorThrown){
 					document.location.href = url;
@@ -222,6 +197,25 @@
 			}); // end ajax
 
 		}); // end onStateChange
+
+
+        $(document.body).click(function(e) {
+            var $target = $(e.target);
+            if ($target.is('a:internal') && !$target.is(excludedLinksSelector)) {
+                // Prepare
+                var
+                    url = $target.attr('href'),
+                    title = $target.attr('title')||null;
+
+                // Continue as normal for cmd clicks etc
+                if ( event.which == 2 || event.metaKey ) { return true; }
+            
+                // Ajaxify this link
+                History.pushState(null, title, url);
+                event.preventDefault();
+                return false;
+            }
+        });
 
 	}); // end onDomLoad
 
