@@ -14,7 +14,7 @@ class GrowingPlaceAdmin(PlaceAdmin):
         }),
         ('Contact', {
             'fields': (
-                ('url', 'phone',),
+                ('url', 'contact',),
             ),
         }),
         PlaceAdmin.get_address_fieldset(),
