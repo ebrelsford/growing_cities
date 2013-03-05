@@ -46,6 +46,7 @@ class Story(models.Model):
 class StoryModerator(GenericModerator):
     auto_reject_for_anonymous = False
     notify_moderator = True
+    notify_user = False
 
     def inform_moderator(self, content_object, extra_context=None):
         extra_context = {
