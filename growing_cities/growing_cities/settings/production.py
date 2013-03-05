@@ -2,6 +2,13 @@ import os
 
 from .base import *
 
+ADMINS = (
+    ('Eric', 'ebrelsford@gmail.com'),
+)
+
+MANAGERS = ADMINS
+DJANGO_MODERATION_MODERATORS = ('ebrelsford@gmail.com',)
+
 ALLOWED_HOSTS = [get_env_variable('GROWING_CITIES_ALLOWED_HOSTS')]
 
 #
