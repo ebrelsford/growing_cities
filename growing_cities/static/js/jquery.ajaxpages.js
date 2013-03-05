@@ -199,8 +199,8 @@
 		}); // end onStateChange
 
 
-        $(document.body).click(function(e) {
-            var $target = $(e.target);
+        $(document.body).click(function(event) {
+            var $target = $(event.target);
             if ($target.is('a:internal') && !$target.is(excludedLinksSelector)) {
                 // Prepare
                 var
@@ -208,7 +208,7 @@
                     title = $target.attr('title')||null;
 
                 // Continue as normal for cmd clicks etc
-                if ( event.which == 2 || event.metaKey ) { return true; }
+                if (event.which == 2 || event.metaKey) { return true; }
             
                 // Ajaxify this link
                 History.pushState(null, title, url);
