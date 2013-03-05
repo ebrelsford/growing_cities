@@ -37,6 +37,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = get_env_variable('GROWING_CITIES_EMAIL_HOST')
 EMAIL_HOST_USER = get_env_variable('GROWING_CITIES_EMAIL_USER')
 EMAIL_HOST_PASSWORD = get_env_variable('GROWING_CITIES_EMAIL_PASSWORD')
+EMAIL_PREFIX = '[Growing Cities] '
 DEFAULT_FROM_EMAIL = get_env_variable('GROWING_CITIES_DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = get_env_variable('GROWING_CITIES_SERVER_EMAIL')
 
