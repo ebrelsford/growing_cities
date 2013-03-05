@@ -29,7 +29,7 @@ class Story(models.Model):
         blank=True,
     )
     featured = models.BooleanField(_('featured'),
-        default=False,
+        default=True,
     )
 
     class Meta:
