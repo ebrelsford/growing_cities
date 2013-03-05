@@ -1,0 +1,9 @@
+Hello,
+
+You have received a new contact request on Growing Cities:
+
+Name: {{ name }}
+Email: {{ email }}
+Message: {{ body }}
+
+Have a great day!
