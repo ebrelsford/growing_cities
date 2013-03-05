@@ -5,8 +5,8 @@ from inplace.models import Place
 
 
 class GrowingPlace(Place):
-    phone = models.CharField(_('phone'),
-        max_length=25,
+    contact = models.CharField(_('contact'),
+        max_length=300,
         null=True,
         blank=True,
     )

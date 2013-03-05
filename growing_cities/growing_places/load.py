@@ -42,7 +42,7 @@ def load_growing_places():
                 'centroid': centroid,
                 'country': 'USA',
                 'mission': place['Mission'].strip(),
-                'phone': place['Phone'].strip(),
+                'contact': place['Phone'].strip(),
                 'postal_code': zipcode,
                 'url': place['Website'].strip(),
             },
