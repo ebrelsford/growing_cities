@@ -1,5 +1,6 @@
 import csv
 import re
+import traceback
 
 from django.conf import settings
 from django.contrib.gis.geos import Point
@@ -32,19 +33,24 @@ def load_growing_places():
         except TypeError:
             centroid = None
 
-        saved_place, created = GrowingPlace.objects.get_or_create(
-            name=place['Organization'].strip(),
-            city=city,
-            state_province=state,
+        try:
+            saved_place, created = GrowingPlace.objects.get_or_create(
+                name=place['Organization'].strip(),
+                city=city,
+                state_province=state,
 
-            defaults={
-                'address_line1': place['Address'].strip(),
-                'centroid': centroid,
-                'country': 'USA',
-                'mission': place['Mission'].strip(),
-                'contact': place['Phone'].strip(),
-                'postal_code': zipcode,
-                'url': place['Website'].strip(),
-            },
-        )
-        print 'added', saved_place.name
+                defaults={
+                    'address_line1': place['Address'].strip(),
+                    'centroid': centroid,
+                    'country': 'USA',
+                    'mission': place['Mission'].strip(),
+                    'contact': place['Phone'].strip(),
+                    'postal_code': zipcode,
+                    'url': place['Website'].strip(),
+                },
+            )
+            print 'added', saved_place.name
+        except Exception:
+            print 'Exception while adding "%s"' % place['Organization']
+            traceback.print_exc()
+            continue
