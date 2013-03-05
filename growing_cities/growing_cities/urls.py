@@ -30,10 +30,6 @@ urlpatterns += patterns('',
     url(r'^inplace/', include('inplace.urls', 'inplace')),
     url(r'^stories/', include('stories.urls', 'stories')),
 
-    # admin views
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-
     # third-party views
     (r'^ckeditor/', include('ckeditor.urls')),
 
@@ -43,6 +39,10 @@ urlpatterns += patterns('',
     (r'^api/v2/', include('fiber.rest_api.urls')),
     (r'^admin/fiber/', include('fiber.admin_urls')),
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {'packages': ('fiber',),}),
+
+    # admin views
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
 
     (r'', 'fiber.views.page'),
 )
