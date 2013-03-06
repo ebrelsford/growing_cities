@@ -1,16 +1,16 @@
-{% extends "inplace/leaflet/base.html" %}
+{% load inplace_tags %}
+{% block pre_map_scripts %}{% endblock %}
 
-{% block layer_options %}
-onEachFeature: function(data, layer) {
-    layer.on('click', function(e) {
-        $.get(layer.feature.properties.popup_url, function(data) {
-            layer.bindPopup(data).openPopup();
-        });
+<script>
+$(document).ready(function() {
+
+    $('#map').placemap({
+        apiKey: '{% inplace_setting PLACES_CLOUDMADE_KEY %}',
+        styleId: '{% inplace_setting PLACES_CLOUDMADE_STYLE %}',
+        placesUrl: '{{ places_url }}',
     });
-},
 
-pointToLayer: function(data, latlng) {
-    latlngs.push(latlng);
-    return new L.marker(latlng);
-},
-{% endblock %}
+});
+</script>
+
+<div id="map" style="width: {{ width }}; height: {{ height }};"></div>

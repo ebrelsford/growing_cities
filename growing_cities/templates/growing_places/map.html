@@ -7,9 +7,8 @@
         <a href="#" class="map-drawer-toggle">show</a>
     </div>
 
-    {% with growingplace_list.0.get_list_geojson_url as places_url %}
-        {% place_map places_url 100% 600px %}
-    {% endwith %}
+    {% place_map places_url 100% 600px %}
+
 {% endblock %}
 
 {% block extra_markup %}
@@ -18,7 +17,12 @@
         <h2>Grow Where You Are</h2>
 
         <div class="map-drawer-section">
-            Where are you?
+            <h3>Where are you?</h3>
+            <select id="map-city">
+                {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
         </div>
 
         <div class="map-drawer-section">
