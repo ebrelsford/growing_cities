@@ -85,7 +85,7 @@ function enableMapDrawerTogglers() {
             of: '#content',
         });
     $('.map-drawer-toggle:not(.initialized)')
-        .click(function() {
+        .click(function(e) {
             var $mapDrawer = $('#map-drawer'),
                 $map = $('#map');
             if ($mapDrawer.hasClass('is-open')) {
@@ -94,6 +94,8 @@ function enableMapDrawerTogglers() {
             else {
                 showMapDrawer($mapDrawer, $map);
             }
+            e.preventDefault();
+            return false;
         })
         .addClass('initialized');
 }
