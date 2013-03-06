@@ -44,7 +44,7 @@
             instance.map.addLayer(cloudmade);
 
             var latlngs = [];
-            var feature_layer = new L.GeoJSON(null, {
+            instance.feature_layer = new L.GeoJSON(null, {
 
                 onEachFeature: function(data, layer) {
                     layer.on('click', function(e) {
@@ -62,11 +62,20 @@
             });
 
             $.get(instance.options.placesUrl, function(collection) {
-                feature_layer.addData(collection);
-                instance.map.addLayer(feature_layer);
+                instance.feature_layer.addData(collection);
+                instance.map.addLayer(instance.feature_layer);
                 instance.map.fitBounds(new L.LatLngBounds(latlngs));
             });
 
+        },
+
+        openPlace: function(id) {
+            var instance = this;
+            $.each(instance.feature_layer._layers, function(i, layer) {
+                if (layer.feature.id == id) {
+                    layer.fire('click');
+                }
+            });
         },
 
         zoomTo: function(bbox) {

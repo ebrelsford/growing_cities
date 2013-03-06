@@ -68,7 +68,7 @@ class CityBBOXView(JSONResponseMixin, ListView):
         qs = self.get_queryset()
         return {
             'bbox': qs.extent(),
-            'places': [place.name for place in qs],
+            'places': [self._to_dict(place) for place in qs],
         }
 
     def get_queryset(self):
@@ -81,3 +81,11 @@ class CityBBOXView(JSONResponseMixin, ListView):
         filters = filter(lambda (k, v): k in self.allowed_filters,
                          filters.items())
         return dict(filters)
+
+    def _to_dict(self, place):
+        return {
+            'id': place.pk,
+            'name': place.name,
+            'city': place.city,
+            'state_province': place.state_province,
+        }

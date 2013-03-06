@@ -26,10 +26,17 @@ $(document).ready(function() {
             $results.empty();
             $.each(data['places'], function(i, place) {
                 var $result = $('<li/>');
-                $result.text(place);
+                $result.text(place.name)
+                    .data('placeId', place.id)
+                    .addClass('map-result');
                 $results.append($result);
             });
         });
+    });
+
+    $('#map-results').click(function(e) {
+        var placeId = $(e.target).data('placeId');
+        $('#map').placemap('openPlace', placeId);
     });
 
 });
