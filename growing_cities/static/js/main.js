@@ -21,16 +21,17 @@ function setHeights() {
  */
 
 function positionMapDrawer() {
-    $('#map-drawer').position({
+    var relativeTo = '#content';
+    if ($('#map-drawer:not(.is-open)')) relativeTo = '#sidebar';
+    $('#map-drawer.is-open').position({
         my: 'left top',
         at: 'left top',
-        of: '#content',
+        of: relativeTo,
     });
 }
 
 function showMapDrawer($mapDrawer) {
     $mapDrawer
-        .show()
         .position({
             my: 'left top',
             at: 'left top',
