@@ -132,6 +132,16 @@ p {
     padding-top: 25px;
 }
 
+.map-result {
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+.map-result:hover {
+    background: lightgray;
+}
+
 #content {
     overflow-y: auto;
 }
