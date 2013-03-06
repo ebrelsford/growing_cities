@@ -26,17 +26,27 @@ $(document).ready(function() {
             $results.empty();
             $.each(data['places'], function(i, place) {
                 var $result = $('<li/>');
-                $result.text(place.name)
+                $result
                     .data('placeId', place.id)
                     .addClass('map-result');
+                $result.append($('<div/>')
+                    .text(place.name)
+                    .addClass('name'));
+                $result.append($('<div/>')
+                    .text(place.city + ', ' + place.state_province)
+                    .addClass('location'));
                 $results.append($result);
             });
         });
     });
 
     $('#map-results').click(function(e) {
-        var placeId = $(e.target).data('placeId');
-        $('#map').placemap('openPlace', placeId);
+        // find the target map-result
+        var $target = $(e.target);
+        if (!$target.hasClass('.map-result')) {
+            $target = $target.parent('.map-result');
+        }
+        $('#map').placemap('openPlace', $target.data('placeId'));
     });
 
 });

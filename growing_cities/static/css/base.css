@@ -142,6 +142,14 @@ p {
     background: lightgray;
 }
 
+.map-result .name {
+    font-weight: bold;
+}
+
+.map-result .location {
+    font-size: 90%;
+}
+
 #content {
     overflow-y: auto;
 }
