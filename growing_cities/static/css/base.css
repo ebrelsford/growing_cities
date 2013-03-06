@@ -112,6 +112,7 @@ p {
 
 #map-drawer {
     background: white;
+    overflow-y: auto;
     padding: 25px;
     position: absolute;
     width: 24%;
