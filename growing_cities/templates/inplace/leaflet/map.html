@@ -10,6 +10,21 @@ $(document).ready(function() {
         placesUrl: '{{ places_url }}',
     });
 
+    $('#map-city').change(function(e) {
+        var $selected = $(e.target).find(':selected');
+        var city = $selected.data('city');
+        var state = $selected.data('state');
+        if (!(city && state)) return;
+
+        var url = '{% url "gcplace_citybbox" %}?' + $.param({
+            city: city,
+            state_province: state,
+        });
+        $.getJSON(url, function(data) {
+            $('#map').placemap('zoomTo', data['bbox']);
+        });
+    });
+
 });
 </script>
 

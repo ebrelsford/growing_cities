@@ -1,5 +1,8 @@
+import json
+
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView
+from django.http import HttpResponse
+from django.views.generic import ListView, TemplateView
 
 from fiber.views import FiberPageMixin
 
@@ -15,7 +18,6 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
             'cities': self._get_cities(),
             'places_url': reverse('inplace:growing_places_growingplace_geojson'),
         })
-        print context
         return context
 
     def get_fiber_page_url(self):
@@ -26,8 +28,54 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
             centroid__isnull=False,
             city__isnull=False,
             state_province__isnull=False,
-        )\
-        .distinct('city', 'state_province')\
-        .order_by('state_province', 'city')
-        cities_states = places.values_list('city', 'state_province')
-        return [', '.join((city, state)) for (city, state) in cities_states]
+        )
+        places = places.distinct('city', 'state_province')
+        places = places.order_by('state_province', 'city')
+        return places.values('city', 'state_province')
+
+
+class JSONResponseMixin(object):
+    """A simple mixin that can be used to render a JSON response."""
+    response_class = HttpResponse
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Returns a JSON response, transforming 'context' to make the payload.
+        """
+        response_kwargs['content_type'] = 'application/json'
+        return self.response_class(
+            self.convert_context_to_json(context),
+            **response_kwargs
+        )
+
+    def convert_context_to_json(self, context):
+        """
+        Convert the context dictionary into a JSON object.
+
+        Adapted from the Django docs:
+            https://docs.djangoproject.com/en/dev/topics/class-based-views/mixins/#jsonresponsemixin-example
+
+        Is very naive, but will suit our purposes.
+        """
+        return json.dumps(context)
+
+
+class CityBBOXView(JSONResponseMixin, ListView):
+    allowed_filters = ('city', 'state_province',)
+    model = GrowingPlace
+
+    def get_context_data(self, **kwargs):
+        return {
+            'bbox': self.get_queryset().extent(),
+        }
+
+    def get_queryset(self):
+        qs = super(CityBBOXView, self).get_queryset()
+        qs = qs.filter(**self._get_filters())
+        return qs
+
+    def _get_filters(self):
+        filters = self.request.GET.dict()
+        filters = filter(lambda (k, v): k in self.allowed_filters,
+                         filters.items())
+        return dict(filters)

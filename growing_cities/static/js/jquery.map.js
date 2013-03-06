@@ -68,7 +68,16 @@
             });
 
         },
-    };
+
+        zoomTo: function(bbox) {
+            var instance = this;
+            instance.map.fitBounds([
+                [bbox[1], bbox[0]],
+                [bbox[3], bbox[2]],
+            ]);
+        },
+
+    }; // prototype
 
     $.fn.placemap = function(options) {
         var thisCall = typeof options;
@@ -80,8 +89,7 @@
                 var args = Array.prototype.slice.call(arguments, 1);
 
                 this.each(function() {
-
-                    var instance = $.data(this[0], 'placemap');
+                    var instance = $.data(this, 'placemap');
 
                     if (!instance) {
                         // not setup yet

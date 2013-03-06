@@ -19,8 +19,11 @@
         <div class="map-drawer-section">
             <h3>Where are you?</h3>
             <select id="map-city">
+                <option>Pick a city</option>
                 {% for city in cities %}
-                <option value="{{ city }}">{{ city }}</option>
+                <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
+                    {{ city.city }}, {{ city.state_province }}
+                </option>
                 {% endfor %}
             </select>
         </div>
