@@ -22,6 +22,13 @@ $(document).ready(function() {
         });
         $.getJSON(url, function(data) {
             $('#map').placemap('zoomTo', data['bbox']);
+            var $results = $('#map-results');
+            $results.empty();
+            $.each(data['places'], function(i, place) {
+                var $result = $('<li/>');
+                $result.text(place);
+                $results.append($result);
+            });
         });
     });
 

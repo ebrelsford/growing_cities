@@ -65,8 +65,10 @@ class CityBBOXView(JSONResponseMixin, ListView):
     model = GrowingPlace
 
     def get_context_data(self, **kwargs):
+        qs = self.get_queryset()
         return {
-            'bbox': self.get_queryset().extent(),
+            'bbox': qs.extent(),
+            'places': [place.name for place in qs],
         }
 
     def get_queryset(self):
