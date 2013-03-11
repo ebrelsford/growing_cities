@@ -4,21 +4,26 @@
 // Adapted from https://github.com/Leaflet/Leaflet/issues/859
 //
 MapCenterOffsetMixin = {
-    
-    // TODO make dynamic based on whether drawer is open or not
-    UIOffset: [346, 0], // x, y
 
-    getBounds: function(){
+    getBounds: function() {
+        var offset = this._getOffset();
         var a=this.getPixelBounds(),
-            b=this.unproject(new L.Point(a.min.x + this.UIOffset[0],
-                        a.max.y + this.UIOffset[1]), this._zoom, true),
+            b=this.unproject(new L.Point(a.min.x + offset[0],
+                        a.max.y + offset[1]), this._zoom, true),
             c=this.unproject(new L.Point(a.max.x, a.min.y), this._zoom, true);
             return new L.LatLngBounds(b, c)
     },
 
+    _getOffset: function() {
+        var $drawer = this.options.$drawer;
+        if (!$drawer.hasClass('is-open')) { return [0, 0]; }
+        return [$drawer.outerWidth(), 0];
+    },
+
     _latLngToNewLayerPoint: function (latlng, newZoom, newCenter) {
+        var offset = this._getOffset();
         var targetPoint = this.project(newCenter, newCenter)
-            .subtract([this.UIOffset[0] / 2, this.UIOffset[1] / 2]);
+            .subtract([offset[0] / 2, offset[1] / 2]);
         var newCenter = this.unproject(targetPoint, newZoom);
         var topLeft = this._getNewTopLeftPoint(newCenter, newZoom)
             .add(this._getMapPanePos());
@@ -26,16 +31,18 @@ MapCenterOffsetMixin = {
     },
 
     _getCenterLayerPoint: function () {
+        var offset = this._getOffset();
         return this.containerPointToLayerPoint(this.getSize().divideBy(2)
-                    .add([this.UIOffset[0]/2, this.UIOffset[1]/2]));
+                    .add([offset[0]/2, offset[1]/2]));
     },
 
     _resetView: function (center, zoom, preserveMapOffset, afterZoomAnim) {
         var zoomDiffers = this._zoom !== zoom;
+        var offset = this._getOffset();
 
         // Change the center
         var targetPoint = this.project(center, zoom)
-            .subtract([this.UIOffset[0] / 2, this.UIOffset[1]/2]);
+            .subtract([offset[0] / 2, offset[1]/2]);
         var center = this.unproject(targetPoint, zoom);
         afterZoomAnim || (this.fire("movestart"), zoomDiffers && this.fire("zoomstart")), this._zoom = zoom, this._initialTopLeftPoint = this._getNewTopLeftPoint(center);
 

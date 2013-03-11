@@ -29,7 +29,9 @@
 
         _initializeMap: function() {
             var instance = this;
-            instance.map = L.map(instance.element[0].id);
+            instance.map = L.map(instance.element[0].id, {
+                $drawer: instance.options.$drawer,   
+            });
 
             var cloudmade = new L.TileLayer(
                 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png', 

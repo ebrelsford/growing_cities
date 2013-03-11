@@ -8,6 +8,7 @@ $(document).ready(function() {
         apiKey: '{% inplace_setting PLACES_CLOUDMADE_KEY %}',
         styleId: '{% inplace_setting PLACES_CLOUDMADE_STYLE %}',
         placesUrl: '{{ places_url }}',
+        $drawer: $('#map-drawer'),
     });
 
     $('#map-city').change(function(e) {
