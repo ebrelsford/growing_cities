@@ -42,12 +42,6 @@ function showMapDrawer($mapDrawer, $map) {
         })
         .addClass('is-open');
     $('#map-drawer-show').hide();
-
-    var drawerWidth = $mapDrawer.outerWidth();
-    $map.animate({
-        left: drawerWidth,
-        width: $map.outerWidth() - drawerWidth, 
-    });
 }
 
 function hideMapDrawer($mapDrawer, $map) {
@@ -69,11 +63,6 @@ function hideMapDrawer($mapDrawer, $map) {
             at: 'left top',
             of: '#content',
         });
-
-    $map.animate({
-        left: 0,
-        width: '100%', 
-    });
 }
 
 function enableMapDrawerTogglers() {

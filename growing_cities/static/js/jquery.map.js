@@ -49,8 +49,13 @@
                 onEachFeature: function(data, layer) {
                     layer.on('click', function(e) {
                         $.get(layer.feature.properties.popup_url, function(data) {
-                            layer.bindPopup(data).openPopup();
+                            layer.bindPopup(data, {
+                                autoPan: false,
+                            }).openPopup();
                         });
+
+                        // center rather than fit popup
+                        instance.map.panTo(layer.getLatLng());
                     });
                 },
 
