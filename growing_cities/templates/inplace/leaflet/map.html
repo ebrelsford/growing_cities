@@ -11,7 +11,7 @@ $(document).ready(function() {
         $drawer: $('#map-drawer'),
     });
 
-    $('#map-city').change(function(e) {
+    $('#map-city:not(.initialized)').change(function(e) {
         var $selected = $(e.target).find(':selected');
         var city = $selected.data('city');
         var state = $selected.data('state');
@@ -39,16 +39,16 @@ $(document).ready(function() {
                 $results.append($result);
             });
         });
-    });
+    }).addClass('initialized');
 
-    $('#map-results').click(function(e) {
+    $('#map-results:not(.initialized)').click(function(e) {
         // find the target map-result
         var $target = $(e.target);
         if (!$target.hasClass('.map-result')) {
             $target = $target.parent('.map-result');
         }
         $('#map').placemap('openPlace', $target.data('placeId'));
-    });
+    }).addClass('initialized');
 
 });
 </script>

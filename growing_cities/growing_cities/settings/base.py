@@ -147,6 +147,7 @@ FIBER_TEMPLATE_CHOICES = (
     ('content_page.html', 'Content template'),
     ('growing_places/map.html', 'Map template'),
 )
+FIBER_LOGIN_STRING = '@admin'
 
 CKEDITOR_CONFIGS = {
     'default': {
