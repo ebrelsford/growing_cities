@@ -18,6 +18,10 @@
 }
 
 body {
+    color: #4C4A33;
+    font-family: "Bookman Regular", serif;
+    font-weight: normal;
+    font-style: normal;
 }
 
 img {
@@ -45,7 +49,6 @@ p {
 
 #mainmenu {
     font-family: "Bookman Regular", serif;
-    font-size-adjust: 0.498;
     font-weight: normal;
     font-style: normal;
 }
@@ -67,12 +70,16 @@ h1 {
     font-size: 52px;
 }
 
-/* webfonts not used yet */
+.content-title {
+    color: #4C4A33;
+    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 122px;
+    line-height: 90px;
+    text-align: center;
+}
 
-/*
-    div { font-family:"Bookman Italic", serif; font-size-adjust:0.498; font-weight:normal; font-style:italic; }
-    div { font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif; font-size-adjust:0.6; font-weight:normal; font-style:normal; }
-    */
 
 /*
  * _state_
@@ -118,7 +125,7 @@ h1 {
 
 #sidebar {
     background: #E7E8D6;
-    border-right: 1px solid black;
+    border-right: 7px double #4C4A33;
     overflow-y: auto;
     padding: 25px;
     position: relative;
@@ -176,6 +183,7 @@ h1 {
 }
 
 #content {
+    background-color: #E7E8D6;
     overflow-y: auto;
 }
 
@@ -220,9 +228,23 @@ header {
 }
 
 .submenu {
-    background: lightgray;
     width: 100%;
     z-index: 2000; /* get over Django Fiber gradient */
+    border-top: 1px solid #4C4A33;
+    border-bottom: 1px solid #4C4A33;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 20px;
+}
+
+.submenu a {
+    color: #4C4A33;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 22px;
+    text-decoration: none;
 }
 
 .submenu.stuck {
@@ -241,6 +263,13 @@ header {
 
 #breadcrumbs li {
     float: left;
+}
+
+.lead-in {
+    color: #4C4A33;
+    font-family:"Bookman Italic", serif;
+    font-weight:normal;
+    font-style:italic;
 }
 
 .story-lead-in {

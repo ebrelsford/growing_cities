@@ -1,20 +1,12 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% load cache fiber_tags news_tags %}
 
-{% block content %}
+{% block page_content %}
+<div class="news lead-in">
+    {% show_page_content "lead-in" %}
+</div>
 
-    <div class="article-wrapper">
-        <h2>{{ fiber_page.title }}</h2>
-
-        {% include "_submenu.html" %}
-
-        <div class="news lead-in">
-            {% show_page_content "lead-in" %}
-        </div>
-
-        {% cache 1800 feed  %}
-            {% pull_feed feed_url 5 %}
-        {% endcache %}
-
-    </div>
+{% cache 1800 feed  %}
+    {% pull_feed feed_url 5 %}
+{% endcache %}
 {% endblock %}

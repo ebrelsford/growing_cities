@@ -1,25 +1,18 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% load fiber_tags %}
 
-{% block content %}
-    <script>
-        $(document).ready(function() {
-            $('#contact-form').load('{% url "contact_form:form" %}', function() {
-                $(document.body).ajaxify();
-            });
+{% block page_content %}
+<script>
+    $(document).ready(function() {
+        $('#contact-form').load('{% url "contact_form:form" %}', function() {
+            $(document.body).ajaxify();
         });
-    </script>
+    });
+</script>
 
-    <div class="article-wrapper">
-        <h2>{{ fiber_page.title }}</h2>
+<div class="contact lead-in">
+    {% show_page_content "lead-in" %}
+</div>
 
-        {% include "_submenu.html" %}
-
-        <div class="contact lead-in">
-            {% show_page_content "lead-in" %}
-        </div>
-
-        <div id="contact-form" class="ajax-form-wrapper"></div>
-
-    </div>
+<div id="contact-form" class="ajax-form-wrapper"></div>
 {% endblock %}
