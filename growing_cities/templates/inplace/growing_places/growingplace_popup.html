@@ -18,3 +18,10 @@
     {% trans "their website" %}
 </a>
 {% endif %}
+
+{% if perms.change_growingplace %}
+<a href="{% url "admin:growing_places_growingplace_change" growingplace.pk %}"
+    target="_blank" style="padding-left: 20px;">
+    {% trans "change or add content" %}
+</a>
+{% endif %}

@@ -1,7 +1,9 @@
+from django.contrib.contenttypes import generic
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from inplace.models import Place
+from photos.models import Photo
 
 
 class GrowingPlace(Place):
@@ -18,6 +20,8 @@ class GrowingPlace(Place):
         null=True,
         blank=True,
     )
+
+    photos = generic.GenericRelation(Photo)
 
     # TODO tags
 
