@@ -135,9 +135,8 @@ h1 {
 }
 
 #map-drawer {
-    background: white;
+    background: url(/static/img/map-drawer-bg.png);
     overflow-y: auto;
-    opacity: 0.7;
     padding: 25px;
     position: absolute;
     width: 24%;
