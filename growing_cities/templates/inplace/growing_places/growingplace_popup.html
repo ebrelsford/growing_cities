@@ -1,5 +1,9 @@
 {% load i18n %}
 
+{% if growingplace.photos.count %}
+<img src="{{ growingplace.photos.all.0.thumbnail.url }}" />
+{% endif %}
+
 <div>
     <h3>{{ growingplace.name|default:"" }}</h3>
     <br />

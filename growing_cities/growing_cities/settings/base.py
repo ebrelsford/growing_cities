@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'contact_form',
     'feedparser',
     'fiber',
+    'imagekit',
     'inplace',
     'moderation',
     'mptt',
