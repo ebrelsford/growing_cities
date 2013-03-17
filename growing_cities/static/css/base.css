@@ -142,6 +142,7 @@ h1 {
 }
 
 #map-drawer {
+    color: #E7E8D6;
     background: url(/static/img/map-drawer-bg.png);
     overflow-y: auto;
     padding: 25px;
@@ -160,8 +161,21 @@ h1 {
     z-index: 10000; /* TODO something more appropriate */
 }
 
+.map-drawer-title {
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 36px;
+}
+
 .map-drawer-section {
     padding-top: 25px;
+}
+
+.map-drawer-section h3 {
+    font-family: "Lucida Console", monospace;
+    font-weight: normal;
 }
 
 .map-result {
