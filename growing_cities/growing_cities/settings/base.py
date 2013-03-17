@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'growing_places',
     'news',
     'pages',
+    'photos',
     'products',
     'screenings',
     'stories',
