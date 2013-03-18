@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'products',
     'screenings',
     'stories',
+    'videos',
 )
 
 PLACES_CLOUDMADE_KEY = '781b27aa166a49e1a398cd9b38a81cdf'

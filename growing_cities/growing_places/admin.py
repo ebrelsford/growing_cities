@@ -3,11 +3,16 @@ from django.contrib.contenttypes import generic
 
 from inplace.admin import PlaceAdmin
 from photos.models import Photo
+from videos.models import Video
 from .models import GrowingPlace
 
 
 class PhotoInline(generic.GenericTabularInline):
     model = Photo
+
+
+class VideoInline(generic.GenericTabularInline):
+    model = Video
 
 
 class GrowingPlaceAdmin(PlaceAdmin):
@@ -26,6 +31,6 @@ class GrowingPlaceAdmin(PlaceAdmin):
         PlaceAdmin.get_address_fieldset(),
         PlaceAdmin.get_geo_fieldset(),
     )
-    inlines = (PhotoInline,)
+    inlines = (PhotoInline, VideoInline)
 
 admin.site.register(GrowingPlace, GrowingPlaceAdmin)
