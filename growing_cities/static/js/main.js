@@ -17,6 +17,28 @@ function setHeights() {
 
 
 /*
+ * Map overlay.
+ */
+
+function showMapOverlay() {
+    var $relativeTo = $('#content');
+    $('#map-overlay')
+        .width($relativeTo.outerWidth())
+        .height($relativeTo.outerHeight())
+        .position({
+            my: 'left top',
+            at: 'left top',
+            of: $relativeTo,
+        })
+        .show();
+}
+
+function hideMapOverlay() {
+    $('#map-overlay').hide();
+}
+
+
+/*
  * Map drawer.
  */
 
@@ -159,4 +181,11 @@ $(document).ready(function() {
 
     $('input, textarea').placeholder();
 
+    $('.map-overlay-hide').click(function() {
+        hideMapOverlay();
+        return false;
+    });
+
+    // TODO only the first time
+    showMapOverlay();
 });

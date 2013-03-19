@@ -64,7 +64,6 @@ p {
 
 h1 {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    /*font-size-adjust: 0.6;*/ /* TODO does this do anything? */
     font-weight: normal;
     font-style: normal;
     font-size: 52px;
@@ -176,6 +175,51 @@ h1 {
 .map-drawer-section h3 {
     font-family: "Lucida Console", monospace;
     font-weight: normal;
+}
+
+#map-overlay {
+    position: absolute;
+    padding-top: 5%;
+}
+
+.map-overlay-title {
+    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 130px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.map-overlay-description {
+    font-family: "Bookman Regular", serif;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.map-overlay-hide {
+    background-color: #E2D332;
+    width: 80px;
+    height: 40px;
+    border: 2px solid #818263;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    padding: 15px;
+}
+
+.map-overlay-hide:hover {
+    background-color: #656447;
+    color: white;
 }
 
 .map-result {
