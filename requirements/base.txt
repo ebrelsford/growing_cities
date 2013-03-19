@@ -8,7 +8,7 @@ django-contact-form-gv==0.4.1
 -e git://github.com/ebrelsford/django-fiber.git@fa24be63859e31a9da8cd8d499950a43dcbbef0c#egg=django_fiber-dev
 django-imagekit==2.0.3
 -e git://github.com/ebrelsford/django-inplace.git@78f52385a166c135c8bb44e035838181869684fe#egg=django_inplace-dev
-django-moderation==0.3.2
+-e git://github.com/dominno/django-moderation.git@16529f8d0bb3ae6044d8722828b855b99ab5f6b7#egg=django_moderation-dev
 django-mptt==0.5.5
 djangorestframework==2.1.17
 docutils==0.10
