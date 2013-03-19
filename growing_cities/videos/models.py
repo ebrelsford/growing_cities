@@ -2,7 +2,6 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -24,16 +23,5 @@ class Video(models.Model):
                                      choices=EXTERNAL_SITE_CHOICES)
     external_id = models.CharField(_('external id'), max_length=100)
 
-    # vimeo: http://developer.vimeo.com/player/embedding
-    # youtube: https://developers.google.com/youtube/iframe_api_reference
-
     def __unicode__(self):
         return self.name
-
-    def embed(self, width, height):
-        # TODO might be better as a filter
-        render_to_string('videos/embed_%s.html' % self.external_site, {
-            'height': height,
-            'width': width,
-            'video': self,
-        })

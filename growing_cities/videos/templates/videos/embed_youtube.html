@@ -1,17 +1,3 @@
-<div id="player"></div>
-
-<script>
-    var tag = document.createElement('script');
-
-    tag.src = "//www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-    function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '{{ height }}',
-        width: '{{ width }}',
-        videoId: '{{ video.external_id }}',
-    });
-}
+<iframe id="player" type="text/html" width="{{ width }}" height="{{ height }}" 
+    src="http://www.youtube.com/embed/{{ video.external_id }}"
+    frameborder="0"></iframe>

@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from inplace.models import Place
 from photos.models import Photo
+from videos.models import Video
 
 
 class GrowingPlace(Place):
@@ -22,6 +23,7 @@ class GrowingPlace(Place):
     )
 
     photos = generic.GenericRelation(Photo)
+    videos = generic.GenericRelation(Video)
 
     # TODO tags
 
