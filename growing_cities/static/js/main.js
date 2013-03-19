@@ -153,6 +153,21 @@ function addSubmenu() {
 
 
 /*
+ * Geolocation.
+ */
+
+function findLocationByIP(callback) {
+    if (client_ip == '127.0.0.1') {
+        // account for localhost
+        client_ip = '173.3.193.143';
+    }
+    $.getJSON('http://freegeoip.net/json/' + client_ip, function(data) {
+        callback(data);
+    });
+}
+
+
+/*
  * Event handling and initialization.
  */
 
@@ -183,9 +198,30 @@ $(document).ready(function() {
 
     $('.map-overlay-hide').click(function() {
         hideMapOverlay();
+
+        // zoom to detected location
+        if (lat && lon) {
+            $('#map').placemap('centerOn', lat, lon);
+        }
+        else {
+            // TODO ask browser for location
+        }
+ 
+        var $mapDrawer = $('#map-drawer'),
+            $map = $('#map');
+        showMapDrawer($mapDrawer, $map);
         return false;
     });
 
     // TODO only the first time
     showMapOverlay();
+
+    // Get ready for zooming
+    var lat = null, 
+        lon = null;
+    findLocationByIP(function(data) {
+        lat = data['latitude'];
+        lon = data['longitude'];
+    });
+
 });

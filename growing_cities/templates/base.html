@@ -34,7 +34,10 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
     })();
+
+    var client_ip = '{{ request.META.REMOTE_ADDR }}';
     </script>
+
     <!-- Dynamically load pages -->
     <script src="{{ STATIC_URL }}js/lib/jquery.scrollto.min.js"></script>
     <script src="{{ STATIC_URL }}js/lib/jquery.history.js"></script>

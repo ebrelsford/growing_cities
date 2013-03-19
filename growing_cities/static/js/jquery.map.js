@@ -85,6 +85,11 @@
             });
         },
 
+        centerOn: function(lat, lon) {
+            var instance = this;
+            instance.map.setView([lat, lon], 12);
+        },
+
         zoomTo: function(bbox) {
             var instance = this;
             instance.map.fitBounds([
