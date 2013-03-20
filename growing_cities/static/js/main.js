@@ -160,7 +160,25 @@ function addSubmenu() {
             });
         });
 
-        $('.submenu').waypoint('sticky', { context: '#content' });
+        $('.submenu').waypoint('sticky', { 
+            context: '#content', 
+            handler: function(direction) {
+                if (direction === 'down') {
+                    // handle stuck
+                    $('.submenu.stuck')
+                        .width($('#content').innerWidth())
+                        .position({
+                            my: 'left top',
+                            at: 'left+2 top+1',
+                            of: '#content',
+                        });
+                }
+                else {
+                    // handle unstuck
+                    $('.submenu').width('100%');
+                }
+            },
+        });
     }
 }
 
