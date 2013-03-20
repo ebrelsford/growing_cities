@@ -101,6 +101,14 @@ h1 {
 }
 
 @media (min-width: 768px) {
+    .grid-1-6 {
+        width: 16%;
+    }
+
+    .grid-5-6 {
+        width: 84%;
+    }
+
     .grid-1-4 {
         width: 25%;
     }

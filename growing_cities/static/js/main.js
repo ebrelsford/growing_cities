@@ -44,22 +44,32 @@ function hideMapOverlay() {
 
 function positionMapDrawer() {
     var relativeTo = '#content';
-    if ($('#map-drawer:not(.is-open)')) relativeTo = '#sidebar';
-    $('#map-drawer.is-open').position({
-        my: 'left top',
-        at: 'left top',
-        of: relativeTo,
-    });
+    var width = '24%';
+    if ($('#map-drawer:not(.is-open)')) {
+        relativeTo = '#sidebar';
+        width = $(relativeTo).outerWidth();
+    }
+    $('#map-drawer')
+        .position({
+            my: 'left top',
+            at: 'left top',
+            of: relativeTo,
+        })
+        .outerWidth(width);
 }
 
 function showMapDrawer($mapDrawer, $map) {
+    var newWidth = $('#content').outerWidth() * .25;
     $mapDrawer
         .position({
             my: 'left top',
             at: 'left top',
             of: '#content',
             using: function(pos) {
-                $mapDrawer.animate({ left: pos.left, });
+                $mapDrawer.animate({
+                    left: pos.left,
+                    width: newWidth,
+                });
             },
         })
         .addClass('is-open');
@@ -67,7 +77,7 @@ function showMapDrawer($mapDrawer, $map) {
 
     // move any map controls on the left
     $('.leaflet-left').animate({
-        left: $mapDrawer.outerWidth(),
+        left: newWidth,
     });
 }
 
@@ -78,7 +88,10 @@ function hideMapDrawer($mapDrawer, $map) {
             at: 'left top',
             of: '#sidebar',
             using: function(pos) {
-                $mapDrawer.animate({ left: pos.left, });
+                $mapDrawer.animate({
+                    left: pos.left, 
+                    width: $('#sidebar').outerWidth(),
+                });
             },
         })
         .removeClass('is-open');

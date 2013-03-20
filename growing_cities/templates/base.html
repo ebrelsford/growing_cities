@@ -71,7 +71,7 @@
 <body class="{% block body_class %}{{ fiber_page.title|slugify }}{% endblock %}">
 	<div>
 		<div>
-			<div id="sidebar" class="full-height grid grid-1-4">
+			<div id="sidebar" class="full-height grid grid-1-6">
                 <section id="logo">
                     <h1>
                         <a href="/">Growing<br />Cities</a>
@@ -86,26 +86,12 @@
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-section-name">Latest News</div>
-                    <div>
-                        {% show_content "latest_news" %}
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-section-name">Sign up to get involved</div>
-                    <div>
-                        {% include "_mailing_list_form.html" %}
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
                     {% show_content "terms" %}
                 </div>
 
 			</div>
 
-            <div id="content" class="full-height grid grid-3-4">
+            <div id="content" class="full-height grid grid-5-6">
 				<article>
                     {% block content %}
 					{% show_page_content "main" %}
