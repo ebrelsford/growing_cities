@@ -6,13 +6,29 @@
  ****************************************************************************/
 
 
+function pxToInt(px) {
+    return parseInt(px.replace('px', ''));
+}
+
+
 /*
  * Let things that want to take up the full height of the window do so.
  */
 function setHeights() {
     var height = $(window).height();
-    $('#map').outerHeight(height);
-    $('.full-height').outerHeight(height);
+    $('#map').height(height);
+
+    var $applicationPane = $('#application-pane');
+    var applicationPaneHeight = height - 
+            pxToInt($applicationPane.css('margin-top')) - 
+            pxToInt($applicationPane.css('margin-bottom'));
+    $applicationPane.outerHeight(applicationPaneHeight);
+
+    var innerDivHeight = $applicationPane.innerHeight() -
+            pxToInt($applicationPane.css('padding-top')) -
+            pxToInt($applicationPane.css('padding-bottom'));
+    $applicationPane.find('.full-height')
+        .outerHeight(innerDivHeight);
 }
 
 

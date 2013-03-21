@@ -325,7 +325,6 @@ header {
 
 .submenu.stuck {
     position: fixed;
-    top: 31px;
 }
 
 .submenu li {
