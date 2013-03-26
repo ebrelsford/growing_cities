@@ -260,7 +260,7 @@ h1 {
     font-size: 90%;
 }
 
-#content {
+#content-wrapper {
     background-color: #ECEADE;
     border: 2px solid #4C4A33;
     overflow-y: auto;

@@ -92,12 +92,14 @@
 
 			</div>
 
-            <div id="content" class="full-height grid grid-5-6">
-				<article>
-                    {% block content %}
-					{% show_page_content "main" %}
-                    {% endblock %}
-				</article>
+            <div id="content-wrapper" class="full-height grid grid-5-6">
+                <div id="content" class="full-height">
+                    <article>
+                        {% block content %}
+                        {% show_page_content "main" %}
+                        {% endblock %}
+                    </article>
+                </div>
 			</div>
 
 		</div>
