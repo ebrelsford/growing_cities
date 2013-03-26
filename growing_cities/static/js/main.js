@@ -16,19 +16,20 @@ function pxToInt(px) {
  */
 function setHeights() {
     var height = $(window).height();
-    $('#map').height(height);
+
+    $('#application-pane-wrapper').outerHeight($(window).height() - 15);
 
     var $applicationPane = $('#application-pane');
-    var applicationPaneHeight = height - 
-            pxToInt($applicationPane.css('margin-top')) - 
-            pxToInt($applicationPane.css('margin-bottom'));
-    $applicationPane.outerHeight(applicationPaneHeight);
 
     var innerDivHeight = $applicationPane.innerHeight() -
             pxToInt($applicationPane.css('padding-top')) -
             pxToInt($applicationPane.css('padding-bottom'));
     $applicationPane.find('.full-height')
         .outerHeight(innerDivHeight);
+
+    $('#map').height(innerDivHeight - 4);
+    $('#map-drawer').outerHeight(innerDivHeight);
+    $('#map-overlay').outerHeight(innerDivHeight);
 }
 
 

@@ -131,10 +131,14 @@ h1 {
  * _modules_
  */
 
+#application-pane-wrapper {
+    padding: 25px;
+}
+
 #application-pane {
     border: 2px solid #4C4A33;
-    margin: 25px;
     padding: 3px;
+    height: 100%;
 }
 
 #sidebar {
@@ -195,7 +199,7 @@ h1 {
 
 #map-overlay {
     position: absolute;
-    padding-top: 5%;
+    padding-top: 2%;
 }
 
 .map-overlay-title {
@@ -372,6 +376,11 @@ ul.story-list li {
 .news-post .date {
     font-size: 85%;
     font-weight: bold;
+}
+
+.terms {
+    font-size: 12px;
+    text-align: right;
 }
 
 
