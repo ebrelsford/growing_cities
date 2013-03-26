@@ -30,7 +30,7 @@ function positionMapDrawer() {
     });
 }
 
-function showMapDrawer($mapDrawer, $map) {
+function showMapDrawer($mapDrawer) {
     $mapDrawer
         .position({
             my: 'left top',
@@ -49,7 +49,7 @@ function showMapDrawer($mapDrawer, $map) {
     });
 }
 
-function hideMapDrawer($mapDrawer, $map) {
+function hideMapDrawer($mapDrawer) {
     $mapDrawer
         .position({
             my: 'left top',
@@ -73,30 +73,6 @@ function hideMapDrawer($mapDrawer, $map) {
     $('.leaflet-left').animate({
         left: 0,
     });
-}
-
-function enableMapDrawerTogglers() {
-    $('#map-drawer-show')
-        .show()
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: '#content',
-        });
-    $('.map-drawer-toggle:not(.initialized)')
-        .click(function(e) {
-            var $mapDrawer = $('#map-drawer'),
-                $map = $('#map');
-            if ($mapDrawer.hasClass('is-open')) {
-                hideMapDrawer($mapDrawer, $map);
-            }
-            else {
-                showMapDrawer($mapDrawer, $map);
-            }
-            e.preventDefault();
-            return false;
-        })
-        .addClass('initialized');
 }
 
 
@@ -153,9 +129,6 @@ $(document).ready(function() {
 
     addSubmenu();
     $(window).on('statechangecomplete', addSubmenu);
-
-    enableMapDrawerTogglers();
-    $(window).on('statechangecomplete', enableMapDrawerTogglers);
 
     $('input, textarea').placeholder();
 

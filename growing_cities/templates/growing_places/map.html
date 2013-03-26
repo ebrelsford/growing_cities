@@ -3,17 +3,12 @@
 
 {% block content %}
 
-    <div id="map-drawer-show">
-        <a href="#" class="map-drawer-toggle no-ajax">show</a>
-    </div>
-
     {% place_map places_url 100% 600px %}
 
 {% endblock %}
 
 {% block extra_markup %}
     <div class="full-height grid" id="map-drawer">
-        <a href="#" id="map-drawer-hide" class="map-drawer-toggle no-ajax">hide</a>
         <h2 class="map-drawer-title">Grow Where You Are</h2>
 
         <div class="map-drawer-section">

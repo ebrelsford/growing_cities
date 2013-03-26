@@ -31,6 +31,7 @@
             var instance = this;
             instance.map = L.map(instance.element[0].id, {
                 $drawer: instance.options.$drawer,   
+                mapDrawerControl: true,
             });
 
             var cloudmade = new L.TileLayer(
