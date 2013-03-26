@@ -154,7 +154,7 @@ function addSubmenu() {
         });
 
         $('.submenu').waypoint('sticky', { 
-            context: '#content', 
+            context: '#content-wrapper', 
             handler: function(direction) {
                 if (direction === 'down') {
                     // handle stuck
@@ -163,7 +163,7 @@ function addSubmenu() {
                         .position({
                             my: 'left top',
                             at: 'left+2 top+1',
-                            of: '#content',
+                            of: '#content-wrapper',
                         });
                 }
                 else {
