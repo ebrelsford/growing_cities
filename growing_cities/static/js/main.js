@@ -74,12 +74,8 @@ function positionMapDrawer() {
         .outerWidth(width);
 }
 
-<<<<<<< HEAD
 function showMapDrawer($mapDrawer) {
-=======
-function showMapDrawer($mapDrawer, $map) {
     var newWidth = $('#content').outerWidth() * .25;
->>>>>>> 274f97d03fedf5392955804bf75c73c21838275d
     $mapDrawer
         .position({
             my: 'left top',
