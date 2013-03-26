@@ -330,3 +330,38 @@ ul.story-list li {
     left: 0 !important;
     top: 0 !important;
 }
+
+
+/*
+ * _leaflet_
+ */
+
+.leaflet-control-zoom.leaflet-bar {
+    box-shadow: none;
+    border: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.leaflet-control-zoom .leaflet-bar-part {
+    background-color: #2B2B12 !important;
+    margin-bottom: 5px;
+}
+
+.leaflet-control-zoom .leaflet-bar-part:hover {
+    background-color: #D7CE44 !important;
+}
+
+.leaflet-control-zoom a {
+    color: white !important;
+}
+
+.leaflet-control-zoom a:hover {
+    color: black !important;
+}
+
+.leaflet-control-zoom .leaflet-bar-part-top,
+.leaflet-control-zoom .leaflet-bar-part-bottom {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+}
