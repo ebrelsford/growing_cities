@@ -9,10 +9,8 @@ from inplace.geocode.mapquest import geocode
 from .models import GrowingPlace
 
 
-FILE = settings.DATA_ROOT + '/growing_places.csv'
-
-def load_growing_places():
-    reader = csv.DictReader(open(FILE))
+def load_growing_places(file_name='growing_places.csv'):
+    reader = csv.DictReader(open(settings.DATA_ROOT + '/' + file_name))
 
     for place in reader:
         # skip empty rows

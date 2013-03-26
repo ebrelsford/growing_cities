@@ -18,6 +18,7 @@
 }
 
 body {
+    background: #F6F3ED;
     color: #4C4A33;
     font-family: "Bookman Regular", serif;
     font-weight: normal;
@@ -59,15 +60,14 @@ p {
 }
 
 #logo h1 {
-    line-height: 45px;
+    line-height: 35px;
 }
 
 h1 {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    /*font-size-adjust: 0.6;*/ /* TODO does this do anything? */
     font-weight: normal;
     font-style: normal;
-    font-size: 52px;
+    font-size: 40px;
 }
 
 .content-title {
@@ -94,7 +94,7 @@ h1 {
  */
 
 .grid {
-    box-sizing: padding-box;
+    box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     float: left;
@@ -102,6 +102,14 @@ h1 {
 }
 
 @media (min-width: 768px) {
+    .grid-1-6 {
+        width: 16%;
+    }
+
+    .grid-5-6 {
+        width: 83%;
+    }
+
     .grid-1-4 {
         width: 25%;
     }
@@ -123,11 +131,18 @@ h1 {
  * _modules_
  */
 
+#application-pane {
+    border: 2px solid #4C4A33;
+    margin: 25px;
+    padding: 3px;
+}
+
 #sidebar {
-    background: #E7E8D6;
-    border-right: 7px double #4C4A33;
+    background: #F1EFE3;
+    border: 2px solid #4C4A33;
+    margin-right: 3px;
     overflow-y: auto;
-    padding: 25px;
+    padding: 25px 10px;
     position: relative;
     z-index: 1990;
 }
@@ -178,6 +193,51 @@ h1 {
     font-weight: normal;
 }
 
+#map-overlay {
+    position: absolute;
+    padding-top: 5%;
+}
+
+.map-overlay-title {
+    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 130px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.map-overlay-description {
+    font-family: "Bookman Regular", serif;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.map-overlay-hide {
+    background-color: #E2D332;
+    width: 80px;
+    height: 40px;
+    border: 2px solid #818263;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    padding: 15px;
+}
+
+.map-overlay-hide:hover {
+    background-color: #656447;
+    color: white;
+}
+
 .map-result {
     border-bottom: 1px solid gray;
     cursor: pointer;
@@ -197,7 +257,8 @@ h1 {
 }
 
 #content {
-    background-color: #E7E8D6;
+    background-color: #ECEADE;
+    border: 2px solid #4C4A33;
     overflow-y: auto;
 }
 
@@ -224,7 +285,7 @@ header {
 }
 
 #mainmenu li {
-    border-bottom: 1px solid #4C4A33;
+    border-bottom: 1px solid #D5D3C7;
 }
 
 #mainmenu a {
@@ -244,6 +305,7 @@ header {
 .submenu {
     width: 100%;
     z-index: 2000; /* get over Django Fiber gradient */
+    background: url(/static/img/submenu-bg.png);
     border-top: 1px solid #4C4A33;
     border-bottom: 1px solid #4C4A33;
     padding-top: 20px;
@@ -263,7 +325,6 @@ header {
 
 .submenu.stuck {
     position: fixed;
-    top: 0;
 }
 
 .submenu li {

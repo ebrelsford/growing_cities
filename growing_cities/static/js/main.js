@@ -6,13 +6,51 @@
  ****************************************************************************/
 
 
+function pxToInt(px) {
+    return parseInt(px.replace('px', ''));
+}
+
+
 /*
  * Let things that want to take up the full height of the window do so.
  */
 function setHeights() {
     var height = $(window).height();
-    $('#map').outerHeight(height);
-    $('.full-height').outerHeight(height);
+    $('#map').height(height);
+
+    var $applicationPane = $('#application-pane');
+    var applicationPaneHeight = height - 
+            pxToInt($applicationPane.css('margin-top')) - 
+            pxToInt($applicationPane.css('margin-bottom'));
+    $applicationPane.outerHeight(applicationPaneHeight);
+
+    var innerDivHeight = $applicationPane.innerHeight() -
+            pxToInt($applicationPane.css('padding-top')) -
+            pxToInt($applicationPane.css('padding-bottom'));
+    $applicationPane.find('.full-height')
+        .outerHeight(innerDivHeight);
+}
+
+
+/*
+ * Map overlay.
+ */
+
+function showMapOverlay() {
+    var $relativeTo = $('#content');
+    $('#map-overlay')
+        .width($relativeTo.outerWidth())
+        .height($relativeTo.outerHeight())
+        .position({
+            my: 'left top',
+            at: 'left top',
+            of: $relativeTo,
+        })
+        .show();
+}
+
+function hideMapOverlay() {
+    $('#map-overlay').hide();
 }
 
 
@@ -22,22 +60,36 @@ function setHeights() {
 
 function positionMapDrawer() {
     var relativeTo = '#content';
-    if ($('#map-drawer:not(.is-open)')) relativeTo = '#sidebar';
-    $('#map-drawer.is-open').position({
-        my: 'left top',
-        at: 'left top',
-        of: relativeTo,
-    });
+    var width = '24%';
+    if ($('#map-drawer:not(.is-open)')) {
+        relativeTo = '#sidebar';
+        width = $(relativeTo).outerWidth();
+    }
+    $('#map-drawer')
+        .position({
+            my: 'left top',
+            at: 'left top',
+            of: relativeTo,
+        })
+        .outerWidth(width);
 }
 
+<<<<<<< HEAD
 function showMapDrawer($mapDrawer) {
+=======
+function showMapDrawer($mapDrawer, $map) {
+    var newWidth = $('#content').outerWidth() * .25;
+>>>>>>> 274f97d03fedf5392955804bf75c73c21838275d
     $mapDrawer
         .position({
             my: 'left top',
             at: 'left top',
             of: '#content',
             using: function(pos) {
-                $mapDrawer.animate({ left: pos.left, });
+                $mapDrawer.animate({
+                    left: pos.left,
+                    width: newWidth,
+                });
             },
         })
         .addClass('is-open');
@@ -45,7 +97,7 @@ function showMapDrawer($mapDrawer) {
 
     // move any map controls on the left
     $('.leaflet-left').animate({
-        left: $mapDrawer.outerWidth(),
+        left: newWidth,
     });
 }
 
@@ -56,7 +108,10 @@ function hideMapDrawer($mapDrawer) {
             at: 'left top',
             of: '#sidebar',
             using: function(pos) {
-                $mapDrawer.animate({ left: pos.left, });
+                $mapDrawer.animate({
+                    left: pos.left, 
+                    width: $('#sidebar').outerWidth(),
+                });
             },
         })
         .removeClass('is-open');
@@ -101,8 +156,41 @@ function addSubmenu() {
             });
         });
 
-        $('.submenu').waypoint('sticky', { context: '#content' });
+        $('.submenu').waypoint('sticky', { 
+            context: '#content', 
+            handler: function(direction) {
+                if (direction === 'down') {
+                    // handle stuck
+                    $('.submenu.stuck')
+                        .width($('#content').innerWidth())
+                        .position({
+                            my: 'left top',
+                            at: 'left+2 top+1',
+                            of: '#content',
+                        });
+                }
+                else {
+                    // handle unstuck
+                    $('.submenu').width('100%');
+                }
+            },
+        });
     }
+}
+
+
+/*
+ * Geolocation.
+ */
+
+function findLocationByIP(callback) {
+    if (client_ip == '127.0.0.1') {
+        // account for localhost
+        client_ip = '173.3.193.143';
+    }
+    $.getJSON('http://freegeoip.net/json/' + client_ip, function(data) {
+        callback(data);
+    });
 }
 
 
@@ -133,5 +221,33 @@ $(document).ready(function() {
     $('input, textarea').placeholder();
 
     $('#map-city').chosen();
+
+    $('.map-overlay-hide').click(function() {
+        hideMapOverlay();
+
+        // zoom to detected location
+        if (lat && lon) {
+            $('#map').placemap('centerOn', lat, lon);
+        }
+        else {
+            // TODO ask browser for location
+        }
+ 
+        var $mapDrawer = $('#map-drawer'),
+            $map = $('#map');
+        showMapDrawer($mapDrawer, $map);
+        return false;
+    });
+
+    // TODO only the first time
+    showMapOverlay();
+
+    // Get ready for zooming
+    var lat = null, 
+        lon = null;
+    findLocationByIP(function(data) {
+        lat = data['latitude'];
+        lon = data['longitude'];
+    });
 
 });
