@@ -8,6 +8,7 @@
 
     {% compress css %}
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}js/lib/chosen/chosen.css">
     {% endcompress %}
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -51,6 +52,8 @@
     <script defer src="{{ STATIC_URL }}js/lib/jquery.smartresize.js"></script>  
     <script src="{{ STATIC_URL }}js/lib/jquery.waypoints.min.js"></script>
     <script src="{{ STATIC_URL }}js/lib/jquery.waypoints-sticky.min.js"></script>
+
+    <script src="{{ STATIC_URL }}js/lib/chosen/chosen.jquery.min.js"></script>
 
     {% comment %}
     For Django Fiber code that uses bits jQuery no longer supports.

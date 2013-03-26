@@ -132,4 +132,6 @@ $(document).ready(function() {
 
     $('input, textarea').placeholder();
 
+    $('#map-city').chosen();
+
 });
