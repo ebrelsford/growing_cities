@@ -10,22 +10,22 @@
 
 <div>
     <h3>{{ growingplace.name|default:"" }}</h3>
-    <br />
-    {{ growingplace.address_line1|default:"" }}
-    {{ growingplace.city|default:"" }},
-    {{ growingplace.state_province|default:"" }}
-    {{ growingplace.postal_code|default:"" }}
+    <div class="address meta">
+        {{ growingplace.city|default:"" }}, {{ growingplace.state_province|default:"" }}
+    </div>
 
-    <p>
+    <div class="mission">
         {{ growingplace.mission|default:"" }}
-    </p>
+    </div>
 </div>
 
-{% if growingplace.url %}
-<a href="{{ growingplace.url }}" target="_blank">
-    {% trans "their website" %}
-</a>
-{% endif %}
+<div class="website-link meta">
+    {% if growingplace.url %}
+    <a href="{{ growingplace.url }}" target="_blank">
+        {% trans "read more" %} &#187;
+    </a>
+    {% endif %}
+</div>
 
 {% if perms.change_growingplace %}
 <a href="{% url "admin:growing_places_growingplace_change" growingplace.pk %}"

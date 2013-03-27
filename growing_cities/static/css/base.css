@@ -469,6 +469,39 @@ ul.story-list li {
     overflow: visible;
 }
 
+#map .leaflet-popup-content h3 {
+    text-align: center;
+    font-family: "Bookman Regular", serif;
+    font-weight: normal;
+    font-size: 20px;
+    font-style: normal;
+}
+
+#map .leaflet-popup-content .meta {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#map .leaflet-popup-content .address,
+#map .leaflet-popup-content .website-link {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#map .leaflet-popup-content .website-link a {
+    color: #4C4A33;
+}
+
+#map .leaflet-popup-content .mission {
+    text-align: center;
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 
 /*
  * _chosen_
