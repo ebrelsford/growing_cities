@@ -444,6 +444,30 @@ ul.story-list li {
 }
 
 
+#map .leaflet-popup-content-wrapper {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+#map .leaflet-popup-content-wrapper,
+#map .leaflet-popup-tip {
+    background-color: #E4E6D0;
+    box-shadow: 0 0 0;
+    border: 2px solid #4C4A33;
+}
+
+#map .leaflet-popup-tip {
+    border-top: 0;
+    border-left: 0;
+    margin: -10px auto 0;
+    z-index: 5000;
+}
+
+#map .leaflet-popup-tip-container {
+    overflow: visible;
+}
+
+
 /*
  * _chosen_
  */
