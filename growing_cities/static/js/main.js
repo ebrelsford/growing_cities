@@ -237,7 +237,6 @@ $(document).ready(function() {
     });
     $(window).on('statechangestart', hideMapOverlay);
 
-    // TODO only the first time
     showMapOverlay();
 
     // Get ready for zooming
