@@ -64,7 +64,6 @@ function positionMapDrawer() {
     var $drawer = $('#map-drawer');
 
     if (!$drawer.hasClass('is-open')) {
-        console.log('not open');
         relativeTo = '#sidebar';
         $drawer.outerWidth($(relativeTo).outerWidth());
     }
