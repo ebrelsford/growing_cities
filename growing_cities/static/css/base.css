@@ -442,3 +442,26 @@ ul.story-list li {
     font-weight: normal;
     line-height: 17px;
 }
+
+
+/*
+ * _chosen_
+ */
+
+#map-drawer .chzn-results .active-result {
+    color: #4F5833;
+}
+
+#map-drawer .chzn-results .active-result.highlighted {
+    background-color: #4F5833;
+}
+#map-drawer .chzn-results .active-result.highlighted {
+    background-color: #677343;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#677343', endColorstr='#4F5833', GradientType=0 );  
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #677343), color-stop(90%, #4F5833));
+    background-image: -webkit-linear-gradient(top, #677343 20%, #4F5833 90%);
+    background-image: -moz-linear-gradient(top, #677343 20%, #4F5833 90%);
+    background-image: -o-linear-gradient(top, #677343 20%, #4F5833 90%);
+    background-image: linear-gradient(#677343 20%, #4F5833 90%);
+    color: #E7E8D6;
+}
