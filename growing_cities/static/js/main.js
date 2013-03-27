@@ -28,7 +28,7 @@ function setHeights() {
         .outerHeight(innerDivHeight);
 
     $('#map').height(innerDivHeight - 4);
-    $('#map-drawer').outerHeight(innerDivHeight);
+    $('#map-drawer').outerHeight(innerDivHeight - 4);
     $('#map-overlay').outerHeight(innerDivHeight);
 }
 
@@ -61,18 +61,19 @@ function hideMapOverlay() {
 
 function positionMapDrawer() {
     var relativeTo = '#content';
-    var width = '24%';
-    if ($('#map-drawer:not(.is-open)')) {
+    var $drawer = $('#map-drawer');
+
+    if (!$drawer.hasClass('is-open')) {
+        console.log('not open');
         relativeTo = '#sidebar';
-        width = $(relativeTo).outerWidth();
+        $drawer.outerWidth($(relativeTo).outerWidth());
     }
-    $('#map-drawer')
+    $drawer
         .position({
             my: 'left top',
             at: 'left top',
             of: relativeTo,
-        })
-        .outerWidth(width);
+        });
 }
 
 function showMapDrawer($mapDrawer) {
