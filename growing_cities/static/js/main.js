@@ -236,6 +236,7 @@ $(document).ready(function() {
         showMapDrawer($mapDrawer, $map);
         return false;
     });
+    $(window).on('statechangestart', hideMapOverlay);
 
     // TODO only the first time
     showMapOverlay();
