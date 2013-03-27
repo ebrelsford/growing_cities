@@ -199,6 +199,7 @@ h1 {
 }
 
 #map-overlay {
+    cursor: default;
     position: absolute;
     padding-top: 2%;
     z-index: 5000;
