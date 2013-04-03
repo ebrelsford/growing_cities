@@ -207,6 +207,9 @@ h1 {
     z-index: 5000;
 }
 
+/*
+ * TODO media queries to resize text on narrower screens.
+ */
 .map-overlay-title {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
     font-weight: normal;
