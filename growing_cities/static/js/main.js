@@ -150,10 +150,13 @@ function addSubmenu() {
         });
 
         $('.submenu a').click(function() {
-            var headerText = $(this).text().slice(1);
-            var header = $('#content h3:contains("' + headerText + '")');
-            header.ScrollTo({
-                offsetTop: header.outerHeight(),   
+            var headerText = $(this).text(); //.slice(1);
+            var $target = $('#content h3:contains("' + headerText + '")');
+            if (!$target.is(':visible')) {
+                $target = $target.parents(':visible:eq(0)');
+            }
+            $target.ScrollTo({
+                offsetTop: $('.submenu').outerHeight(),
             });
         });
 
