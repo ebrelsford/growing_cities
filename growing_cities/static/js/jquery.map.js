@@ -99,6 +99,11 @@
             ]);
         },
 
+        toggleMapDrawer: function() {
+            // call control's toggleMapDrawer using the map as its context 
+            this.map.mapDrawerControl.toggleMapDrawer.call(this.map);
+        },
+
     }; // prototype
 
     $.fn.placemap = function(options) {

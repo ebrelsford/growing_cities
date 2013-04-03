@@ -236,10 +236,8 @@ $(document).ready(function() {
         else {
             // TODO ask browser for location
         }
- 
-        var $mapDrawer = $('#map-drawer'),
-            $map = $('#map');
-        showMapDrawer($mapDrawer, $map);
+
+        $('#map').placemap('toggleMapDrawer');
         return false;
     });
     $(window).on('statechangestart', hideMapOverlay);
