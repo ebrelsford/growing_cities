@@ -242,7 +242,9 @@ $(document).ready(function() {
     });
     $(window).on('statechangestart', hideMapOverlay);
 
-    showMapOverlay();
+    if ($('#map').length === 1) {
+        showMapOverlay();
+    }
 
     // Get ready for zooming
     var lat = null, 

@@ -114,6 +114,46 @@
     <div class="clear"></div>
 	</div>
 
+    <div class="full-height grid" id="map-drawer">
+        <h2 class="map-drawer-title">Grow Where You Are</h2>
+
+        <div class="map-drawer-section">
+            <h3>Where are you?</h3>
+            <select id="map-city">
+                <option>Pick a city</option>
+                {% for city in cities %}
+                <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
+                    {{ city.city }}, {{ city.state_province }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="map-drawer-section">
+            <h3>What do you want to do?</h3>
+            <select id="map-activities" disabled="disabled">
+                <option>Everything</option>
+            </select>
+        </div>
+
+        <div class="map-drawer-section">
+            <h3>Results:</h3>
+            <ul id="map-results"></ul>           
+        </div>
+    </div>
+
+    <div class="full-height" id="map-overlay" style="display: none;">
+        <div class="map-overlay-title">
+            Grow Where You Are
+        </div>
+        <div class="map-overlay-description">
+            Across the country, people are growing their own food. See what's growing near you.
+        </div>
+        <div class="button map-overlay-hide">
+            GO
+        </div>
+    </div>
+
     {% block extra_markup %}{% endblock %}
 </body>
 </html>
