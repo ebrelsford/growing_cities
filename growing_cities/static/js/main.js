@@ -38,6 +38,11 @@ function setHeights() {
  */
 
 function showMapOverlay() {
+    positionMapOverlay();
+    $('#map-overlay').show();
+}
+
+function positionMapOverlay() {
     var $relativeTo = $('#content');
     $('#map-overlay')
         .width($relativeTo.outerWidth())
@@ -46,8 +51,7 @@ function showMapOverlay() {
             my: 'left top',
             at: 'left top',
             of: $relativeTo,
-        })
-        .show();
+        });
 }
 
 function hideMapOverlay() {
@@ -211,6 +215,9 @@ $(document).ready(function() {
     positionMapDrawer();
     $(window).smartresize(positionMapDrawer);
     //$(window).on('statechangecomplete', positionMapDrawer);
+
+    // keep map overlay in the proper position
+    $(window).smartresize(positionMapOverlay);
 
     addSubmenu();
     $(window).on('statechangecomplete', addSubmenu);
