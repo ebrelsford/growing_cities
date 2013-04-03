@@ -229,6 +229,18 @@ h1 {
     margin-right: 20%;
 }
 
+.button {
+    background-color: #E2D332;
+    max-width: 150px;
+    border: 2px solid #818263;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
 .map-overlay-hide {
     background-color: #E2D332;
     width: 80px;
@@ -387,6 +399,10 @@ ul.story-list li {
     color: red;
 }
 
+.content-section {
+    margin: 50px 0;
+}
+
 .news-post {
     margin-bottom: 25px;
 }
@@ -394,6 +410,71 @@ ul.story-list li {
 .news-post .date {
     font-size: 85%;
     font-weight: bold;
+}
+
+.film .lead-in {
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.film .lead-in-title {
+    color: #4C4A33;
+    font-family:"Bookman Regular", serif;
+    font-weight:normal;
+    font-style:italic;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.film .watch-it {
+    background-color: #8C8A70;   
+    color: white;
+}
+
+.film .background-text {
+    padding: 20px;
+    padding-top: 0;
+}
+
+.team-member {
+    border-right: 1px solid #D5D3C7;
+    padding: 20px;
+}
+.team-member.right {
+    border-right: 0;
+}
+.team-member.count-1,
+.team-member.count-2 {
+    border-top: 0;
+}
+
+.team-member-row {
+    border-top: 1px solid #D5D3C7;
+}
+.team-member-row.count-1 {
+    border-top: 0;
+}
+
+.team-member-thumbnail {
+    float: left;
+}
+
+.team-member-details {
+    padding: 10px;
+    padding-top: 0;
+}
+
+.team-member-name {
+    font-size: 30px;
+}
+
+.team-member-title {
+}
+
+.team-member-bio {
+    padding-top: 5px;
 }
 
 .terms {

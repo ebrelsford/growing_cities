@@ -9,6 +9,7 @@ from .models import Product
 class ProductForm(forms.ModelForm):
     text = forms.CharField(widget=CKEditorWidget)
 
+
 class ProductAdmin(admin.ModelAdmin):
     form = ProductForm
     list_display = ('name',)

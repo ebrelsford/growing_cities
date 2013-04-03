@@ -8,9 +8,11 @@ admin.autodiscover()
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from growing_places.views import GrowingPlacesMapView
-from pages.views import ContactPage, LearnPage, ScreeningsPage, ShopPage, NewsPage
+from pages.views import (FilmPage, ContactPage, LearnPage, ScreeningsPage,
+                         ShopPage, NewsPage)
 
-urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,
+                     show_indexes=True)
 
 urlpatterns += staticfiles_urlpatterns()
 
@@ -18,6 +20,7 @@ urlpatterns += patterns('',
 
     # pages with special views
     url(r'^$', GrowingPlacesMapView.as_view(), name='growing_places_map'),
+    url(r'^the-film/$', FilmPage.as_view(), name='pages_film'),
     url(r'^contact/$', ContactPage.as_view(), name='pages_contact'),
     url(r'^learn/', LearnPage.as_view(), name='pages_learn'),
     url(r'^screenings/', ScreeningsPage.as_view(), name='pages_screenings'),

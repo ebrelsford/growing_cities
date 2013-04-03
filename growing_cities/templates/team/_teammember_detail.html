@@ -1,0 +1,12 @@
+<img class="team-member-thumbnail grid grid-1-4" src="{{ member.thumbnail.url }}" />
+<div class="team-member-details grid grid-3-4">
+    <div class="team-member-name">
+        {{ member.name }}
+    </div>
+    <div class="team-member-title">
+        {{ member.title }}
+    </div>
+    <div class="team-member-bio">
+        {{ member.bio|safe }}
+    </div>
+</div>

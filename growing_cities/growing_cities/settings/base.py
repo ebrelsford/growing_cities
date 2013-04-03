@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'products',
     'screenings',
     'stories',
+    'team',
     'videos',
 )
 

@@ -10,6 +10,19 @@ from products.models import Product
 from screenings.models import Screening
 from stories.forms import StoryForm
 from stories.models import Story
+from team.models import TeamMember
+
+
+class FilmPage(FiberPageMixin, TemplateView):
+    template_name = 'pages/film.html'
+
+    def get_context_data(self):
+        context = super(FilmPage, self).get_context_data()
+        context['teammembers'] = TeamMember.objects.all()[:6]
+        return context
+
+    def get_fiber_page_url(self):
+        return reverse('pages_film')
 
 
 class LearnPage(FiberPageMixin, TemplateView):
