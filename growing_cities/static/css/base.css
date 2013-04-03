@@ -312,6 +312,18 @@ header {
 #mainmenu li.current {
 }
 
+.outer-center {
+    float: right;
+    right: 50%;
+    position: relative;
+}
+
+.inner-center {
+    float: right;
+    right: -50%;
+    position: relative;
+}
+
 .submenu {
     width: 100%;
     z-index: 2000; /* get over Django Fiber gradient */
