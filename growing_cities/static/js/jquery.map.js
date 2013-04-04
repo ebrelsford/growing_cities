@@ -64,7 +64,7 @@
 
                 pointToLayer: function(data, latlng) {
                     latlngs.push(latlng);
-                    return new L.marker(latlng);
+                    return new L.marker(latlng, { icon: instance.icon, });
                 },
 
             });
@@ -76,6 +76,13 @@
             });
 
         },
+
+        icon: L.icon({
+            iconUrl: '/static/img/map_icon_up.png',  
+            iconSize: [34, 44],
+            iconAnchor: [17, 44],
+            popupAnchor: [0, -44],
+        }),
 
         openPlace: function(id) {
             var instance = this;
