@@ -376,9 +376,9 @@ header {
 
 .lead-in {
     color: #4C4A33;
-    font-family:"Bookman Italic", serif;
-    font-weight:normal;
-    font-style:italic;
+    font-family:"Bookman Regular", serif;
+    font-weight: normal;
+    font-style: normal;
 }
 
 .story-lead-in {
@@ -432,6 +432,34 @@ ul.story-list li {
     font-weight: bold;
 }
 
+.shop .lead-in {
+    font-size: 30px;
+    font-style: none;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+}
+
+.product {
+    border-right: 1px solid #D5D3C7;
+    height: 450px;
+    padding: 20px;
+}
+.product.right {
+    border-right: 0;
+}
+
+.product-row {
+    border-top: 1px solid #D5D3C7;
+}
+.product-row.count-1 {
+    border-top: 0;
+}
+
+.team-member.right {
+    border-right: 0;
+}
+
 .film .lead-in {
     text-align: center;
     margin-left: 25%;
@@ -446,6 +474,12 @@ ul.story-list li {
     font-size: 40px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.film .lead-in-text {
+    font-family:"Bookman Italic", serif;
+    font-weight: normal;
+    font-style: italic;
 }
 
 .film .watch-it {
