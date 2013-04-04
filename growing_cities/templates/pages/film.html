@@ -39,6 +39,11 @@
 
     <div class="content-section the-team">
         <h3>The Team</h3>
+        {% if 'add_teammember' in perms %}
+        <a href="{% url "admin:team_teammember_add" %}" class="no-ajax">
+            add to the team
+        </a>
+        {% endif %}
         {% for member in teammembers %}
             {% cycle 'left' 'right' as position silent %}
             {% if position == "left" %}
