@@ -418,9 +418,16 @@ ul.story-list li {
 .buy-button-inner {
     background: #DFC92B;
     border: 2px solid #4C4A33;
-    padding: 10px;
-    margin: 10px;
+    color: #4C4A33;
+    display: block;
     height: 100%;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+.buy-button-inner:hover {
+    background: #656447;
+    color: white;
 }
 
 .news-post {
