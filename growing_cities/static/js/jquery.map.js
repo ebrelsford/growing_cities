@@ -77,8 +77,8 @@
 
         },
 
-        icon: L.icon({
-            iconUrl: '/static/img/map_icon_up.png',  
+        icon: L.divIcon({
+            className: 'map-marker',  
             iconSize: [34, 44],
             iconAnchor: [17, 44],
             popupAnchor: [0, -44],

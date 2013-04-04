@@ -545,6 +545,15 @@ ul.story-list li {
     text-align: right;
 }
 
+.map-marker {
+    width: 34px;
+    height: 44px;
+    background: url(/static/img/map_icon_up.png);
+}
+.map-marker:hover {
+    background: url(/static/img/map_icon_active.png);
+}
+
 
 /*
  * _jqueryui_
