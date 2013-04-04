@@ -197,6 +197,15 @@ function findLocationByIP(callback) {
     });
 }
 
+function positionBuyButton() {
+    $('#buy-button')
+        .position({
+            my: 'right bottom',
+            at: 'right bottom',
+            of: '#content-wrapper',
+        });
+}
+
 
 /*
  * Event handling and initialization.
@@ -221,6 +230,8 @@ $(document).ready(function() {
 
     // keep map overlay in the proper position
     $(window).smartresize(positionMapOverlay);
+
+    $(window).smartresize(positionBuyButton);
 
     addSubmenu();
     $(window).on('statechangecomplete', addSubmenu);
@@ -248,6 +259,8 @@ $(document).ready(function() {
     if ($('#map').length === 1) {
         showMapOverlay();
     }
+
+    positionBuyButton();
 
     // Get ready for zooming
     var lat = null, 
