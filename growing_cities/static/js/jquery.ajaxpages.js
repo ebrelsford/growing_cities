@@ -203,20 +203,32 @@
 
         $(document.body).click(function(event) {
             var $target = $(event.target);
-            if ($target.is('a:internal') && !$target.is(excludedLinksSelector)) {
-                // Prepare
-                var
-                    url = $target.attr('href'),
-                    title = $target.attr('title')||null;
 
-                // Continue as normal for cmd clicks etc
-                if (event.which == 2 || event.metaKey) { return true; }
-            
-                // Ajaxify this link
-                History.pushState(null, title, url);
-                event.preventDefault();
-                return false;
+            if ($target.is('a:internal')) {
+                if ($target.not(excludedLinksSelector).length === 0) {
+                    console.log('link excluded');
+                    return true;
+                }
             }
+            else {
+                // try to bubble up
+                $target = $target
+                    .parents('a:eq(0):internal')
+                    .not(excludedLinksSelector);
+                if ($target.length === 0) return true;
+            }
+
+            // Prepare
+            var url = $target.attr('href'),
+                title = $target.attr('title') || null;
+
+            // Continue as normal for cmd clicks etc
+            if (event.which == 2 || event.metaKey) { return true; }
+        
+            // Ajaxify this link
+            History.pushState(null, title, url);
+            event.preventDefault();
+            return false;
         });
 
 	}); // end onDomLoad
