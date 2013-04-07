@@ -21,8 +21,10 @@ body {
     background: #F6F3ED;
     color: #4C4A33;
     font-family: "Bookman Regular", serif;
-    font-weight: normal;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
+    font-weight: normal;
 }
 
 img {
@@ -50,8 +52,10 @@ p {
 
 #mainmenu {
     font-family: "Bookman Regular", serif;
-    font-weight: normal;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
+    font-weight: normal;
 }
 
 #logo a {
@@ -65,17 +69,21 @@ p {
 
 h1 {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 38px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .content-title {
     color: #4C4A33;
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 122px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
     line-height: 90px;
     margin-bottom: 40px;
     text-align: center;
@@ -190,9 +198,11 @@ h1 {
 
 .map-drawer-title {
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 40px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
     line-height: 36px;
 }
 
@@ -218,19 +228,23 @@ h1 {
  */
 .map-overlay-title {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 130px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
     line-height: 100px;
     text-align: center;
 }
 
 .map-overlay-description {
     font-family: "Bookman Regular", serif;
-    font-weight: normal;
-    font-style: normal;
-    text-align: center;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-size: 30px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
     margin-left: 20%;
     margin-right: 20%;
 }
@@ -261,6 +275,8 @@ h1 {
     line-height: 50px;
     text-align: center;
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     padding: 15px;
 }
 
@@ -357,9 +373,11 @@ header {
 .submenu a {
     color: #4C4A33;
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 22px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
     letter-spacing: 4px;
     line-height: 22px;
     text-decoration: none;
@@ -388,8 +406,10 @@ header {
 .lead-in {
     color: #4C4A33;
     font-family:"Bookman Regular", serif;
-    font-weight: normal;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
+    font-weight: normal;
 }
 
 .story-lead-in {
@@ -419,6 +439,8 @@ ul.story-list li {
     border: 2px solid #4C4A33;
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
     font-size: 26px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     line-height: 24px;
     text-align: center;
     position:fixed;
@@ -487,17 +509,21 @@ ul.story-list li {
 .film .lead-in-title {
     color: #4C4A33;
     font-family: "Bookman Regular", serif;
-    font-weight: normal;
-    font-style: normal;
     font-size: 40px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .film .lead-in-text {
     font-family:"Bookman Italic", serif;
-    font-weight: normal;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-style: italic;
+    font-weight: normal;
 }
 
 .film .watch-it {
@@ -690,6 +716,8 @@ ul.story-list li {
     font-family: "Bookman Regular", serif;
     font-weight: normal;
     font-size: 20px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
 }
 
