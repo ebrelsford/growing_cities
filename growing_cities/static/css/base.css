@@ -243,7 +243,8 @@ h1 {
 }
 
 .map-overlay-hide {
-    background-color: #E2D332;
+    background-color: #656447;
+    color: white;
     width: 80px;
     height: 40px;
     border: 2px solid #818263;
@@ -259,8 +260,8 @@ h1 {
 }
 
 .map-overlay-hide:hover {
-    background-color: #656447;
-    color: white;
+    background-color: #E2D332;
+    color: #4C4A33;
 }
 
 .map-result {
