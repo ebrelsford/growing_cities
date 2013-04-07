@@ -149,7 +149,7 @@ function hideMapDrawer($mapDrawer) {
  */
 
 function addSubmenu() {
-    if ($('.submenu').length) {
+    if ($('.submenu').length > 0) {
         $('#content h3').each(function() {
             var text = $(this).text();
             var $li = $('<li></li>');
