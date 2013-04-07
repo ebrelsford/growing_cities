@@ -51,6 +51,8 @@
 
                 onEachFeature: function(data, layer) {
                     layer.on('click', function(e) {
+                        // TODO on click, make icon active
+                        // TODO on de-select, make icon inactive
                         $.get(layer.feature.properties.popup_url, function(data) {
                             layer.bindPopup(data, {
                                 autoPan: false,
