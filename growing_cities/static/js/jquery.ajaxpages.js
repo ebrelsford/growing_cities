@@ -206,7 +206,6 @@
 
             if ($target.is('a:internal')) {
                 if ($target.not(excludedLinksSelector).length === 0) {
-                    console.log('link excluded');
                     return true;
                 }
             }

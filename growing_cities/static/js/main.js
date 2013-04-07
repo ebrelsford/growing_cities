@@ -208,6 +208,27 @@ function positionBuyButton() {
 
 
 /*
+ * Watch the Trailer / Back to Map button.
+ */
+
+function updateWatchTheTrailerButton() {
+    if ($('#map').length >= 1) {
+        // Watch the Trailer
+        // TODO scroll to #Trailer
+        $('.trailer-map-button')
+            .removeClass('back-to-map')
+            .attr('href', '/the-film/');
+    }
+    else {
+        // Back to Map
+        $('.trailer-map-button')
+            .addClass('back-to-map')
+            .attr('href', '/');
+    }
+}
+
+
+/*
  * Event handling and initialization.
  */
 
@@ -215,6 +236,8 @@ $(window).on('statechangestart', function(event) {
     // If map-drawer is out, hide it
     hideMapDrawer($('#map-drawer'), $('#map'));
 });
+
+$(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(document).ready(function() {
 
@@ -261,6 +284,7 @@ $(document).ready(function() {
     }
 
     positionBuyButton();
+    updateWatchTheTrailerButton();
 
     // Get ready for zooming
     var lat = null, 
