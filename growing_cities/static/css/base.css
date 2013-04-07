@@ -365,7 +365,10 @@ header {
 
 .submenu li {
     float: left;
-    margin-right: 15px;
+    margin-right: 65px;
+}
+.submenu li:last-child {
+    margin-right: 0;
 }
 
 #breadcrumbs {
@@ -538,6 +541,9 @@ ul.story-list li {
 
 .team-member-bio {
     padding-top: 5px;
+    line-height: 21px;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .terms {
