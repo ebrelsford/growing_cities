@@ -134,6 +134,7 @@ h1 {
 
 #application-pane-wrapper {
     padding: 25px;
+    /*padding-top: 0;*/
 }
 
 #application-pane {
@@ -561,6 +562,40 @@ ul.story-list li {
     background: url(/static/img/map_icon_active.png);
 }
 
+#social-buttons {
+    height: 25px;
+    width: 100px;
+    margin-top: -25px;
+    padding-top: 5px;
+    float: right;
+}
+
+#social-buttons li {
+    float: left;
+    margin-left: 5px;
+}
+
+.social-button {
+    width: 17px;
+    height: 17px;
+    display: block;
+}
+
+.social-button.facebook {
+    background: url(/static/img/fb_icon.png);
+}
+
+.social-button.twitter {
+    background: url(/static/img/twitter_icon.png);
+}
+
+.social-button.vimeo {
+    background: url(/static/img/vimeo_icon.png);
+}
+
+.social-button.rss {
+    background: url(/static/img/rss_icon.png);
+}
 
 /*
  * _jqueryui_
