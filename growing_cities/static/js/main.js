@@ -32,6 +32,27 @@ function setHeights() {
     $('#map-overlay').outerHeight(innerDivHeight);
 }
 
+function setRowHeights() {
+    var $rows = $('.match-row-heights');
+    if ($rows.length === 0) return;
+
+    var height = 0;
+    $rows.each(function(i) {
+        var $rowElements = $(this).find('.match-row-height');
+
+        // Find the tallest element
+        $rowElements.each(function(i) {
+            var thisHeight = $(this).outerHeight();
+            if (thisHeight > height) height = thisHeight;
+        });
+
+        // Make everything that tall
+        $rowElements.each(function(i) {
+            $(this).outerHeight(height);
+        });
+    });
+}
+
 
 /*
  * Map overlay.
@@ -228,14 +249,20 @@ $(window).on('statechangestart', function(event) {
     hideMapDrawer($('#map-drawer'), $('#map'));
 });
 
+$(window).on('statechangecomplete', setHeights);
+$(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
+
+$(window).load(function() {
+    // Make grid elements that should have the same height match
+    setRowHeights();
+});
 
 $(document).ready(function() {
 
     // make sidebar and map take up entire window height
     setHeights();
     $(window).smartresize(setHeights);
-    $(window).on('statechangecomplete', setHeights);
 
     // keep map drawer in the proper position
     positionMapDrawer();

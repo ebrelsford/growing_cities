@@ -17,9 +17,9 @@
         {% for product in products %}
             {% cycle 'left' 'middle' 'right' as position silent %}
             {% if position == 'left' %}
-            <div class="product-row count-{{ forloop.counter }}">
+            <div class="product-row count-{{ forloop.counter }} match-row-heights">
             {% endif %}
-                <div class="product grid grid-1-3 {{ position }}">
+                <div class="product grid grid-1-3 {{ position }} match-row-height">
                     {% include "products/_product_detail.html" %}
                 </div>
             {% if position == 'right' %}
