@@ -249,9 +249,14 @@ $(window).on('statechangestart', function(event) {
     hideMapDrawer($('#map-drawer'), $('#map'));
 });
 
+$(window).on('statechangecomplete', addSubmenu);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
+
+$(window).on('statechangecomplete', function() {
+    $('input[type=text], textarea').placeholder();
+});
 
 $(window).load(function() {
     // Make grid elements that should have the same height match
@@ -267,7 +272,6 @@ $(document).ready(function() {
     // keep map drawer in the proper position
     positionMapDrawer();
     $(window).smartresize(positionMapDrawer);
-    //$(window).on('statechangecomplete', positionMapDrawer);
 
     // keep map overlay in the proper position
     $(window).smartresize(positionMapOverlay);
@@ -275,9 +279,8 @@ $(document).ready(function() {
     $(window).smartresize(positionBuyButton);
 
     addSubmenu();
-    $(window).on('statechangecomplete', addSubmenu);
 
-    $('input, textarea').placeholder();
+    $('input[type=text], textarea').placeholder();
 
     $('#map-city').chosen();
 

@@ -1,5 +1,19 @@
-<form action="{% url "contact_form:form" %}" method="post">
+<form action="{% url "contact_form:form" %}" class="contact-form" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
+
+    <div class="from-row">
+        {{ form.name.errors }}
+        {{ form.email.errors }}
+        <div class="grid grid-1-2">
+            {{ form.name.label_tag }} {{ form.name }}
+        </div>
+        <div class="grid grid-1-2">
+            {{ form.email.label_tag }} {{ form.email }}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div>
+        {{ form.body.label_tag }} {{ form.body }}
+    </div>
+    <input type="submit" value="Send" />
 </form>

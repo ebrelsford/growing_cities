@@ -627,6 +627,32 @@ ul.story-list li {
     background: url(/static/img/rss_icon.png);
 }
 
+.contact-form .from-row {
+    margin-bottom: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    font-size: 24px;
+    padding: 10px;
+}
+
+.contact-form label {
+    display: none;
+}
+
+.contact-form input {
+    width: 80%;
+}
+
+.contact-form textarea {
+    width: 100%;
+}
+
+.contact-form input[type="submit"] {
+    width: 100px;
+}
+
 /*
  * _jqueryui_
  */
