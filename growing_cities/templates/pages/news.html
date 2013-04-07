@@ -1,12 +1,33 @@
 {% extends "pages/base.html" %}
-{% load cache fiber_tags news_tags %}
+{% load cache fiber_tags news_tags twittersync_tags %}
 
 {% block page_content %}
 <div class="news lead-in">
     {% show_page_content "lead-in" %}
 </div>
 
-{% cache 1800 feed  %}
-    {% pull_feed feed_url 5 %}
-{% endcache %}
+<div>
+
+    <div class="grid grid-1-4 news-twitter">
+        <div>The Latest</div>
+        <div class="meta">via twitter</div>
+
+        {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
+        <ul class="tweets">
+            {% for tweet in tweets %}
+            <li class="tweet">
+                <div class="tweet-content">{{ tweet.content|urlize }}</div>
+                at <a href="{{ tweet.url }}">{{ tweet.created_date }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="grid grid-3-4 news-wordpress">
+        {% cache 1800 feed  %}
+            {% pull_feed feed_url 5 %}
+        {% endcache %}
+    </div>
+
+</div>
 {% endblock %}

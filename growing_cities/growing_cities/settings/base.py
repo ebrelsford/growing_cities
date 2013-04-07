@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'moderation',
     'mptt',
     'south',
+    'twittersync',
 
     #
     # first-party

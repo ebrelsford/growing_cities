@@ -40,6 +40,10 @@ p {
     padding-bottom: 10px;
 }
 
+a {
+    color: #4C4A33;
+}
+
 /* Clearfix boilerplate */
 
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
@@ -652,6 +656,21 @@ ul.story-list li {
 .contact-form input[type="submit"] {
     width: 100px;
 }
+
+.news-twitter {
+    padding: 20px;
+    text-align: center;
+}
+
+.tweet {
+    margin: 30px 0;
+}
+
+.news-wordpress {
+    border-left: 1px solid #D5D3C7;
+    padding: 20px;
+}
+
 
 /*
  * _jqueryui_
