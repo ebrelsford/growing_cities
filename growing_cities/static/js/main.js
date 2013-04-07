@@ -94,7 +94,6 @@ function showMapDrawer($mapDrawer) {
             },
         })
         .addClass('is-open');
-    $('#map-drawer-show').hide();
 
     // move any map controls on the left
     $('.leaflet-left').animate({
@@ -116,14 +115,6 @@ function hideMapDrawer($mapDrawer) {
             },
         })
         .removeClass('is-open');
-
-    $('#map-drawer-show')
-        .show()
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: '#content',
-        });
 
     // return any map controls on the left back to normal
     $('.leaflet-left').animate({

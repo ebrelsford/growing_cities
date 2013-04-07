@@ -188,16 +188,6 @@ h1 {
     z-index: 1980; /* TODO something more appropriate */
 }
 
-#map-drawer-hide {
-    float: right;
-}
-
-#map-drawer-show {
-    background: white;
-    position: absolute;
-    z-index: 10000; /* TODO something more appropriate */
-}
-
 .map-drawer-title {
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
     font-weight: normal;
@@ -641,32 +631,34 @@ ul.story-list li {
 }
 
 .leaflet-control-zoom .leaflet-bar-part {
-    background-color: #2B2B12 !important;
     margin-bottom: 5px;
+    width: 25px;
+    height: 25px;
 }
 
-.leaflet-control-zoom .leaflet-bar-part:hover {
-    background-color: #D7CE44 !important;
+#map .leaflet-control-zoom .leaflet-bar-part-top,
+#map .leaflet-control-zoom .leaflet-bar-part-bottom {
+    border-radius: 0;
+    -webkit-border-radius: 0;
 }
 
-.leaflet-control-zoom a {
-    color: white !important;
+#map .leaflet-control-zoom-in {
+    background: url(/static/img/map_zoom_in.png);
+    font-size: 0px;
 }
 
-.leaflet-control-zoom a:hover {
-    color: black !important;
+#map .leaflet-control-zoom-out {
+    background: url(/static/img/map_zoom_out.png);
+    font-size: 0px;
 }
 
-.leaflet-control-zoom .leaflet-bar-part-top,
-.leaflet-control-zoom .leaflet-bar-part-bottom {
-    border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
+#map .map-drawer-toggle {
+    background: url(/static/img/map_drawer_arrows.png);
+    background-position: -4px 25px;
 }
 
-.leaflet-control-zoom-map-drawer {
-    font-size: 28px;
-    font-weight: normal;
-    line-height: 17px;
+#map .map-drawer-toggle.is-open {
+    background-position: -4px 0px;
 }
 
 
