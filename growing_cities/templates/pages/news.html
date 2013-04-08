@@ -10,14 +10,14 @@
 
     <div class="grid grid-1-4 news-twitter">
         <div>The Latest</div>
-        <div class="meta">via twitter</div>
+        <div class="meta twitter-via">via twitter</div>
 
         {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
         <ul class="tweets">
             {% for tweet in tweets %}
             <li class="tweet">
                 <div class="tweet-content">{{ tweet.content|urlize }}</div>
-                at <a href="{{ tweet.url }}">{{ tweet.created_date }}</a>
+                at <a class="twitter-date" href="{{ tweet.url }}">{{ tweet.created_date }}</a>
             </li>
             {% endfor %}
         </ul>
@@ -32,6 +32,7 @@
                 <a class="wordpress-title" href="{{ entry.link }}">
                     {{ entry.title }}
                 </a>
+                <div class="meta wordpress-date">{{ entry.date|date:"F j, Y" }}</div>
                 <div class="wordpress-summary">{{ entry.summary|safe }}</div>
             </li>
             {% endfor %}

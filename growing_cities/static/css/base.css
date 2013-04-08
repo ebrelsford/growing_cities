@@ -662,6 +662,18 @@ ul.story-list li {
     text-align: center;
 }
 
+.twitter-date {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.twitter-via {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+}
+
 .tweet {
     margin: 30px 0;
 }
@@ -669,6 +681,12 @@ ul.story-list li {
 .news-wordpress {
     border-left: 1px solid #D5D3C7;
     padding: 20px;
+}
+
+.wordpress-date {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .wordpress-post {
