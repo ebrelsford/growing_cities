@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %}
-{% load cache fiber_tags news_tags twittersync_tags %}
+{% load cache fiber_tags rsssync_tags twittersync_tags %}
 
 {% block page_content %}
 <div class="news lead-in">
@@ -24,9 +24,18 @@
     </div>
 
     <div class="grid grid-3-4 news-wordpress">
-        {% cache 1800 feed  %}
-            {% pull_feed feed_url 5 %}
-        {% endcache %}
+
+        {% get_latest_entries "Growing Cities Blog" 5 as "entries" %}
+        <ul class="wordpress-posts">
+            {% for entry in entries %}
+            <li class="wordpress-post">
+                <a class="wordpress-title" href="{{ entry.link }}">
+                    {{ entry.title }}
+                </a>
+                <div class="wordpress-summary">{{ entry.summary|safe }}</div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
 </div>

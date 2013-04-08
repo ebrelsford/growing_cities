@@ -671,6 +671,15 @@ ul.story-list li {
     padding: 20px;
 }
 
+.wordpress-post {
+    margin-bottom: 50px;
+}
+
+.wordpress-title {
+    font-size: 30px;
+    text-decoration: none;
+}
+
 
 /*
  * _jqueryui_

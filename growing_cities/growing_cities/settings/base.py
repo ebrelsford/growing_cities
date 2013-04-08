@@ -132,10 +132,10 @@ INSTALLED_APPS = (
     #
     'contact',
     'growing_places',
-    'news',
     'pages',
     'photos',
     'products',
+    'rsssync',
     'screenings',
     'stories',
     'team',
@@ -159,5 +159,3 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
     }
 }
-
-GROWING_CITIES_BLOG_RSS_URL = 'http://www.growingcitiesmovie.com/blog/?feed=rss2'
