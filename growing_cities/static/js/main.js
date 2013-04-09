@@ -137,49 +137,59 @@ function hideMapDrawer($mapDrawer) {
  */
 
 function addSubmenu() {
-    if ($('.submenu').length) {
-        $('#content h3').each(function() {
-            var text = $(this).text();
-            var $li = $('<li></li>');
-            $li.append(
-                $('<a></a>')
-                    .attr('href', '#' + text)
-                    .text(text)
-            );
-            $('.submenu ul').append($li);
-        });
+    var $submenu = $('.submenu');
+    if ($submenu.length === 0) return;
 
-        $('.submenu a').click(function() {
-            var headerText = $(this).text(); //.slice(1);
-            var $target = $('#content h3:contains("' + headerText + '")');
-            if (!$target.is(':visible')) {
-                $target = $target.parents(':visible:eq(0)');
-            }
-            $target.ScrollTo({
-                offsetTop: $('.submenu').outerHeight(),
-            });
-        });
+    // Find sections to add to the submenu
+    $('#content h3').each(function() {
+        var text = $(this).text();
+        var $li = $('<li></li>');
+        $li.append(
+            $('<a></a>')
+                .attr('href', '#' + text)
+                .text(text)
+        );
+        $submenu.find('ul').append($li);
+    });
 
-        $('.submenu').waypoint('sticky', { 
-            context: '#content-wrapper', 
-            handler: function(direction) {
-                if (direction === 'down') {
-                    // handle stuck
-                    $('.submenu.stuck')
-                        .width($('#content').innerWidth())
-                        .position({
-                            my: 'left top',
-                            at: 'left+2 top+1',
-                            of: '#content-wrapper',
-                        });
-                }
-                else {
-                    // handle unstuck
-                    $('.submenu').width('100%');
-                }
-            },
-        });
+    // If nothing was found, jump out
+    if ($submenu.find('li').length === 0) {
+        $submenu.addClass('empty');
+        return;
     }
+
+    // Add ScrollTo to submenu items
+    $submenu.find('a').click(function() {
+        var headerText = $(this).text(); //.slice(1);
+        var $target = $('#content h3:contains("' + headerText + '")');
+        if (!$target.is(':visible')) {
+            $target = $target.parents(':visible:eq(0)');
+        }
+        $target.ScrollTo({
+            offsetTop: $submenu.outerHeight(),
+        });
+    });
+
+    // Make sticky
+    $submenu.waypoint('sticky', { 
+        context: '#content-wrapper', 
+        handler: function(direction) {
+            if (direction === 'down') {
+                // handle stuck
+                $('.submenu.stuck')
+                    .width($('#content').innerWidth())
+                    .position({
+                        my: 'left top',
+                        at: 'left+2 top+1',
+                        of: '#content-wrapper',
+                    });
+            }
+            else {
+                // handle unstuck
+                $submenu.width('100%');
+            }
+        },
+    });
 }
 
 

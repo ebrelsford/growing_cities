@@ -347,6 +347,12 @@ header {
     height: 20px;
 }
 
+.submenu.empty {
+    border-bottom: 0;
+    height: 0;
+    padding: 0;
+}
+
 .submenu a {
     color: #4C4A33;
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
