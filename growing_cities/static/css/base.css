@@ -408,6 +408,16 @@ header {
     margin-right: 0;
 }
 
+.submenu-top-link {
+    cursor: pointer;
+    display: none;
+    float: right;
+    padding-right: 10px;
+}
+.submenu.stuck .submenu-top-link {
+    display: inline-block;
+}
+
 #breadcrumbs {
     font-size: 12px;
 }

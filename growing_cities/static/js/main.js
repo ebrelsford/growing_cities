@@ -172,14 +172,22 @@ function addSubmenu() {
 
     // Add ScrollTo to submenu items
     $submenu.find('a').click(function() {
-        var headerText = $(this).text(); //.slice(1);
-        var $target = $('#content h3:contains("' + headerText + '")');
-        if (!$target.is(':visible')) {
-            $target = $target.parents(':visible:eq(0)');
+        console.log($(this));
+
+        // Handle return-to-top link
+        if ($(this).hasClass('submenu-top-link')) {
+            $('#content-wrapper').animate({ scrollTop: 0});
         }
-        $target.ScrollTo({
-            offsetTop: $submenu.outerHeight(),
-        });
+        else {
+            var headerText = $(this).text();
+            var $target = $('#content h3:contains("' + headerText + '")');
+            if (!$target.is(':visible')) {
+                $target = $target.parents(':visible:eq(0)');
+            }
+            $target.ScrollTo({
+                offsetTop: $submenu.outerHeight(),
+            });
+        }
     });
 
     // Make sticky
