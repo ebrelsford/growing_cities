@@ -144,6 +144,17 @@ h1 {
  * _modules_
  */
 
+.loading-indicator {
+    background: url(/static/img/loading.gif);
+    display: none;
+    height: 128px;
+    position: absolute;
+    width: 128px;
+}
+body.loading .loading-indicator {
+    display: block;
+}
+
 #application-pane-wrapper {
     padding: 25px;
     /*padding-top: 0;*/

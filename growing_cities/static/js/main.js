@@ -214,6 +214,18 @@ function addSubmenu() {
 
 
 /*
+ * Loading indicator.
+ */
+function positionLoadingIndicator() {
+    $('.loading-indicator').position({
+        my: 'center center',
+        at: 'center center',
+        of: '#content',
+    });
+}
+
+
+/*
  * Geolocation.
  */
 
@@ -265,6 +277,9 @@ function updateWatchTheTrailerButton() {
 $(window).on('statechangestart', function(event) {
     // If map-drawer is out, hide it
     hideMapDrawer($('#map-drawer'), $('#map'));
+
+    // Prepare the loading indicator
+    positionLoadingIndicator();
 });
 
 $(window).on('statechangecomplete', addSubmenu);
