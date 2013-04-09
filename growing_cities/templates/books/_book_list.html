@@ -1,0 +1,16 @@
+<div class="book-list">
+    {% for book in books %}
+        {% cycle 'left' 'middle' 'right' as position silent %}
+        {% if position == 'left' %}
+        <div class="book-row count-{{ forloop.counter }} match-row-heights">
+        {% endif %}
+            <div class="book grid grid-1-3 {{ position }} match-row-height">
+                {% include "books/_book_detail.html" %}
+            </div>
+        {% if position == 'right' %}
+            <div class="clear"></div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <div class="clear"></div>
+</div>

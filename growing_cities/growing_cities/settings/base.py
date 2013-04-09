@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     #
     # first-party
     #
+    'books',
     'contact',
     'growing_places',
     'pages',

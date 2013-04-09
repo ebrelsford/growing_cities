@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from contact_form.forms import BasicContactForm
 from fiber.views import FiberPageMixin
 
+from books.models import Book
 from products.models import Product
 from screenings.models import Screening
 from stories.forms import StoryForm
@@ -29,6 +30,7 @@ class LearnPage(FiberPageMixin, TemplateView):
 
     def get_context_data(self):
         context = super(LearnPage, self).get_context_data()
+        context['books'] = Book.objects.all()[:6]
         context['stories'] = Story.objects.filter(featured=True)[:6]
         context['story_form'] = StoryForm()
         return context

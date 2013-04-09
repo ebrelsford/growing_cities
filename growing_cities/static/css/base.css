@@ -503,18 +503,22 @@ ul.story-list li {
     text-align: center;
 }
 
+.book,
 .product {
     border-right: 1px solid #D5D3C7;
     padding: 20px;
     text-align: center;
 }
+.book.right,
 .product.right {
     border-right: 0;
 }
 
+.book-row,
 .product-row {
     border-top: 1px solid #D5D3C7;
 }
+.book-row.count-1,
 .product-row.count-1 {
     border-top: 0;
 }

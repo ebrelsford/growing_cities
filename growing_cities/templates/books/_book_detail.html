@@ -1,0 +1,21 @@
+{% load fiber_tags %}
+
+<div>
+    <a href="{{ book.link }}">
+        <img src="{{ book.image.url }}" />
+    </a>
+
+    <div>
+        {{ book.text|safe }}
+
+        <span class="book-name">
+            {{ book.name }}
+        </span>
+    </div>
+</div>
+
+{% if 'change_book' in perms %}
+<a href="{% url "admin:books_book_change" book.pk %}" class="no-ajax">
+    edit
+</a>
+{% endif %}
