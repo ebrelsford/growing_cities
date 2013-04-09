@@ -392,6 +392,9 @@ header {
     line-height: 22px;
     text-decoration: none;
 }
+.submenu a:hover {
+    text-decoration: underline;
+}
 
 .submenu.stuck {
     position: fixed;
