@@ -32,9 +32,9 @@
 
 <h3>Books</h3>
 <div class="learn books">
-    {% if 'add_product' in perms %}
-    <a href="{% url "admin:products_product_add" %}" class="no-ajax">
-        add product
+    {% if 'add_book' in perms %}
+    <a href="{% url "admin:books_book_add" %}" class="no-ajax">
+        add book
     </a>
     {% endif %}
     {% include "books/_book_list.html" %}
