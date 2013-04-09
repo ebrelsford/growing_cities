@@ -10,6 +10,7 @@ django-imagekit==2.0.3
 -e git://github.com/ebrelsford/django-inplace.git@78f52385a166c135c8bb44e035838181869684fe#egg=django_inplace-dev
 -e git://github.com/dominno/django-moderation.git@16529f8d0bb3ae6044d8722828b855b99ab5f6b7#egg=django_moderation-dev
 django-mptt==0.5.5
+django-twittersync==0.5
 djangorestframework==2.1.17
 docutils==0.10
 feedparser==5.1.3
@@ -17,6 +18,7 @@ geojson==1.0.1
 ipython==0.13.1
 johnny-cache==1.4
 psycopg2==2.4.6
+python-dateutil==2.1
 python-memcached==1.48
 pytz==2012j
 simplejson==3.0.7

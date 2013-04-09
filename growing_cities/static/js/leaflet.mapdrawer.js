@@ -34,7 +34,6 @@ L.Control.MapDrawer = L.Control.extend({
 	_createButton: function (title, className, container, fn, context) {
 		var link = L.DomUtil.create('a', className, container);
 		link.href = '#';
-        link.innerHTML = '&#187;';
 		link.title = title;
 
 		L.DomEvent
@@ -47,13 +46,14 @@ L.Control.MapDrawer = L.Control.extend({
     // toggle map drawer--`this` is the map, not the control
     toggleMapDrawer: function() {
         var $drawer = this.options.$drawer;
+        console.log(this.mapDrawerControl);
         if ($drawer.hasClass('is-open')) {
             hideMapDrawer($drawer);
-            this.mapDrawerControl.button.innerHTML = '&#187;';
+            $(this.mapDrawerControl.button).removeClass('is-open');
         }
         else {
             showMapDrawer($drawer);
-            this.mapDrawerControl.button.innerHTML = '&#171;';
+            $(this.mapDrawerControl.button).addClass('is-open');
         }
     },
 

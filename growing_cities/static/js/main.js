@@ -32,6 +32,27 @@ function setHeights() {
     $('#map-overlay').outerHeight(innerDivHeight);
 }
 
+function setRowHeights() {
+    var $rows = $('.match-row-heights');
+    if ($rows.length === 0) return;
+
+    var height = 0;
+    $rows.each(function(i) {
+        var $rowElements = $(this).find('.match-row-height');
+
+        // Find the tallest element
+        $rowElements.each(function(i) {
+            var thisHeight = $(this).outerHeight();
+            if (thisHeight > height) height = thisHeight;
+        });
+
+        // Make everything that tall
+        $rowElements.each(function(i) {
+            $(this).outerHeight(height);
+        });
+    });
+}
+
 
 /*
  * Map overlay.
@@ -94,7 +115,6 @@ function showMapDrawer($mapDrawer) {
             },
         })
         .addClass('is-open');
-    $('#map-drawer-show').hide();
 
     // move any map controls on the left
     $('.leaflet-left').animate({
@@ -116,14 +136,6 @@ function hideMapDrawer($mapDrawer) {
             },
         })
         .removeClass('is-open');
-
-    $('#map-drawer-show')
-        .show()
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: '#content',
-        });
 
     // return any map controls on the left back to normal
     $('.leaflet-left').animate({
@@ -218,6 +230,27 @@ function positionBuyButton() {
 
 
 /*
+ * Watch the Trailer / Back to Map button.
+ */
+
+function updateWatchTheTrailerButton() {
+    if ($('#map').length >= 1) {
+        // Watch the Trailer
+        // TODO scroll to #Trailer
+        $('.trailer-map-button')
+            .removeClass('back-to-map')
+            .attr('href', '/the-film/');
+    }
+    else {
+        // Back to Map
+        $('.trailer-map-button')
+            .addClass('back-to-map')
+            .attr('href', '/');
+    }
+}
+
+
+/*
  * Event handling and initialization.
  */
 
@@ -226,17 +259,29 @@ $(window).on('statechangestart', function(event) {
     hideMapDrawer($('#map-drawer'), $('#map'));
 });
 
+$(window).on('statechangecomplete', addSubmenu);
+$(window).on('statechangecomplete', setHeights);
+$(window).on('statechangecomplete', setRowHeights);
+$(window).on('statechangecomplete', updateWatchTheTrailerButton);
+
+$(window).on('statechangecomplete', function() {
+    $('input[type=text], textarea').placeholder();
+});
+
+$(window).load(function() {
+    // Make grid elements that should have the same height match
+    setRowHeights();
+});
+
 $(document).ready(function() {
 
     // make sidebar and map take up entire window height
     setHeights();
     $(window).smartresize(setHeights);
-    $(window).on('statechangecomplete', setHeights);
 
     // keep map drawer in the proper position
     positionMapDrawer();
     $(window).smartresize(positionMapDrawer);
-    //$(window).on('statechangecomplete', positionMapDrawer);
 
     // keep map overlay in the proper position
     $(window).smartresize(positionMapOverlay);
@@ -244,9 +289,8 @@ $(document).ready(function() {
     $(window).smartresize(positionBuyButton);
 
     addSubmenu();
-    $(window).on('statechangecomplete', addSubmenu);
 
-    $('input, textarea').placeholder();
+    $('input[type=text], textarea').placeholder();
 
     $('#map-city').chosen();
 
@@ -271,6 +315,7 @@ $(document).ready(function() {
     }
 
     positionBuyButton();
+    updateWatchTheTrailerButton();
 
     // Get ready for zooming
     var lat = null, 

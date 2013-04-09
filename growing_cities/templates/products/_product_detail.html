@@ -1,14 +1,14 @@
 {% load fiber_tags %}
 
 <div>
-    <span class="product-name">
-        {{ product.name }}
-    </span><br />
 
+    <img src="{{ product.image.url }}" />
     <div>
-        <img src="{{ product.image.url }}" style="float: left; padding-right: 20px;" />
         {{ product.text|safe }}
-        <div class="clear"></div>
+
+        <span class="product-name">
+            {{ product.name }}
+        </span>
     </div>
 
     {{ product.paypal_button|safe }}

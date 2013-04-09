@@ -1,12 +1,43 @@
 {% extends "pages/base.html" %}
-{% load cache fiber_tags news_tags %}
+{% load cache fiber_tags rsssync_tags twittersync_tags %}
 
 {% block page_content %}
 <div class="news lead-in">
     {% show_page_content "lead-in" %}
 </div>
 
-{% cache 1800 feed  %}
-    {% pull_feed feed_url 5 %}
-{% endcache %}
+<div>
+
+    <div class="grid grid-1-4 news-twitter">
+        <div>The Latest</div>
+        <div class="meta twitter-via">via twitter</div>
+
+        {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
+        <ul class="tweets">
+            {% for tweet in tweets %}
+            <li class="tweet">
+                <div class="tweet-content">{{ tweet.content|urlize }}</div>
+                at <a class="twitter-date" href="{{ tweet.url }}">{{ tweet.created_date }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="grid grid-3-4 news-wordpress">
+
+        {% get_latest_entries "Growing Cities Blog" 5 as "entries" %}
+        <ul class="wordpress-posts">
+            {% for entry in entries %}
+            <li class="wordpress-post">
+                <a class="wordpress-title" href="{{ entry.link }}">
+                    {{ entry.title }}
+                </a>
+                <div class="meta wordpress-date">{{ entry.date|date:"F j, Y" }}</div>
+                <div class="wordpress-summary">{{ entry.summary|safe }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
 {% endblock %}

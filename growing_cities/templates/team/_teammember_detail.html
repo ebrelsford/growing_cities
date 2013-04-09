@@ -10,3 +10,9 @@
         {{ member.bio|safe }}
     </div>
 </div>
+
+{% if 'change_teammember' in perms %}
+<a href="{% url "admin:team_teammember_change" member.pk %}" class="no-ajax">
+    edit
+</a>
+{% endif %}

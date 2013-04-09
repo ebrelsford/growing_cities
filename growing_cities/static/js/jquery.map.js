@@ -51,6 +51,8 @@
 
                 onEachFeature: function(data, layer) {
                     layer.on('click', function(e) {
+                        // TODO on click, make icon active
+                        // TODO on de-select, make icon inactive
                         $.get(layer.feature.properties.popup_url, function(data) {
                             layer.bindPopup(data, {
                                 autoPan: false,
@@ -64,7 +66,7 @@
 
                 pointToLayer: function(data, latlng) {
                     latlngs.push(latlng);
-                    return new L.marker(latlng);
+                    return new L.marker(latlng, { icon: instance.icon, });
                 },
 
             });
@@ -76,6 +78,13 @@
             });
 
         },
+
+        icon: L.divIcon({
+            className: 'map-marker',  
+            iconSize: [34, 44],
+            iconAnchor: [17, 44],
+            popupAnchor: [0, -44],
+        }),
 
         openPlace: function(id) {
             var instance = this;
