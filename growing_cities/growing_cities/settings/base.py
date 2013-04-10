@@ -87,6 +87,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
+
+    'growing_cities.context_processors.cities',
 )
 
 ROOT_URLCONF = 'growing_cities.urls'

@@ -15,7 +15,6 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(GrowingPlacesMapView, self).get_context_data(**kwargs)
         context.update({
-            'cities': self._get_cities(),
             'ip': self._get_ip(),
             'places_url': reverse('inplace:growing_places_growingplace_geojson'),
         })
@@ -23,16 +22,6 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
 
     def get_fiber_page_url(self):
         return reverse('growing_places_map')
-
-    def _get_cities(self):
-        places = GrowingPlace.objects.filter(
-            centroid__isnull=False,
-            city__isnull=False,
-            state_province__isnull=False,
-        )
-        places = places.distinct('city', 'state_province')
-        places = places.order_by('state_province', 'city')
-        return places.values('city', 'state_province')
 
     def _get_ip(self):
         try:
