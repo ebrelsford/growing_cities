@@ -20,12 +20,6 @@
     <![endif]-->
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
-    <script type="text/javascript">
-    var client_ip = '{{ request.META.REMOTE_ADDR }}';
-    </script>
-
-    {% block scripts %}{% endblock %}
-
     {% compress js %}
     <script type="text/javascript">
     WebFontConfig = { fontdeck: { id: '30649' } };
@@ -73,6 +67,8 @@
     <script src="{{ STATIC_URL }}js/loggedin.js"></script>  
     {% endif %}
     {% endcompress %}
+
+    {% block scripts %}{% endblock %}
 </head>
 <body class="{% block body_class %}{{ fiber_page.title|slugify }}{% endblock %}">
 	<div id="application-pane-wrapper">

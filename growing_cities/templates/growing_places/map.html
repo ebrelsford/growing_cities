@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load inplace_tags %}
 
+{% block scripts %}
+    <script type="text/javascript">
+        user_ip = '{{ ip }}';
+    </script>
+{% endblock %}
+
 {% block content %}
     {% place_map places_url 100% 600px %}
 {% endblock %}

@@ -16,6 +16,7 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
         context = super(GrowingPlacesMapView, self).get_context_data(**kwargs)
         context.update({
             'cities': self._get_cities(),
+            'ip': self._get_ip(),
             'places_url': reverse('inplace:growing_places_growingplace_geojson'),
         })
         return context
@@ -32,6 +33,12 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
         places = places.distinct('city', 'state_province')
         places = places.order_by('state_province', 'city')
         return places.values('city', 'state_province')
+
+    def _get_ip(self):
+        try:
+            return self.request.META['HTTP_X_FORWARDED_FOR']
+        except Exception:
+            return self.request.META['REMOTE_ADDR']
 
 
 class JSONResponseMixin(object):

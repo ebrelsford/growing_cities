@@ -5,6 +5,10 @@
  *
  ****************************************************************************/
 
+var user_lat = null, 
+    user_lon = null,
+    user_ip = null;
+
 
 function pxToInt(px) {
     return parseInt(px.replace('px', ''));
@@ -229,13 +233,15 @@ function positionLoadingIndicator() {
  * Geolocation.
  */
 
-function findLocationByIP(callback) {
-    if (client_ip == '127.0.0.1') {
+function findLocationByIP() {
+    if (user_ip === null) return;
+    if (user_ip == '127.0.0.1') {
         // account for localhost
-        client_ip = '173.3.193.143';
+        user_ip = '173.3.193.143';
     }
-    $.getJSON('http://freegeoip.net/json/' + client_ip, function(data) {
-        callback(data);
+    $.getJSON('http://freegeoip.net/json/' + user_ip, function(data) {
+        user_lat = data['latitude'];
+        user_lon = data['longitude'];
     });
 }
 
@@ -283,6 +289,7 @@ $(window).on('statechangestart', function(event) {
 });
 
 $(window).on('statechangecomplete', addSubmenu);
+$(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
@@ -342,11 +349,6 @@ $(document).ready(function() {
     updateWatchTheTrailerButton();
 
     // Get ready for zooming
-    var lat = null, 
-        lon = null;
-    findLocationByIP(function(data) {
-        lat = data['latitude'];
-        lon = data['longitude'];
-    });
+    findLocationByIP();
 
 });
