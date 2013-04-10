@@ -322,13 +322,16 @@ $(document).ready(function() {
     $('.map-overlay-hide').click(function() {
         hideMapOverlay();
 
-        // zoom to detected location
-        if (user_lat && user_lon) {
-            $('#map').placemap('centerOn', user_lat, user_lon);
-        }
-        else {
-            // TODO ask browser for location
-        }
+        $('#map').placemap('locate', 
+            function(event) {
+                // Success: zoom to Geolocation API-detected location
+                $('#map').placemap('centerOn', event.latlng.lat, event.latlng.lng);
+            },
+            function() {
+                // Fallback: zoom to IP-detected location
+                $('#map').placemap('centerOn', user_lat, user_lon);
+            }
+        );
 
         $('#map').placemap('toggleMapDrawer');
         return false;

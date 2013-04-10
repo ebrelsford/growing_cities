@@ -100,6 +100,15 @@
             instance.map.setView([lat, lon], 12);
         },
 
+        locate: function(successCallback, errorCallback) {
+            var instance = this;
+
+            instance.map.on('locationfound', successCallback);
+            instance.map.on('locationerror', errorCallback);
+
+            instance.map.locate();
+        },
+
         zoomTo: function(bbox) {
             var instance = this;
             instance.map.fitBounds([
