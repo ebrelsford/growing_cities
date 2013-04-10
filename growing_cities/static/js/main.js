@@ -329,8 +329,8 @@ $(document).ready(function() {
         hideMapOverlay();
 
         // zoom to detected location
-        if (lat && lon) {
-            $('#map').placemap('centerOn', lat, lon);
+        if (user_lat && user_lon) {
+            $('#map').placemap('centerOn', user_lat, user_lon);
         }
         else {
             // TODO ask browser for location
