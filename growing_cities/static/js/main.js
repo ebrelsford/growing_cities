@@ -220,7 +220,7 @@ function positionLoadingIndicator() {
     $('.loading-indicator').position({
         my: 'center center',
         at: 'center center',
-        of: '#content',
+        of: '#content-wrapper',
     });
 }
 
