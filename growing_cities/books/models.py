@@ -16,7 +16,7 @@ class Book(models.Model):
     )
     thumbnail = ImageSpecField(
         [ResizeToFit(100, 100)],
-        image_field='image',
+        source='image',
         format='JPEG',
         options={'quality': 90}
     )

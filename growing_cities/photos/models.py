@@ -14,13 +14,13 @@ class Photo(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     original_image = models.ImageField(_('original image'), upload_to='photos')
-    formatted_image = ImageSpecField(image_field='original_image',
+    formatted_image = ImageSpecField(source='original_image',
                                      format='JPEG', options={'quality': 90})
     thumbnail = ImageSpecField([SmartResize(200, 200)],
-                               image_field='original_image', format='JPEG',
+                               source='original_image', format='JPEG',
                                options={'quality': 90})
     popup_thumbnail = ImageSpecField([SmartResize(300, 100)],
-                                     image_field='original_image',
+                                     source='original_image',
                                      format='JPEG',
                                      options={'quality': 90})
 

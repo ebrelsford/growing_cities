@@ -13,10 +13,10 @@ class TeamMember(models.Model):
 
     original_image = models.ImageField(_('original image'),
                                        upload_to='team_photos')
-    formatted_image = ImageSpecField(image_field='original_image',
+    formatted_image = ImageSpecField(source='original_image',
                                      format='JPEG', options={'quality': 90})
     thumbnail = ImageSpecField([SmartResize(100, 100)],
-                               image_field='original_image', format='JPEG',
+                               source='original_image', format='JPEG',
                                options={'quality': 90})
 
     def __unicode__(self):
