@@ -289,6 +289,7 @@ $(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(window).on('statechangecomplete', function() {
     $('input[type=text], textarea').placeholder();
+    $('#content-wrapper').animate({ scrollTop: 0});
 });
 
 $(window).load(function() {
