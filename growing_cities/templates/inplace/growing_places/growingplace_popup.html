@@ -2,9 +2,7 @@
 
 {% if growingplace.photos.count %}
 <img src="{{ growingplace.photos.all.0.thumbnail.url }}" />
-{% endif %}
-
-{% if growingplace.videos.count %}
+{% elif growingplace.videos.count %}
 {{ growingplace.videos.all.0|embed:"200,200" }}
 {% endif %}
 
