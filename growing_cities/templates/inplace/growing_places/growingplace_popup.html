@@ -1,9 +1,9 @@
 {% load i18n videos_tags %}
 
 {% if growingplace.photos.count %}
-<img src="{{ growingplace.photos.all.0.thumbnail.url }}" />
+<img src="{{ growingplace.photos.all.0.popup_thumbnail.url }}" />
 {% elif growingplace.videos.count %}
-{{ growingplace.videos.all.0|embed:"200,200" }}
+{{ growingplace.videos.all.0|embed:"300,50" }}
 {% endif %}
 
 <div>

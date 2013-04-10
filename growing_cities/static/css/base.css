@@ -852,6 +852,10 @@ ul.story-list li {
     padding-bottom: 5px;
 }
 
+#map .leaflet-popup-content img {
+    border: 1px solid #4C4A33;
+}
+
 
 /*
  * _chosen_
