@@ -234,11 +234,7 @@ function positionLoadingIndicator() {
  */
 
 function findLocationByIP() {
-    if (user_ip === null) return;
-    if (user_ip == '127.0.0.1') {
-        // account for localhost
-        user_ip = '173.3.193.143';
-    }
+    if (user_ip === null || user_ip === '127.0.0.1') return;
     $.getJSON('http://freegeoip.net/json/' + user_ip, function(data) {
         user_lat = data['latitude'];
         user_lon = data['longitude'];
