@@ -46,7 +46,6 @@ L.Control.MapDrawer = L.Control.extend({
     // toggle map drawer--`this` is the map, not the control
     toggleMapDrawer: function() {
         var $drawer = this.options.$drawer;
-        console.log(this.mapDrawerControl);
         if ($drawer.hasClass('is-open')) {
             hideMapDrawer($drawer);
             $(this.mapDrawerControl.button).removeClass('is-open');
