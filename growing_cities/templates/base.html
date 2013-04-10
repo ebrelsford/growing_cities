@@ -20,6 +20,10 @@
     <![endif]-->
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
+    <script type="text/javascript">
+    var client_ip = '{{ request.META.REMOTE_ADDR }}';
+    </script>
+
     {% block scripts %}{% endblock %}
 
     {% compress js %}
@@ -35,8 +39,6 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
     })();
-
-    var client_ip = '{{ request.META.REMOTE_ADDR }}';
     </script>
 
     <!-- Dynamically load pages -->
