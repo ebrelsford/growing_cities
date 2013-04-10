@@ -176,8 +176,6 @@ function addSubmenu() {
 
     // Add ScrollTo to submenu items
     $submenu.find('a').click(function() {
-        console.log($(this));
-
         // Handle return-to-top link
         if ($(this).hasClass('submenu-top-link')) {
             $('#content-wrapper').animate({ scrollTop: 0});
