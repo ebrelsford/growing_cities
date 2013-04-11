@@ -449,7 +449,8 @@ header {
 .story-lead-in {
 }
 .story-form {
-    background: grey;
+    padding: 50px;
+    padding-top: 0;
 }
 
 ul.story-list li {
