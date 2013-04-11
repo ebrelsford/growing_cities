@@ -2,10 +2,12 @@ from django.views.generic import CreateView, DetailView
 
 from django.core.urlresolvers import reverse_lazy
 
+from .forms import StoryForm
 from .models import Story
 
 
 class CreateStoryView(CreateView):
+    form_class = StoryForm
     model = Story
     success_url = reverse_lazy('stories:story_create_success')
 
