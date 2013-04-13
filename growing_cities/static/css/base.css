@@ -232,6 +232,7 @@ body.loading .loading-indicator {
 }
 
 #map-overlay {
+    background: url(/static/img/overlay-bg.png);
     cursor: default;
     position: absolute;
     padding-top: 2%;
