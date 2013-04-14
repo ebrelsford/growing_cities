@@ -19,9 +19,16 @@
 </div>
 
 <div class="story-submit">
-    <div class="grid grid-1-2 story-lead-in">
-        {% show_page_content "story-lead-in" %}
+
+    <div class="lead-in">
+        <div class="lead-in-title">
+            {% show_page_content "submit-lead-in-title" %}
+        </div>
+        <div class="lead-in-text">
+            {% show_page_content "submit-lead-in-text" %}
+        </div>
     </div>
+
     <div class="grid grid-1-2 story-form ajax-form-wrapper">
         {% with form=story_form %}
         {% include "stories/story_form.html" %}

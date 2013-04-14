@@ -556,12 +556,14 @@ ul.story-list li {
     border-right: 0;
 }
 
+.story-submit .lead-in,
 .film .lead-in {
     text-align: center;
     margin-left: 25%;
     margin-right: 25%;
 }
 
+.story-submit .lead-in-title,
 .film .lead-in-title {
     color: #4C4A33;
     font-family: "Bookman Regular", serif;
@@ -574,6 +576,7 @@ ul.story-list li {
     margin-bottom: 10px;
 }
 
+.story-submit .lead-in-text,
 .film .lead-in-text {
     font-family:"Bookman Italic", serif;
     font-smoothing: antialiased;
