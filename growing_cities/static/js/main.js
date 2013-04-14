@@ -109,6 +109,7 @@ function positionMapDrawer() {
 
 function showMapDrawer($mapDrawer) {
     var newWidth = $('#content').outerWidth() * .25;
+    $mapDrawer.find('#map-drawer-content').width(newWidth);
     $mapDrawer
         .position({
             my: 'left top',
