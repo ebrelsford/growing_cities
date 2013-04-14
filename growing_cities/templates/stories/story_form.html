@@ -1,5 +1,77 @@
+<script>
+    $(document).ready(function() {
+        $('input[type=file]').change(function() {
+            console.log($(this).val());
+            if (!$(this).val()) return;
+            $('.image-input-button').hide();
+            $('.image-input-selected-file').text($(this).val()).show();
+        });
+
+        $('.story-form-submit').click(function() {
+            $('.story-form form').submit();
+        });
+    });
+</script>
+
 <form action="{% url "stories:story_create" %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {{ form.non_field_errors }}
+
+
+    <div>
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.title.label_tag }}
+            </div>
+            <div>
+                {{ form.title.errors }}
+                {{ form.title }}
+            </div>
+        </div>
+
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.image.label_tag }}
+            </div>
+            <div style="position: relative;">
+                {{ form.image.errors }}
+                {{ form.image }}
+                <div class="image-input-overlay">
+                    <div class="image-input-button">Choose File</div>
+                    <div class="image-input-selected-file"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div>
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.text.label_tag }}
+            </div>
+            <div>
+                {{ form.text.errors }}
+                {{ form.text }}
+            </div>
+        </div>
+
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.video_url.label_tag }}
+            </div>
+            <div>
+                {{ form.video_url.errors }}
+                {{ form.video_url }}
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="story-form-submit">Submit</div>
 </form>

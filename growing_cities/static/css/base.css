@@ -470,6 +470,70 @@ header {
     padding-top: 0;
 }
 
+.story-form label {
+    color: #868576;
+}
+
+.story-form input[type="text"],
+.story-form textarea {
+    border: 0;
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 85%;
+}
+
+.story-form input[type="file"] {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 85%;
+
+    /* for file input overlay */
+    filter: alpha(opacity=0);
+    position: relative;
+    opacity: 0;
+    z-index: 2;
+}
+
+.story-form .image-input-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.story-form .image-input-button {
+    background-color: #656447;
+    color: #ECEADE;
+    font-family: "Acier BAT Text Solid", Futura, Arial, sans-serif;
+    margin-top: 5px;
+    padding: 13px;
+    text-align: center;
+    width: 120px;
+}
+
+.story-form .image-input-selected-file {
+    display: none;
+    padding: 13px;
+    padding-left: 0;
+    text-decoration: underline;
+}
+
+.story-form-submit {
+    background: #E1DFD3;
+    border: 1px solid #B5B3A7;
+    cursor: pointer;
+    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    text-align: center;
+    width: 250px;
+}
+
 ul.story-list li {
     height: 175px;
 }
@@ -583,6 +647,10 @@ ul.story-list li {
     -webkit-font-smoothing: antialiased;
     font-style: italic;
     font-weight: normal;
+}
+
+.story-submit .lead-in {
+    margin-bottom: 75px;
 }
 
 .film .watch-it {
