@@ -359,6 +359,9 @@ header {
 #mainmenu li {
     border-bottom: 1px solid #D5D3C7;
 }
+#mainmenu li:last-child {
+    border: 0;
+}
 
 #mainmenu a {
     color: #868576;
