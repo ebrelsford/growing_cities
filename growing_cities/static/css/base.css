@@ -228,8 +228,10 @@ body.loading .loading-indicator {
 
 .map-drawer-section h3 {
     font-family: Courier, "Lucida Console", monospace;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 #map-overlay {
