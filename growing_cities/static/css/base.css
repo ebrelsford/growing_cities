@@ -361,8 +361,11 @@ header {
 }
 
 #mainmenu a {
-    color: #4C4A33;
+    color: #868576;
     display: block;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 18px;
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 10px;
