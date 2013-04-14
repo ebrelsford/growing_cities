@@ -275,6 +275,24 @@ function updateWatchTheTrailerButton() {
 
 
 /*
+ * Story form
+ */
+
+function initializeStoryForm() {
+    $('.story-form input[type=file]').change(function() {
+        if (!$(this).val()) return;
+        $('.image-input-button').hide();
+        $('.image-input-selected-file').text($(this).val()).show();
+    });
+
+    $('.story-form-submit').click(function() {
+        $('.story-form form').submit();
+        return false;
+    });
+}
+
+
+/*
  * Event handling and initialization.
  */
 
@@ -291,6 +309,10 @@ $(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
+
+$(window).on('statechangecomplete', initializeStoryForm);
+// Triggered on ajaxForm success
+$(window).on('formajaxsuccess', initializeStoryForm);
 
 $(window).on('statechangecomplete', function() {
     $('input[type=text], textarea').placeholder();
@@ -318,6 +340,8 @@ $(document).ready(function() {
     $(window).smartresize(positionBuyButton);
 
     addSubmenu();
+
+    initializeStoryForm();
 
     $('input[type=text], textarea').placeholder();
 

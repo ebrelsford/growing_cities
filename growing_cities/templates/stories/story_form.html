@@ -1,18 +1,3 @@
-<script>
-    $(document).ready(function() {
-        $('input[type=file]').change(function() {
-            console.log($(this).val());
-            if (!$(this).val()) return;
-            $('.image-input-button').hide();
-            $('.image-input-selected-file').text($(this).val()).show();
-        });
-
-        $('.story-form-submit').click(function() {
-            $('.story-form form').submit();
-        });
-    });
-</script>
-
 <form action="{% url "stories:story_create" %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}

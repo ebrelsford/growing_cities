@@ -98,6 +98,7 @@
                     success: function() {
                         $body.ajaxify();
                         initializeFiber();
+                        $window.trigger('formajaxsuccess');
                     },
                 });
             });
