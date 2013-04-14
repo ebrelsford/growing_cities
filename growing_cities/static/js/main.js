@@ -118,7 +118,7 @@ function showMapDrawer($mapDrawer) {
                 $mapDrawer.animate({
                     left: pos.left,
                     width: newWidth,
-                });
+                }, 'fast');
             },
         })
         .addClass('is-open');
@@ -126,7 +126,7 @@ function showMapDrawer($mapDrawer) {
     // move any map controls on the left
     $('.leaflet-left').animate({
         left: newWidth,
-    });
+    }, 'fast');
 }
 
 function hideMapDrawer($mapDrawer) {
@@ -139,7 +139,7 @@ function hideMapDrawer($mapDrawer) {
                 $mapDrawer.animate({
                     left: pos.left, 
                     width: $('#sidebar').outerWidth(),
-                });
+                }, 'fast');
             },
         })
         .removeClass('is-open');
@@ -147,7 +147,7 @@ function hideMapDrawer($mapDrawer) {
     // return any map controls on the left back to normal
     $('.leaflet-left').animate({
         left: 0,
-    });
+    }, 'fast');
 }
 
 
