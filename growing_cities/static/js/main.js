@@ -68,15 +68,18 @@ function showMapOverlay() {
 }
 
 function positionMapOverlay() {
-    var $relativeTo = $('#content');
+    var $relativeTo = $('#content-wrapper');
     $('#map-overlay')
-        .width($relativeTo.outerWidth())
-        .height($relativeTo.outerHeight())
+        .width($relativeTo.innerWidth() - 10)
+        .height($relativeTo.innerHeight() - 2)
         .position({
             my: 'left top',
-            at: 'left top',
+            at: 'left+2 top+2',
             of: $relativeTo,
-        });
+            collision: 'fit fit',
+            within: $relativeTo,
+        })
+        ;
 }
 
 function hideMapOverlay() {

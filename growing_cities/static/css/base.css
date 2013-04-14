@@ -233,9 +233,15 @@ body.loading .loading-indicator {
 
 #map-overlay {
     background: url(/static/img/overlay-bg.png);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     cursor: default;
+    overflow: auto;
     position: absolute;
     padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
     z-index: 5000;
 }
 
@@ -321,6 +327,9 @@ body.loading .loading-indicator {
 #content-wrapper {
     background-color: #ECEADE;
     border: 2px solid #4C4A33;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     overflow-y: auto;
 }
 
