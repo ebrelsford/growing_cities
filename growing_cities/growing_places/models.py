@@ -25,7 +25,27 @@ class GrowingPlace(Place):
     photos = generic.GenericRelation(Photo)
     videos = generic.GenericRelation(Video)
 
-    # TODO tags
+    activities = models.ManyToManyField('Activity',
+        verbose_name=_('activities')
+    )
 
     def __unicode__(self):
         return self.name
+
+
+class Activity(models.Model):
+    name = models.CharField(_('name'),
+        max_length = 100,
+    )
+    description = models.TextField(_('description'),
+        null=True,
+        blank=True,
+    )
+    order = models.PositiveIntegerField(_('order'), default=0)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('order',)
+        verbose_name_plural = _('activities')

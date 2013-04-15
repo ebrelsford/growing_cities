@@ -4,7 +4,11 @@ from django.contrib.contenttypes import generic
 from inplace.admin import PlaceAdmin
 from photos.models import Photo
 from videos.models import Video
-from .models import GrowingPlace
+from .models import Activity, GrowingPlace
+
+
+class ActivityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'order',)
 
 
 class PhotoInline(generic.GenericTabularInline):
@@ -28,9 +32,15 @@ class GrowingPlaceAdmin(PlaceAdmin):
                 ('url', 'contact',),
             ),
         }),
+        ('Activities', {
+            'fields': (
+                ('activities',),
+            ),
+        }),
         PlaceAdmin.get_address_fieldset(),
         PlaceAdmin.get_geo_fieldset(),
     )
     inlines = (PhotoInline, VideoInline)
 
+admin.site.register(Activity, ActivityAdmin)
 admin.site.register(GrowingPlace, GrowingPlaceAdmin)
