@@ -26,6 +26,8 @@ class GrowingPlace(Place):
     videos = generic.GenericRelation(Video)
 
     activities = models.ManyToManyField('Activity',
+        blank=True,
+        null=True,
         verbose_name=_('activities')
     )
 
