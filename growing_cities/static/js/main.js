@@ -113,9 +113,10 @@ function showMapDrawer($mapDrawer) {
         - pxToInt($mapDrawer.css('padding-right'));;
 
     $mapDrawer.find('#map-drawer-content').width(innerWidth);
-    $mapDrawer.find('#map_city_chzn').width(innerWidth);
-    $mapDrawer.find('#map_city_chzn input').width(innerWidth - 7);
-    $mapDrawer.find('#map_city_chzn .chzn-drop').width(innerWidth);
+
+    $mapDrawer.find('.chzn-container').width(innerWidth);
+    $mapDrawer.find('.chzn-container input').width(innerWidth - 7);
+    $mapDrawer.find('.chzn-container .chzn-drop').width(innerWidth);
 
     $mapDrawer
         .position({
@@ -378,6 +379,7 @@ $(document).ready(function() {
     $('input[type=text], textarea').placeholder();
 
     $('#map-city').chosen();
+    $('#map-activities').chosen();
 
     $('.map-overlay-hide').click(function() {
         hideMapOverlay();

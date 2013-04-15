@@ -106,12 +106,24 @@ class FindPlacesView(JSONResponseMixin, ListView):
         bbox = self._get_bbox()
         qs = qs.filter(centroid__within=bbox)
 
+        activity_pks = self._get_activity_pks()
+        if activity_pks:
+            qs = qs.filter(activities__in=activity_pks)
+
         # Order by distance from the middle of bbox
         return qs.distance(bbox.centroid).order_by('distance')[:25]
 
     def _get_bbox(self):
-        bboxString = self.request.GET['bbox']
-        return Polygon.from_bbox(bboxString.split(','))
+        bbox_string = self.request.GET['bbox']
+        return Polygon.from_bbox(bbox_string.split(','))
+
+    def _get_activity_pks(self):
+        try:
+            activity_string = self.request.GET['activities']
+            if activity_string == '': return []
+            return activity_string.split(',')
+        except Exception:
+            return []
 
     def _to_dict(self, place):
         return {

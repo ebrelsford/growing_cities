@@ -156,8 +156,13 @@
 
             <div class="map-drawer-section">
                 <h3>What do you want to do?</h3>
-                <select id="map-activities" disabled="disabled">
+                <select id="map-activities">
                     <option>Everything</option>
+                    {% for activity in activities %}
+                    <option data-pk="{{ activity.pk }}">
+                        {{ activity.name }}
+                    </option>
+                    {% endfor %}
                 </select>
             </div>
 

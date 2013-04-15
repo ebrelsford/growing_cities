@@ -4,6 +4,7 @@
 <script>
 
     (function() {
+
         function updateMapResults(places) {
             var $results = $('#map-results');
             clearMapResults();
@@ -22,18 +23,37 @@
             });
         }
 
+
         function clearMapResults() {
             $('#map-results').empty();
         }
 
-        function getMapResults(bboxString, onSuccess) {
-            var url = '{% url "gcplace_places_find" %}?bbox=' + bboxString;
+
+        function getMapResults(bboxString, activityPks, onSuccess) {
+            var url = '{% url "gcplace_places_find" %}?';
+            url += $.param({
+                activities: activityPks.join(','),
+                bbox: bboxString,
+            });
             $.getJSON(url, function(data) {
                 onSuccess(data.places);
             })
             .fail(function() {
                 clearMapResults();
             });
+        }
+
+
+        /*
+         * Get parameters for loading map results, get them.
+         */
+        function reloadMapResults() {
+            var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
+            var activityPks = [];
+            $('#map-activities option:selected').each(function() {
+                activityPks.push($(this).data('pk'));
+            });
+            getMapResults(bbox, activityPks, updateMapResults);               
         }
 
         $(document).ready(function() {
@@ -44,6 +64,7 @@
                 placesUrl: '{{ places_url }}',
                 $drawer: $('#map-drawer'),
             });
+
 
             /*
              * Prepare city selector--add onchange event to pan map to 
@@ -64,6 +85,15 @@
                 });
             }).addClass('initialized');
 
+
+            /*
+             * Prepare activity selector.
+             */
+            $('#map-activities:not(.initialized)').change(function(e) {
+                reloadMapResults();
+            }).addClass('initialized');
+
+
             /*
              * Prepare results--add onclick handler to open popup for the place
              */
@@ -76,19 +106,20 @@
                 $('#map').placemap('openPlace', $target.data('placeId'));
             }).addClass('initialized');
 
+
             /*
              * Prepare map--add event listener for viewport change to update
              * the list of results.
              */
             $('#map').data('placemap').map.on('moveend', function(e) {
                 try {
-                    var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
-                    getMapResults(bbox, updateMapResults);
+                    reloadMapResults();
                 }
                 catch(e) {
                     // Swallow exceptions that will happen as map is initialized
                 }
             });
+
         });
     })();
 </script>

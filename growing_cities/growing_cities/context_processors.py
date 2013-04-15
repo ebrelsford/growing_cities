@@ -1,4 +1,4 @@
-from growing_places.models import GrowingPlace
+from growing_places.models import Activity, GrowingPlace
 
 
 def cities(request):
@@ -13,3 +13,10 @@ def cities(request):
     places = places.distinct('city', 'state_province')
     places = places.order_by('state_province', 'city')
     return { 'cities': places.values('city', 'state_province'), }
+
+
+def activities(request):
+    """
+    Adds activities to the request to populate the map drawer.
+    """
+    return { 'activities': Activity.objects.all(), }
