@@ -206,7 +206,8 @@ body.loading .loading-indicator {
     background: url(/static/img/map-drawer-bg.png);
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 25px;
+    padding: 20px;
+    padding-top: 25px;
     position: absolute;
     width: 24%;
     z-index: 1980; /* TODO something more appropriate */
@@ -214,12 +215,12 @@ body.loading .loading-indicator {
 
 .map-drawer-title {
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
-    font-size: 40px;
+    font-size: 36px;
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     font-style: normal;
     font-weight: normal;
-    line-height: 36px;
+    line-height: 34px;
 }
 
 .map-drawer-section {
