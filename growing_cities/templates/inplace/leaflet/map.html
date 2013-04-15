@@ -2,30 +2,12 @@
 {% block pre_map_scripts %}{% endblock %}
 
 <script>
-$(document).ready(function() {
 
-    $('#map').placemap({
-        apiKey: '{% inplace_setting PLACES_CLOUDMADE_KEY %}',
-        styleId: '{% inplace_setting PLACES_CLOUDMADE_STYLE %}',
-        placesUrl: '{{ places_url }}',
-        $drawer: $('#map-drawer'),
-    });
-
-    $('#map-city:not(.initialized)').change(function(e) {
-        var $selected = $(e.target).find(':selected');
-        var city = $selected.data('city');
-        var state = $selected.data('state');
-        if (!(city && state)) return;
-
-        var url = '{% url "gcplace_citybbox" %}?' + $.param({
-            city: city,
-            state_province: state,
-        });
-        $.getJSON(url, function(data) {
-            $('#map').placemap('zoomTo', data['bbox']);
+    (function() {
+        function updateMapResults(places) {
             var $results = $('#map-results');
-            $results.empty();
-            $.each(data['places'], function(i, place) {
+            clearMapResults();
+            $.each(places, function(i, place) {
                 var $result = $('<li/>');
                 $result
                     .data('placeId', place.id)
@@ -38,19 +20,77 @@ $(document).ready(function() {
                     .addClass('location'));
                 $results.append($result);
             });
-        });
-    }).addClass('initialized');
-
-    $('#map-results:not(.initialized)').click(function(e) {
-        // find the target map-result
-        var $target = $(e.target);
-        if (!$target.hasClass('.map-result')) {
-            $target = $target.parent('.map-result');
         }
-        $('#map').placemap('openPlace', $target.data('placeId'));
-    }).addClass('initialized');
 
-});
+        function clearMapResults() {
+            $('#map-results').empty();
+        }
+
+        function getMapResults(bboxString, onSuccess) {
+            var url = '{% url "gcplace_places_find" %}?bbox=' + bboxString;
+            $.getJSON(url, function(data) {
+                onSuccess(data.places);
+            })
+            .fail(function() {
+                clearMapResults();
+            });
+        }
+
+        $(document).ready(function() {
+
+            $('#map').placemap({
+                apiKey: '{% inplace_setting PLACES_CLOUDMADE_KEY %}',
+                styleId: '{% inplace_setting PLACES_CLOUDMADE_STYLE %}',
+                placesUrl: '{{ places_url }}',
+                $drawer: $('#map-drawer'),
+            });
+
+            /*
+             * Prepare city selector--add onchange event to pan map to 
+             * selected city.
+             */
+            $('#map-city:not(.initialized)').change(function(e) {
+                var $selected = $(e.target).find(':selected');
+                var city = $selected.data('city');
+                var state = $selected.data('state');
+                if (!(city && state)) return;
+
+                var url = '{% url "gcplace_citybbox" %}?' + $.param({
+                    city: city,
+                    state_province: state,
+                });
+                $.getJSON(url, function(data) {
+                    $('#map').placemap('zoomTo', data.bbox);
+                });
+            }).addClass('initialized');
+
+            /*
+             * Prepare results--add onclick handler to open popup for the place
+             */
+            $('#map-results:not(.initialized)').click(function(e) {
+                // find the target map-result
+                var $target = $(e.target);
+                if (!$target.hasClass('.map-result')) {
+                    $target = $target.parent('.map-result');
+                }
+                $('#map').placemap('openPlace', $target.data('placeId'));
+            }).addClass('initialized');
+
+            /*
+             * Prepare map--add event listener for viewport change to update
+             * the list of results.
+             */
+            $('#map').data('placemap').map.on('moveend', function(e) {
+                try {
+                    var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
+                    getMapResults(bbox, updateMapResults);
+                }
+                catch(e) {
+                    // Swallow exceptions that will happen as map is initialized
+                }
+            });
+        });
+    })();
 </script>
 
 <div id="map" style="width: {{ width }}; height: {{ height }};"></div>

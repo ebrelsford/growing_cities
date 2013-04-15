@@ -1,9 +1,9 @@
 import json
 
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, Polygon
 from django.contrib.gis.measure import D
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.views.generic import ListView, TemplateView, View
 
 from fiber.views import FiberPageMixin
@@ -72,7 +72,6 @@ class CityBBOXView(JSONResponseMixin, ListView):
         qs = self.get_queryset()
         return {
             'bbox': qs.extent(),
-            'places': [self._to_dict(place) for place in qs],
         }
 
     def get_queryset(self):
@@ -85,6 +84,34 @@ class CityBBOXView(JSONResponseMixin, ListView):
         filters = filter(lambda (k, v): k in self.allowed_filters,
                          filters.items())
         return dict(filters)
+
+
+class FindPlacesView(JSONResponseMixin, ListView):
+    model = GrowingPlace
+
+    def get_context_data(self, **kwargs):
+        try:
+            qs = self.get_queryset()
+            return {
+                'bbox': qs.extent(),
+                'places': [self._to_dict(place) for place in qs],
+            }
+        except Exception:
+            raise Http404
+
+    def get_queryset(self):
+        qs = super(FindPlacesView, self).get_queryset()
+
+        # Find places in the bbox
+        bbox = self._get_bbox()
+        qs = qs.filter(centroid__within=bbox)
+
+        # Order by distance from the middle of bbox
+        return qs.distance(bbox.centroid).order_by('distance')[:25]
+
+    def _get_bbox(self):
+        bboxString = self.request.GET['bbox']
+        return Polygon.from_bbox(bboxString.split(','))
 
     def _to_dict(self, place):
         return {
