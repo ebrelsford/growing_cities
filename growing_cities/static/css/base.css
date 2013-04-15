@@ -228,10 +228,12 @@ body.loading .loading-indicator {
 }
 
 .map-drawer-section h3 {
+    border-bottom: 1px solid #E7E8D6;
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
     font-weight: normal;
     letter-spacing: 1px;
+    padding-bottom: 10px;
     text-transform: uppercase;
 }
 
@@ -316,6 +318,9 @@ body.loading .loading-indicator {
     cursor: pointer;
     padding: 10px 0;
 }
+.map-result:last-child {
+    border: 0;
+}
 
 .map-result:hover {
 }
@@ -325,7 +330,16 @@ body.loading .loading-indicator {
 }
 
 .map-result .location {
-    font-size: 90%;
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.map-result .location::after {
+    content: "\203a";
+    float: right;
+    font-size: 26px;
+    margin-top: -20px;
 }
 
 #content-wrapper {
@@ -1047,6 +1061,6 @@ ul.story-list li {
     -webkit-box-shadow: 0 0 0;
     -moz-box-shadow: 0 0 0;
     box-shadow: 0 0 0;
-    margin-top: -30px;
+    margin-top: -29px;
     top: 0;
 }
