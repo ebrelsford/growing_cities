@@ -51,16 +51,24 @@
 
                 onEachFeature: function(data, layer) {
                     layer.on('click', function(e) {
+                        var popupHeight = 200;
+
                         // TODO on click, make icon active
                         // TODO on de-select, make icon inactive
                         $.get(layer.feature.properties.popup_url, function(data) {
                             layer.bindPopup(data, {
                                 autoPan: false,
+                                maxHeight: popupHeight,
                             }).openPopup();
                         });
 
-                        // center rather than fit popup
-                        instance.map.panTo(layer.getLatLng());
+                        // Center popup rather than fit popup.
+                        var pt = instance.map.latLngToLayerPoint(layer.getLatLng());
+                        var ll = instance.map.layerPointToLatLng([
+                            pt.x,
+                            pt.y - popupHeight * .5
+                        ]);
+                        instance.map.panTo(ll);
                     });
                 },
 
