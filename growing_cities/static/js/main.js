@@ -158,6 +158,31 @@ function hideMapDrawer($mapDrawer) {
     }, 'fast');
 }
 
+/*
+ * Update the city selector based on the city name.
+ */
+function updateCitySelector(city) {
+    // Update selected option
+    $('#map-city option').removeAttr('selected');
+    $('#map-city option:contains("' + city + '")').attr('selected', 'selected');
+
+    // Let Chosen know that the input has changed
+    $('#map-city').trigger('liszt:updated');
+}
+
+function moveToUserLocation(lat, lon) {
+    $.getJSON('/growing_places/city/find/?' + $.param({
+        lat: lat,
+        lon: lon,
+    }), function(data) {
+        if (data.city !== null) {
+            // Only bother if we have a city
+            updateCitySelector(data.city);
+            $('#map').placemap('centerOn', lat, lon);
+        }
+    });
+}
+
 
 /*
  * Submenu.
@@ -360,11 +385,11 @@ $(document).ready(function() {
         $('#map').placemap('locate', 
             function(event) {
                 // Success: zoom to Geolocation API-detected location
-                $('#map').placemap('centerOn', event.latlng.lat, event.latlng.lng);
+                moveToUserLocation(event.latlng.lat, event.latlng.lng);
             },
             function() {
                 // Fallback: zoom to IP-detected location
-                $('#map').placemap('centerOn', user_lat, user_lon);
+                moveToUserLocation(user_lat, user_lon);
             }
         );
 

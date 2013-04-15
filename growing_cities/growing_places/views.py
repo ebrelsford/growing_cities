@@ -1,8 +1,10 @@
 import json
 
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import D
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, View
 
 from fiber.views import FiberPageMixin
 
@@ -56,6 +58,12 @@ class JSONResponseMixin(object):
         return json.dumps(context)
 
 
+class JSONView(JSONResponseMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        return self.render_to_response(self.get_context_data(**kwargs))
+
+
 class CityBBOXView(JSONResponseMixin, ListView):
     allowed_filters = ('city', 'state_province',)
     model = GrowingPlace
@@ -85,3 +93,28 @@ class CityBBOXView(JSONResponseMixin, ListView):
             'city': place.city,
             'state_province': place.state_province,
         }
+
+
+class FindCityView(JSONView):
+    """
+    Returns the closest city within a certain range of a point, if any.
+
+    """
+
+    def get_context_data(self, **kwargs):
+        lon = float(self.request.GET.get('lon', 0))
+        lat = float(self.request.GET.get('lat', 0))
+        miles = self.request.GET.get('miles', None)
+        return {
+            'city': self._find_city(lon, lat, miles=miles),
+        }
+
+    def _find_city(self, lon, lat, miles=None):
+        if not miles: miles = 5
+        p = Point(lon, lat, srid=4326)
+        places = GrowingPlace.objects.filter(
+            centroid__distance_lt=(p, D(mi=float(miles)))
+        ).distance(p).order_by('distance')
+
+        if not places: return None
+        return '%s, %s' % (places[0].city, places[0].state_province)
