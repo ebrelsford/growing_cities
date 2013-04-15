@@ -953,7 +953,7 @@ ul.story-list li {
  * _chosen_
  */
 
-#map_city_chzn {
+#map-drawer .chzn-container {
     font-size: 18px;
     line-height: 30px;
     width: 100%;
@@ -981,6 +981,10 @@ ul.story-list li {
     line-height: 28px;
     padding: 0 0 0 8px;
     text-decoration: none;
+}
+
+#map-drawer .chzn-container-single .chzn-single span {
+    text-decoration: underline;
 }
 
 #map-drawer .chzn-container-active .chzn-single.chzn-single-with-drop span {
