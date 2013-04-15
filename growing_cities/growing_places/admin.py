@@ -41,6 +41,7 @@ class GrowingPlaceAdmin(PlaceAdmin):
         PlaceAdmin.get_geo_fieldset(),
     )
     inlines = (PhotoInline, VideoInline)
+    search_fields = ('city', 'state_province', 'name',)
 
 admin.site.register(Activity, ActivityAdmin)
 admin.site.register(GrowingPlace, GrowingPlaceAdmin)
