@@ -111,7 +111,12 @@ function showMapDrawer($mapDrawer) {
     var newWidth = $('#content').outerWidth() * .25;
     var innerWidth = newWidth - pxToInt($mapDrawer.css('padding-left')) 
         - pxToInt($mapDrawer.css('padding-right'));;
+
     $mapDrawer.find('#map-drawer-content').width(innerWidth);
+    $mapDrawer.find('#map_city_chzn').width(innerWidth);
+    $mapDrawer.find('#map_city_chzn input').width(innerWidth - 7);
+    $mapDrawer.find('#map_city_chzn .chzn-drop').width(innerWidth);
+
     $mapDrawer
         .position({
             my: 'left top',

@@ -144,8 +144,8 @@
 
             <div class="map-drawer-section">
                 <h3>Where are you?</h3>
-                <select id="map-city">
-                    <option>Pick a city</option>
+                <select id="map-city" data-placeholder="Pick a city">
+                    <option></option>
                     {% for city in cities %}
                     <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
                         {{ city.city }}, {{ city.state_province }}
