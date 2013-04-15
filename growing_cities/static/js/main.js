@@ -109,7 +109,9 @@ function positionMapDrawer() {
 
 function showMapDrawer($mapDrawer) {
     var newWidth = $('#content').outerWidth() * .25;
-    $mapDrawer.find('#map-drawer-content').width(newWidth);
+    var innerWidth = newWidth - pxToInt($mapDrawer.css('padding-left')) 
+        - pxToInt($mapDrawer.css('padding-right'));;
+    $mapDrawer.find('#map-drawer-content').width(innerWidth);
     $mapDrawer
         .position({
             my: 'left top',
