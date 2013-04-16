@@ -410,4 +410,20 @@ $(document).ready(function() {
     // Get ready for zooming
     findLocationByIP();
 
+    $('#map-drawer-add-pane').load($('#map-drawer-add-pane').data('form-url'),
+            function() {
+                $(this).find('form').ajaxForm({
+                    target: $(this), 
+                    success: function() {
+                        $(document.body).ajaxify();
+                        initializeFiber();
+                        $(window).trigger('formajaxsuccess');
+                    },
+                });
+
+                $(this).find('form').addplaceform({
+                    placemap: $('#map').data('placemap'),
+                });
+
+            });
 });

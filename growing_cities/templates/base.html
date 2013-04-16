@@ -59,6 +59,7 @@
     {% endcomment %}
     <script src="{{ STATIC_URL }}js/lib/jquery-migrate-1.1.1.min.js"></script>
 
+    <script src="{{ STATIC_URL }}js/jquery.addplaceform.js"></script>
     <script src="{{ STATIC_URL }}js/main.js"></script>
     <script src="{{ STATIC_URL }}js/leaflet.offset.js"></script>
     <script src="{{ STATIC_URL }}js/leaflet.mapdrawer.js"></script>
@@ -138,38 +139,46 @@
         </a>
     </div>
 
-    <div class="full-height grid" id="map-drawer">
+    <div class="full-height grid add-location" id="map-drawer">
         <div id="map-drawer-content">
-            <h2 class="map-drawer-title">Grow Where You Are</h2>
+            <div id="map-drawer-search-pane">
+                <h2 class="map-drawer-title">Grow Where You Are</h2>
 
-            <div class="map-drawer-section">
-                <h3>Where are you?</h3>
-                <select id="map-city" data-placeholder="Pick a city">
-                    <option></option>
-                    {% for city in cities %}
-                    <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
-                        {{ city.city }}, {{ city.state_province }}
-                    </option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="map-drawer-section">
+                    <h3>Where are you?</h3>
+                    <select id="map-city" data-placeholder="Pick a city">
+                        <option></option>
+                        {% for city in cities %}
+                        <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
+                            {{ city.city }}, {{ city.state_province }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-            <div class="map-drawer-section">
-                <h3>What do you want to do?</h3>
-                <select id="map-activities">
-                    <option>Everything</option>
-                    {% for activity in activities %}
-                    <option data-pk="{{ activity.pk }}">
-                        {{ activity.name }}
-                    </option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="map-drawer-section">
+                    <h3>What do you want to do?</h3>
+                    <select id="map-activities">
+                        <option>Everything</option>
+                        {% for activity in activities %}
+                        <option data-pk="{{ activity.pk }}">
+                            {{ activity.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-            <div class="map-drawer-section">
-                <h3>Results:</h3>
-                <ul id="map-results"></ul>           
+                <div class="map-drawer-section">
+                    <h3>Results:</h3>
+                    <ul id="map-results"></ul>           
+                </div>
+
+                <div class="add-place-button">
+                    Add Your Location
+                </div>
+
             </div>
+            <div id="map-drawer-add-pane" class="ajax-form-wrapper" data-form-url="{% url "gcplace_place_add" %}"></div>
         </div>
     </div>
 

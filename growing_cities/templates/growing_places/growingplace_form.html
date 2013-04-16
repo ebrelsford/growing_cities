@@ -1,0 +1,46 @@
+<h2 class="map-drawer-title">Add Your Location</h2>
+<form action="{% url "gcplace_place_add" %}" id="add-place-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    <div class="map-drawer-section">
+        <h3>{{ form.location.label_tag }}</h3>
+        {{ form.location.errors }}
+        {{ form.location }}
+    </div>
+
+    <div class="map-drawer-section">
+        <h3>{{ form.activities.label_tag }}</h3>
+        {{ form.activities.errors }}
+        {{ form.activities }}
+    </div>
+
+    <div class="map-drawer-section">
+        <h3>{{ form.name.label_tag }}</h3>
+        {{ form.name.errors }}
+        {{ form.name }}
+    </div>
+
+    <div class="map-drawer-section">
+        <h3>{{ form.mission.label_tag }}</h3>
+        {{ form.mission.errors }}
+        {{ form.mission }}
+    </div>
+
+    <div class="map-drawer-section">
+        <h3>{{ form.photo.label_tag }}</h3>
+        {{ form.photo.errors }}
+        {{ form.photo }}
+    </div>
+
+    <div class="map-drawer-section">
+        <h3>Add a link to your project</h3>
+        {{ form.url.errors }}
+        {{ form.url }}
+    </div>
+
+    <input class="add-place-save-button" type="submit" value="Add My Location" />
+</form>

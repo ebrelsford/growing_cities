@@ -213,6 +213,17 @@ body.loading .loading-indicator {
     z-index: 1980; /* TODO something more appropriate */
 }
 
+#map-drawer.add-location {
+    background: url(/static/img/map-drawer-add-bg.png);
+}
+
+#map-drawer-search-pane {
+    display: none;
+}
+
+#map-drawer-add-pane {
+}
+
 .map-drawer-title {
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
     font-size: 36px;
@@ -349,6 +360,36 @@ body.loading .loading-indicator {
     float: right;
     font-size: 26px;
     margin-top: -20px;
+}
+
+.add-place-button,
+.add-place-save-button {
+    border: 2px solid #4C4A33;
+    cursor: pointer;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-size: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.add-place-button {
+    background-color: #545436;
+}
+
+.add-place-save-button {
+    background-color: #DFC92B;
+    color: #4C4A33;
+    width: 100%;
+}
+
+#add-place-form input[type="text"],
+#add-place-form select,
+#add-place-form textarea {
+    color: #E7E8D6;
+    font-size: 18px;
+    width: 100%;
 }
 
 #content-wrapper {
@@ -1052,16 +1093,20 @@ ul.story-list li {
     padding: 0;
 }
 
-#map-drawer .chzn-container-single .chzn-search input {
+#map-drawer input[type="text"],
+#map-drawer select,
+#map-drawer textarea {
     background: url(/static/img/city-filterinput-bg.png);
     border: 0;
-    color: #9D9B89;
     font-family: "Bookman Regular", serif;
     margin: 0;
     padding-top: 4px;
     padding-bottom: 4px;
-    padding-left: 7px;
     padding-right: 0;
+}
+
+#map-drawer .chzn-container-single .chzn-search input {
+    color: #9D9B89;
 }
 
 #map-drawer .chzn-container .chzn-drop {

@@ -130,6 +130,44 @@
             this.map.mapDrawerControl.toggleMapDrawer.call(this.map);
         },
 
+        addPoint: function(lat, lng) {
+            var instance = this;
+            var marker = L.marker([lat, lng], {
+                icon: instance.icon
+            });
+            var popupId = 'added-location-popup-content';
+            marker.bindPopup(
+                '<div id="' + popupId + '">' +
+                    '<div>' +
+                        '<h3 class="name"></h3>' +
+                        '<div class="address meta"></div>' +
+                        '<div class="mission"></div>' +
+                    '</div>' +
+                    '<div class="website-link meta">' +
+                        '<a target="_blank">read more &#187;</a>' +
+                    '</div>' +
+                '</div>', 
+                {
+                    maxHeight: 200,
+                    minWidth: 250,
+                }
+            );
+
+            instance.addedPlaces = L.layerGroup([marker,])
+                .addTo(instance.map);
+            marker.openPopup();
+            return popupId;
+        },
+
+        removeAddedPoints: function() {
+            var instance = this;
+            try {
+                instance.addedPlaces.clearLayers();
+                instance.addedPlaces = null;
+            }
+            catch (Exception) {}
+        },
+
     }; // prototype
 
     $.fn.placemap = function(options) {

@@ -4,11 +4,19 @@ from django.contrib.gis.geos import Point, Polygon
 from django.contrib.gis.measure import D
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
-from django.views.generic import ListView, TemplateView, View
+from django.views.generic import CreateView, ListView, TemplateView, View
 
 from fiber.views import FiberPageMixin
+from inplace.views import PlacesGeoJSONListView
 
+from .forms import GrowingPlaceForm
 from .models import GrowingPlace
+
+
+class GrowingPlacesGeoJSONListView(PlacesGeoJSONListView):
+
+    def get_queryset(self):
+        return GrowingPlace.objects.filter(centroid__isnull=False)
 
 
 class GrowingPlacesMapView(FiberPageMixin, TemplateView):
@@ -18,7 +26,7 @@ class GrowingPlacesMapView(FiberPageMixin, TemplateView):
         context = super(GrowingPlacesMapView, self).get_context_data(**kwargs)
         context.update({
             'ip': self._get_ip(),
-            'places_url': reverse('inplace:growing_places_growingplace_geojson'),
+            'places_url': reverse('gcplace_places_geojson'),
         })
         return context
 
@@ -162,3 +170,16 @@ class FindCityView(JSONView):
 
         if not places: return None
         return '%s, %s' % (places[0].city, places[0].state_province)
+
+
+class AddPlaceView(CreateView):
+    form_class = GrowingPlaceForm
+    model = GrowingPlace
+
+    def form_invalid(self, form):
+        print form
+        return super(AddPlaceView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        print form
+        return super(AddPlaceView, self).form_valid(form)
