@@ -1,9 +1,9 @@
-from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from moderation import moderation
-from moderation.moderator import GenericModerator
+
+from growing_cities.moderators import SiteModerator
 
 
 class Story(models.Model):
@@ -42,17 +42,4 @@ class Story(models.Model):
     def __unicode__(self):
         return self.title
 
-
-class StoryModerator(GenericModerator):
-    auto_reject_for_anonymous = False
-    notify_moderator = True
-    notify_user = False
-
-    def inform_moderator(self, content_object, extra_context=None):
-        extra_context = {
-            'site': Site.objects.get_current(),
-        }
-        super(StoryModerator, self).inform_moderator(content_object,
-                                                      extra_context)
-
-moderation.register(Story, StoryModerator)
+moderation.register(Story, SiteModerator)
