@@ -9,7 +9,6 @@
             var $results = $('#map-results');
             clearMapResults();
             $.each(places, function(i, place) {
-                console.log(place);
                 var $result = $('<li/>');
                 $result
                     .data('placeId', place.id)
