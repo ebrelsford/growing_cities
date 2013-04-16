@@ -126,12 +126,17 @@ class FindPlacesView(JSONResponseMixin, ListView):
             return []
 
     def _to_dict(self, place):
-        return {
+        d = {
             'id': place.pk,
             'name': place.name,
             'city': place.city,
             'state_province': place.state_province,
         }
+        try:
+            d['thumbnail'] = place.photos.all()[0].results_thumbnail.url
+        except Exception:
+            pass
+        return d
 
 
 class FindCityView(JSONView):

@@ -9,16 +9,26 @@
             var $results = $('#map-results');
             clearMapResults();
             $.each(places, function(i, place) {
+                console.log(place);
                 var $result = $('<li/>');
                 $result
                     .data('placeId', place.id)
                     .addClass('map-result');
+                if (place.thumbnail !== null) {
+                    $result.append(
+                        $('<div/>')
+                            .addClass('thumbnail')
+                            .append($('<img/>')
+                                .attr('src', place.thumbnail))
+                    );
+                }
                 $result.append($('<div/>')
                     .text(place.name)
                     .addClass('name'));
                 $result.append($('<div/>')
                     .text(place.city + ', ' + place.state_province)
                     .addClass('location'));
+                $result.append($('<div/>').addClass('clear'));
                 $results.append($result);
             });
         }

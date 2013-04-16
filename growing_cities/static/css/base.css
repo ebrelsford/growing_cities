@@ -325,6 +325,13 @@ body.loading .loading-indicator {
 .map-result:hover {
 }
 
+.map-result .thumbnail {
+    float: left;
+    height: 50px;
+    padding-right: 10px;
+    width: 50px;
+}
+
 .map-result .name {
     font-weight: bold;
 }
