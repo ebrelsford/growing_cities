@@ -2,6 +2,9 @@ from django.contrib.contenttypes import generic
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from moderation import moderation
+
+from growing_cities.moderators import SiteModerator
 from inplace.models import Place
 from photos.models import Photo
 from videos.models import Video
@@ -51,3 +54,5 @@ class Activity(models.Model):
     class Meta:
         ordering = ('order',)
         verbose_name_plural = _('activities')
+
+moderation.register(GrowingPlace, SiteModerator)
