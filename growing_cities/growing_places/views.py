@@ -175,11 +175,3 @@ class FindCityView(JSONView):
 class AddPlaceView(CreateView):
     form_class = GrowingPlaceForm
     model = GrowingPlace
-
-    def form_invalid(self, form):
-        print form
-        return super(AddPlaceView, self).form_invalid(form)
-
-    def form_valid(self, form):
-        print form
-        return super(AddPlaceView, self).form_valid(form)
