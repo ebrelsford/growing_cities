@@ -185,6 +185,38 @@ function moveToUserLocation(lat, lon) {
 }
 
 
+function initializeAddLocationPane() {
+    $mapDrawer = $('#map-drawer');
+
+    var $addPlaceForm = $('#add-place-form');
+    $addPlaceForm
+        .ajaxForm({
+            target: $('#map-drawer-add-pane'), 
+            success: function() {
+                $(document.body).ajaxify();
+                initializeFiber();
+                $(window).trigger('formajaxsuccess');
+            },
+        })
+        .addplaceform({
+            placemap: $('#map').data('placemap'),
+        });
+
+    $mapDrawer.find('.add-place-cancel-button').click(function() {
+        $mapDrawer
+            .removeClass('add-location')
+            .animate({ scrollTop: 0});
+    });
+}
+
+function loadAddLocationPane() {
+    $('#map-drawer-add-pane').load(
+        $('#map-drawer-add-pane').data('form-url'),
+        initializeAddLocationPane
+    );
+}
+
+
 /*
  * Submenu.
  */
@@ -344,8 +376,16 @@ $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(window).on('statechangecomplete', initializeStoryForm);
+
 // Triggered on ajaxForm success
 $(window).on('formajaxsuccess', initializeStoryForm);
+$(window).on('formajaxsuccess', function() {
+    initializeAddLocationPane();
+    $('.add-place-success-button').click(function() {
+        $('#map-drawer').removeClass('add-location');
+        loadAddLocationPane();
+    });   
+});
 
 $(window).on('statechangecomplete', function() {
     $('input[type=text], textarea').placeholder();
@@ -416,28 +456,5 @@ $(document).ready(function() {
             .animate({ scrollTop: 0});
     });
 
-    $('#map-drawer-add-pane').load(
-        $('#map-drawer-add-pane').data('form-url'),
-        function() {
-            $(this).find('form').ajaxForm({
-                target: $(this), 
-                success: function() {
-                    $(document.body).ajaxify();
-                    initializeFiber();
-                    $(window).trigger('formajaxsuccess');
-                },
-            });
-
-            $(this).find('form').addplaceform({
-                placemap: $('#map').data('placemap'),
-            });
-
-            $(this).find('.add-place-cancel-button').click(function() {
-                $('#map-drawer')
-                    .removeClass('add-location')
-                    .animate({ scrollTop: 0});
-            });
-
-        }
-);
+    loadAddLocationPane();
 });

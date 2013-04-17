@@ -175,3 +175,10 @@ class FindCityView(JSONView):
 class AddPlaceView(CreateView):
     form_class = GrowingPlaceForm
     model = GrowingPlace
+
+    def get_success_url(self):
+        return reverse('gcplace_place_add_success')
+
+
+class AddPlaceSuccessView(TemplateView):
+    template_name = 'growing_places/growingplace_add_success.html'

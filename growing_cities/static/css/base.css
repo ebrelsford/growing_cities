@@ -218,6 +218,7 @@ body.loading .loading-indicator {
 }
 
 #map-drawer-search-pane {
+    display: block;
 }
 #map-drawer.add-location #map-drawer-search-pane {
     display: none;
@@ -384,6 +385,7 @@ body.loading .loading-indicator {
     background-color: #545436;
 }
 
+.add-place-success-button,
 .add-place-cancel-button {
     color: #E7E8D6;
     cursor: pointer;
