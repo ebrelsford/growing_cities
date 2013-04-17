@@ -410,20 +410,34 @@ $(document).ready(function() {
     // Get ready for zooming
     findLocationByIP();
 
-    $('#map-drawer-add-pane').load($('#map-drawer-add-pane').data('form-url'),
-            function() {
-                $(this).find('form').ajaxForm({
-                    target: $(this), 
-                    success: function() {
-                        $(document.body).ajaxify();
-                        initializeFiber();
-                        $(window).trigger('formajaxsuccess');
-                    },
-                });
+    $('.add-place-button').click(function() {
+        $('#map-drawer')
+            .addClass('add-location')
+            .animate({ scrollTop: 0});
+    });
 
-                $(this).find('form').addplaceform({
-                    placemap: $('#map').data('placemap'),
-                });
-
+    $('#map-drawer-add-pane').load(
+        $('#map-drawer-add-pane').data('form-url'),
+        function() {
+            $(this).find('form').ajaxForm({
+                target: $(this), 
+                success: function() {
+                    $(document.body).ajaxify();
+                    initializeFiber();
+                    $(window).trigger('formajaxsuccess');
+                },
             });
+
+            $(this).find('form').addplaceform({
+                placemap: $('#map').data('placemap'),
+            });
+
+            $(this).find('.add-place-cancel-button').click(function() {
+                $('#map-drawer')
+                    .removeClass('add-location')
+                    .animate({ scrollTop: 0});
+            });
+
+        }
+);
 });

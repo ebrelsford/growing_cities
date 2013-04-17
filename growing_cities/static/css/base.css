@@ -218,10 +218,16 @@ body.loading .loading-indicator {
 }
 
 #map-drawer-search-pane {
+}
+#map-drawer.add-location #map-drawer-search-pane {
     display: none;
 }
 
 #map-drawer-add-pane {
+    display: none;
+}
+#map-drawer.add-location #map-drawer-add-pane {
+    display: block;
 }
 
 .map-drawer-title {
@@ -376,6 +382,13 @@ body.loading .loading-indicator {
 
 .add-place-button {
     background-color: #545436;
+}
+
+.add-place-cancel-button {
+    color: #E7E8D6;
+    cursor: pointer;
+    font-family: Courier, "Lucida Console", monospace;
+    text-decoration: underline;
 }
 
 .add-place-save-button {
