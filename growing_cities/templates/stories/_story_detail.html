@@ -1,4 +1,8 @@
-{% if story.image %}
+{% load videos_tags %}
+
+{% if story.video_url %}
+    {{ story.video_url|embed_by_url:"300,175" }}
+{% elif story.image %}
     <a href="{{ story.get_absolute_url }}">
         <img src="{{ story.thumbnail.url }}" />
     </a>
