@@ -8,6 +8,7 @@ class ScreeningAdmin(admin.ModelAdmin):
 
 
 class VenueAdmin(admin.ModelAdmin):
+    fields = ('name', 'address_line1', 'city', 'state_province',)
     list_display = ('name', 'city', 'state_province',)
 
 admin.site.register(Screening, ScreeningAdmin)
