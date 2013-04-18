@@ -16,8 +16,8 @@
         <ul class="tweets">
             {% for tweet in tweets %}
             <li class="tweet">
-                <div class="tweet-content">{{ tweet.content|urlize }}</div>
-                at <a class="twitter-date" href="{{ tweet.url }}">{{ tweet.created_date }}</a>
+                <div class="tweet-content">{{ tweet.content|urlize|make_links_target_blank|safe }}</div>
+                at <a class="twitter-date" href="{{ tweet.url }}" target="_blank">{{ tweet.created_date }}</a>
             </li>
             {% endfor %}
         </ul>
