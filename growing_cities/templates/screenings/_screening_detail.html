@@ -3,7 +3,12 @@
         {{ screening.venue.city }}, {{ screening.venue.state_province }}
     </span><br />
     {{ screening.venue.name }}<br />
-    {{ screening.time }}
+    {{ screening.time }}<br />
+    {% if screening.price and screening.price != 0 %}
+    ${{ screening.price }}
+    {% else %}
+    free
+    {% endif %}
 </div>
 
 {% if 'change_screening' in perms %}
