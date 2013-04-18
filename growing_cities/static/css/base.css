@@ -624,6 +624,10 @@ ul.story-list li {
     height: 175px;
 }
 
+.story-detail-image {
+    max-width: 100%;
+}
+
 .screening-location {
     font-weight: bold;
 }

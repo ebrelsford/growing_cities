@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from imagekit.models import ImageSpecField
+from imagekit.processors.resize import ResizeToFit
 from moderation import moderation
 
 from growing_cities.moderators import SiteModerator
@@ -19,6 +21,12 @@ class Story(models.Model):
         verbose_name=_('image'),
         null=True,
         blank=True,
+    )
+    thumbnail = ImageSpecField(
+        [ResizeToFit(300, 150)],
+        source='image',
+        format='JPEG',
+        options={'quality': 90}
     )
     video_url = models.URLField(_('video url'),
         null=True,
