@@ -622,6 +622,8 @@ header {
 
 ul.story-list li {
     height: 175px;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 .story-detail-image {
