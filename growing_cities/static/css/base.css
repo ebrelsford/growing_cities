@@ -650,6 +650,12 @@ ul.story-list li {
     cursor: pointer;
 }
 
+#buy-button .edit-link {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    line-height: 12px;
+}
+
 .buy-button-inner {
     background: #DFC92B;
     border: 2px solid #4C4A33;
@@ -657,6 +663,7 @@ ul.story-list li {
     display: block;
     height: 100%;
     margin: 10px;
+    overflow: hidden;
     padding: 10px;
     text-decoration: none;
 }

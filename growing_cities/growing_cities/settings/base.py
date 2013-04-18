@@ -89,6 +89,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
 
     'growing_cities.context_processors.activities',
+    'growing_cities.context_processors.buy_button',
     'growing_cities.context_processors.cities',
 )
 
@@ -134,6 +135,7 @@ INSTALLED_APPS = (
     # first-party
     #
     'books',
+    'buttons',
     'contact',
     'growing_places',
     'pages',

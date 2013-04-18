@@ -1,3 +1,4 @@
+from buttons.models import Button
 from growing_places.models import Activity, GrowingPlace
 
 
@@ -20,3 +21,8 @@ def activities(request):
     Adds activities to the request to populate the map drawer.
     """
     return { 'activities': Activity.objects.all(), }
+
+
+def buy_button(request):
+    """Adds buy button to the request."""
+    return { 'buy_button': Button.objects.get(name='bottom-right'), }

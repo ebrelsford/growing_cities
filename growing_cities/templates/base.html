@@ -133,11 +133,16 @@
     <div class="clear"></div>
 	</div>
 
+    {% if buy_button %}
     <div id="buy-button">
-        <a class="buy-button-inner" href="{% url "pages_shop" %}">
-            Buy the film
+        <a class="buy-button-inner" href="{{ buy_button.url }}">
+            {{ buy_button.text }}
         </a>
+        {% if "buttons.change_button" in perms %}
+        <a class="admin-only edit-link no-ajax" href="{% url "admin:buttons_button_change" buy_button.pk %}">edit this button</a>
+        {% endif %}
     </div>
+    {% endif %}
 
     <div class="full-height grid" id="map-drawer">
         <div id="map-drawer-content">
