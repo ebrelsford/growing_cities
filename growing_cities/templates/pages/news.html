@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %}
-{% load cache fiber_tags rsssync_tags twittersync_tags %}
+{% load cache fiber_tags news_tags rsssync_tags twittersync_tags %}
 
 {% block page_content %}
 <div class="news lead-in">
@@ -33,7 +33,7 @@
                     {{ entry.title }}
                 </a>
                 <div class="meta wordpress-date">{{ entry.date|date:"F j, Y" }}</div>
-                <div class="wordpress-summary">{{ entry.summary|safe }}</div>
+                <div class="wordpress-summary">{{ entry.summary|make_links_target_blank|safe }}</div>
             </li>
             {% endfor %}
         </ul>
