@@ -62,6 +62,10 @@ a {
     font-weight: normal;
 }
 
+#logo {
+    margin-bottom: 25px;
+}
+
 #logo a {
     color: #4C4A33;
     text-decoration: none;
