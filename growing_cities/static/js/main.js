@@ -171,20 +171,28 @@ function hideMapDrawer($mapDrawer) {
  * Play the trailer.
  */
 function playTrailer() {
-    // TODO: Hide subnav while playing?
-    $('#Trailer').ScrollTo();
+    // Make sure user can see trailer
+    $('#trailer-player').ScrollTo();
 
     var player = $f($('#trailer-player')[0]);
     player.addEvent('ready', function() {
-        // TODO: Attempt to enter fullscreen
+
+        // Clean up page for trailer to play
+        function trailerPlaying() {
+            $('.submenu').hide();
+        }
+        player.addEvent('play', trailerPlaying);
+
+        // Restore state of page when trailer is finished or paused.
+        function trailerNotPlaying() {
+            $('.submenu').show();
+        }
+        player.addEvent('finish', trailerNotPlaying);
+        player.addEvent('pause', trailerNotPlaying);
+
+        // Auto-play trailer
         player.api('play');
-
-        player.addEvent('finish', function() {
-            // TODO: Show subnav after finished playing
-            // TODO: Exit fullscreen
-        });
     });
-
 }
 
 
@@ -194,7 +202,7 @@ function playTrailer() {
 function attemptToPlayTrailer() {
     if (!GROWING_CITIES.play_trailer) return;
     GROWING_CITIES.play_trailer = false;
-    play_trailer();
+    playTrailer();
 }
 
 
@@ -363,8 +371,8 @@ function positionBuyButton() {
 
 function updateWatchTheTrailerButton() {
     if ($('#map').length >= 1) {
-        // Watch the Trailer
-        // TODO scroll to #Trailer
+        // Update status so that Trailer will play when the state changes
+        GROWING_CITIES.play_trailer = true;
         $('.trailer-map-button')
             .removeClass('back-to-map')
             .attr('href', '/the-film/');
