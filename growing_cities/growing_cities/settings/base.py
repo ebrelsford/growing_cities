@@ -91,6 +91,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'growing_cities.context_processors.activities',
     'growing_cities.context_processors.buy_button',
     'growing_cities.context_processors.cities',
+    'growing_cities.context_processors.trailer',
 )
 
 ROOT_URLCONF = 'growing_cities.urls'
