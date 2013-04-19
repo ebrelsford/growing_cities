@@ -7,9 +7,13 @@
 
 var GROWING_CITIES = GROWING_CITIES || {};
 
-GROWING_CITIES.user_lat = null;
-GROWING_CITIES.user_lon = null,
-GROWING_CITIES.user_ip = null;
+GROWING_CITIES = {
+    map_center: null,
+    map_zoom: null,
+    user_lat: null,
+    user_lon: null,
+    user_ip: null,
+};
 
 
 function pxToInt(px) {
