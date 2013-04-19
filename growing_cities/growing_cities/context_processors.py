@@ -25,4 +25,8 @@ def activities(request):
 
 def buy_button(request):
     """Adds buy button to the request."""
-    return { 'buy_button': Button.objects.get(name='bottom-right'), }
+    try:
+        button = Button.objects.get(name='bottom-right')
+    except Exception:
+        button = None
+    return { 'buy_button': button, }
