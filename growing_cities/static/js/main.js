@@ -168,6 +168,24 @@ function hideMapDrawer($mapDrawer) {
 
 
 /*
+ * Clean up content area so the trailer is not obscured.
+ */
+function makeRoomForTrailer() {
+    hideBuyButton();
+    hideSubmenu();
+}
+
+
+/*
+ * Re-show elements that were hidden for the trailer.
+ */
+function undoMakeRoomForTrailer() {
+    showBuyButton();
+    showSubmenu();
+}
+
+
+/*
  * Play the trailer.
  */
 function playTrailer() {
@@ -178,19 +196,13 @@ function playTrailer() {
     player.addEvent('ready', function() {
 
         // Clean up page for trailer to play
-        function trailerPlaying() {
-            hideBuyButton();
-            hideSubmenu();
-        }
-        player.addEvent('play', trailerPlaying);
+        player.addEvent('play', makeRoomForTrailer);
 
         // Restore state of page when trailer is finished or paused.
         function trailerNotPlaying() {
-            showBuyButton();
-            showSubmenu();
         }
-        player.addEvent('finish', trailerNotPlaying);
-        player.addEvent('pause', trailerNotPlaying);
+        player.addEvent('finish', undoMakeRoomForTrailer);
+        player.addEvent('pause', undoMakeRoomForTrailer);
 
         // Auto-play trailer
         player.api('play');
@@ -458,6 +470,7 @@ $(window).on('statechangecomplete', attemptToPlayTrailer);
 $(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
+$(window).on('statechangecomplete', undoMakeRoomForTrailer);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(window).on('statechangecomplete', initializeStoryForm);
