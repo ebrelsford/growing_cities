@@ -23,4 +23,5 @@ python-memcached==1.48
 pytz==2012j
 simplejson==3.0.7
 six==1.2.0
+suds==0.4
 wsgiref==0.1.2

@@ -4,12 +4,17 @@ from django.views.generic import TemplateView
 from contact_form.views import ContactFormView as _ContactFormView
 from fiber.views import FiberPageMixin
 
+from newsletter.api import subscribe
 from .forms import GrowingCitiesContactForm
 
 
 class ContactFormView(_ContactFormView):
     form_class = GrowingCitiesContactForm
     template_name = 'contact_form/form.html'
+
+    def form_valid(self, form):
+        subscribe(form.cleaned_data['email'])
+        return super(ContactFormView, self).form_valid(form)
 
 
 class ContactCompleted(FiberPageMixin, TemplateView):
