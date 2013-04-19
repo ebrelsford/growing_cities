@@ -10,6 +10,7 @@ var GROWING_CITIES = GROWING_CITIES || {};
 GROWING_CITIES = {
     map_center: null,
     map_zoom: null,
+    play_trailer: false,
     user_lat: null,
     user_lon: null,
     user_ip: null,
@@ -164,6 +165,38 @@ function hideMapDrawer($mapDrawer) {
         left: 0,
     }, 'fast');
 }
+
+
+/*
+ * Play the trailer.
+ */
+function playTrailer() {
+    // TODO: Hide subnav while playing?
+    $('#Trailer').ScrollTo();
+
+    var player = $f($('#trailer-player')[0]);
+    player.addEvent('ready', function() {
+        // TODO: Attempt to enter fullscreen
+        player.api('play');
+
+        player.addEvent('finish', function() {
+            // TODO: Show subnav after finished playing
+            // TODO: Exit fullscreen
+        });
+    });
+
+}
+
+
+/*
+ * Attempt to play trailer.
+ */
+function attemptToPlayTrailer() {
+    if (!GROWING_CITIES.play_trailer) return;
+    GROWING_CITIES.play_trailer = false;
+    play_trailer();
+}
+
 
 /*
  * Update the city selector based on the city name.
@@ -376,6 +409,7 @@ $(window).on('statechangestart', function(event) {
 });
 
 $(window).on('statechangecomplete', addSubmenu);
+$(window).on('statechangecomplete', attemptToPlayTrailer);
 $(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
