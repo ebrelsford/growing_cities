@@ -179,13 +179,14 @@ function playTrailer() {
 
         // Clean up page for trailer to play
         function trailerPlaying() {
-            $('.submenu').hide();
+            hideSubmenu();
         }
         player.addEvent('play', trailerPlaying);
 
         // Restore state of page when trailer is finished or paused.
         function trailerNotPlaying() {
-            $('.submenu').show();
+            showSubmenu();
+            positionSubmenu();
         }
         player.addEvent('finish', trailerNotPlaying);
         player.addEvent('pause', trailerNotPlaying);
@@ -267,6 +268,28 @@ function loadAddLocationPane() {
 /*
  * Submenu.
  */
+
+
+function hideSubmenu() {
+    $('.submenu').hide();
+}
+
+
+function showSubmenu() {
+    $('.submenu').show();
+}
+
+
+function positionSubmenu() {
+    $('.submenu.stuck')
+        .width($('#content').innerWidth())
+        .position({
+            my: 'left top',
+            at: 'left+2 top+1',
+            of: '#content-wrapper',
+        });
+}
+
 
 function addSubmenu() {
     var $submenu = $('.submenu');
