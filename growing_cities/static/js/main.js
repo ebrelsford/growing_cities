@@ -382,6 +382,9 @@ $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(window).on('statechangecomplete', initializeStoryForm);
+$(window).on('statechangecomplete', function() {
+    $('#map').placemap('toggleMapDrawer');
+});
 
 // Triggered on ajaxForm success
 $(window).on('formajaxsuccess', initializeStoryForm);
