@@ -5,9 +5,11 @@
  *
  ****************************************************************************/
 
-var user_lat = null, 
-    user_lon = null,
-    user_ip = null;
+var GROWING_CITIES = GROWING_CITIES || {};
+
+GROWING_CITIES.user_lat = null;
+GROWING_CITIES.user_lon = null,
+GROWING_CITIES.user_ip = null;
 
 
 function pxToInt(px) {
@@ -301,10 +303,10 @@ function positionLoadingIndicator() {
  */
 
 function findLocationByIP() {
-    if (user_ip === null || user_ip === '127.0.0.1') return;
-    $.getJSON('http://freegeoip.net/json/' + user_ip, function(data) {
-        user_lat = data['latitude'];
-        user_lon = data['longitude'];
+    if (GROWING_CITIES.user_ip === null || GROWING_CITIES.user_ip === '127.0.0.1') return;
+    $.getJSON('http://freegeoip.net/json/' + GROWING_CITIES.user_ip, function(data) {
+        GROWING_CITIES.user_lat = data['latitude'];
+        GROWING_CITIES.user_lon = data['longitude'];
     });
 }
 
@@ -431,7 +433,8 @@ $(document).ready(function() {
             },
             function() {
                 // Fallback: zoom to IP-detected location
-                moveToUserLocation(user_lat, user_lon);
+                moveToUserLocation(GROWING_CITIES.user_lat,
+                    GROWING_CITIES.user_lon);
             }
         );
 
