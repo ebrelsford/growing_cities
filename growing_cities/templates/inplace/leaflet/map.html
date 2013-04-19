@@ -71,7 +71,11 @@
                 apiKey: '{% inplace_setting PLACES_CLOUDMADE_KEY %}',
                 styleId: '{% inplace_setting PLACES_CLOUDMADE_STYLE %}',
                 placesUrl: '{{ places_url }}',
+
                 $drawer: $('#map-drawer'),
+
+                initialCenter: GROWING_CITIES.map_center,
+                initialZoom: GROWING_CITIES.map_zoom,
             });
 
 
@@ -127,6 +131,17 @@
                 catch(e) {
                     // Swallow exceptions that will happen as map is initialized
                 }
+            });
+
+
+            /*
+             * Prepare map--add event listener for viewport change to update
+             * initialCenter and initialZoom.
+             */
+            $('#map').data('placemap').map.on('moveend', function(e) {
+                var center = e.target.getCenter();
+                GROWING_CITIES.map_center = [center.lat, center.lng];
+                GROWING_CITIES.map_zoom = e.target.getZoom();
             });
 
         });

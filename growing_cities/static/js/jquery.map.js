@@ -10,6 +10,8 @@
 
     $.placemap.defaults = {
         apiKey: null,
+        initialCenter: null,
+        initialZoom: null,
         styleId: null,
     };
 
@@ -32,6 +34,10 @@
             instance.map = L.map(instance.element[0].id, {
                 $drawer: instance.options.$drawer,   
                 mapDrawerControl: true,
+
+                // If initial center/zoom given, use them (both default to null)
+                center: instance.options.initialCenter,
+                zoom: instance.options.initialZoom,
             });
 
             var cloudmade = new L.TileLayer(
@@ -82,7 +88,12 @@
             $.get(instance.options.placesUrl, function(collection) {
                 instance.feature_layer.addData(collection);
                 instance.map.addLayer(instance.feature_layer);
-                instance.map.fitBounds(new L.LatLngBounds(latlngs));
+
+                // If initial center/zoom not given, fit points in viewport
+                if (!(instance.options.initialCenter 
+                        && instance.options.initialZoom)) {
+                    instance.map.fitBounds(new L.LatLngBounds(latlngs));
+                }
             });
 
         },
