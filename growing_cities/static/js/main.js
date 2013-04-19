@@ -179,12 +179,14 @@ function playTrailer() {
 
         // Clean up page for trailer to play
         function trailerPlaying() {
+            hideBuyButton();
             hideSubmenu();
         }
         player.addEvent('play', trailerPlaying);
 
         // Restore state of page when trailer is finished or paused.
         function trailerNotPlaying() {
+            showBuyButton();
             showSubmenu();
         }
         player.addEvent('finish', trailerNotPlaying);
@@ -378,6 +380,7 @@ function findLocationByIP() {
     });
 }
 
+
 function positionBuyButton() {
     $('#buy-button')
         .position({
@@ -385,6 +388,17 @@ function positionBuyButton() {
             at: 'right bottom',
             of: '#content-wrapper',
         });
+}
+
+
+function hideBuyButton() {
+    $('#buy-button').hide();
+}
+
+
+function showBuyButton() {
+    $('#buy-button').show();
+    positionBuyButton();
 }
 
 
