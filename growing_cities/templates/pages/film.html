@@ -16,7 +16,14 @@
 
     <div class="content-section trailer">
         <h3 style="display: none;">Trailer</h3>
-        {% show_page_content "trailer" %}
+        {% comment %}
+        TODO don't hardcode video ID
+        {% endcomment %}
+        <iframe id="trailer-player" class="full-height"
+            src="//vimeo.com/42288661?api=1&player_id=trailer-player&title=0&byline=0&portrait=0"
+            width="100%" frameborder="0" webkitAllowFullScreen
+            mozallowfullscreen allowFullScreen></iframe>
+
     </div>
 
     <div class="content-section">
