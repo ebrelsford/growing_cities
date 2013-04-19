@@ -186,7 +186,6 @@ function playTrailer() {
         // Restore state of page when trailer is finished or paused.
         function trailerNotPlaying() {
             showSubmenu();
-            positionSubmenu();
         }
         player.addEvent('finish', trailerNotPlaying);
         player.addEvent('pause', trailerNotPlaying);
@@ -277,6 +276,7 @@ function hideSubmenu() {
 
 function showSubmenu() {
     $('.submenu').show();
+    positionSubmenu();
 }
 
 
