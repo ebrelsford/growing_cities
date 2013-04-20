@@ -864,6 +864,16 @@ ul.story-list li {
     padding: 10px;
 }
 
+.contact-form .loading {
+    background: url(/static/img/loading_small.gif);
+    display: none;
+    height: 16px;
+    width: 16px;
+}
+.contact-form.submitting .loading {
+    display: inline-block;
+}
+
 .contact-form label {
     display: none;
 }

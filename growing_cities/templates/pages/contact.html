@@ -6,6 +6,11 @@
     $(document).ready(function() {
         $('#contact-form').load('{% url "contact_form:form" %}', function() {
             $(document.body).ajaxify();
+
+            $('#contact-form form').submit(function() {
+                $(this).find(':input[type=submit]').attr('disabled', 'disabled');
+                $(this).addClass('submitting');
+            });
         });
     });
 </script>
