@@ -91,6 +91,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'growing_cities.context_processors.activities',
     'growing_cities.context_processors.buy_button',
     'growing_cities.context_processors.cities',
+    'growing_cities.context_processors.trailer',
 )
 
 ROOT_URLCONF = 'growing_cities.urls'
@@ -166,3 +167,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
     }
 }
+
+NEWSLETTER_VERTICAL_RESPONSE_WSDL = 'https://api.verticalresponse.com/wsdl/1.0/VRAPI.wsdl'
+NEWSLETTER_VERTICAL_RESPONSE_USERNAME = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_USERNAME')
+NEWSLETTER_VERTICAL_RESPONSE_PASSWORD = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_PASSWORD')
+NEWSLETTER_VERTICAL_RESPONSE_LIST_ID = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_LIST_ID')

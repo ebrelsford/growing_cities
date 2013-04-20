@@ -1,5 +1,6 @@
 from buttons.models import Button
 from growing_places.models import Activity, GrowingPlace
+from videos.models import Video
 
 
 def cities(request):
@@ -25,4 +26,17 @@ def activities(request):
 
 def buy_button(request):
     """Adds buy button to the request."""
-    return { 'buy_button': Button.objects.get(name='bottom-right'), }
+    try:
+        button = Button.objects.get(name='bottom-right')
+    except Exception:
+        button = None
+    return { 'buy_button': button, }
+
+
+def trailer(request):
+    """Adds trailer to the request."""
+    try:
+        trailer = Video.objects.get(name='Trailer')
+    except Exception:
+        trailer = None
+    return { 'trailer': trailer, }

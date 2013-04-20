@@ -168,23 +168,45 @@ function hideMapDrawer($mapDrawer) {
 
 
 /*
+ * Clean up content area so the trailer is not obscured.
+ */
+function makeRoomForTrailer() {
+    hideBuyButton();
+    hideSubmenu();
+}
+
+
+/*
+ * Re-show elements that were hidden for the trailer.
+ */
+function undoMakeRoomForTrailer() {
+    showBuyButton();
+    showSubmenu();
+}
+
+
+/*
  * Play the trailer.
  */
 function playTrailer() {
-    // TODO: Hide subnav while playing?
-    $('#Trailer').ScrollTo();
+    // Make sure user can see trailer
+    $('#trailer-player').ScrollTo();
 
     var player = $f($('#trailer-player')[0]);
     player.addEvent('ready', function() {
-        // TODO: Attempt to enter fullscreen
+
+        // Clean up page for trailer to play
+        player.addEvent('play', makeRoomForTrailer);
+
+        // Restore state of page when trailer is finished or paused.
+        function trailerNotPlaying() {
+        }
+        player.addEvent('finish', undoMakeRoomForTrailer);
+        player.addEvent('pause', undoMakeRoomForTrailer);
+
+        // Auto-play trailer
         player.api('play');
-
-        player.addEvent('finish', function() {
-            // TODO: Show subnav after finished playing
-            // TODO: Exit fullscreen
-        });
     });
-
 }
 
 
@@ -194,7 +216,7 @@ function playTrailer() {
 function attemptToPlayTrailer() {
     if (!GROWING_CITIES.play_trailer) return;
     GROWING_CITIES.play_trailer = false;
-    play_trailer();
+    playTrailer();
 }
 
 
@@ -259,6 +281,29 @@ function loadAddLocationPane() {
 /*
  * Submenu.
  */
+
+
+function hideSubmenu() {
+    $('.submenu').hide();
+}
+
+
+function showSubmenu() {
+    $('.submenu').show();
+    positionSubmenu();
+}
+
+
+function positionSubmenu() {
+    $('.submenu.stuck')
+        .width($('#content').innerWidth())
+        .position({
+            my: 'left top',
+            at: 'left+2 top+1',
+            of: '#content-wrapper',
+        });
+}
+
 
 function addSubmenu() {
     var $submenu = $('.submenu');
@@ -347,6 +392,7 @@ function findLocationByIP() {
     });
 }
 
+
 function positionBuyButton() {
     $('#buy-button')
         .position({
@@ -357,14 +403,25 @@ function positionBuyButton() {
 }
 
 
+function hideBuyButton() {
+    $('#buy-button').hide();
+}
+
+
+function showBuyButton() {
+    $('#buy-button').show();
+    positionBuyButton();
+}
+
+
 /*
  * Watch the Trailer / Back to Map button.
  */
 
 function updateWatchTheTrailerButton() {
     if ($('#map').length >= 1) {
-        // Watch the Trailer
-        // TODO scroll to #Trailer
+        // Update status so that Trailer will play when the state changes
+        GROWING_CITIES.play_trailer = true;
         $('.trailer-map-button')
             .removeClass('back-to-map')
             .attr('href', '/the-film/');
@@ -413,6 +470,7 @@ $(window).on('statechangecomplete', attemptToPlayTrailer);
 $(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
+$(window).on('statechangecomplete', undoMakeRoomForTrailer);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
 
 $(window).on('statechangecomplete', initializeStoryForm);
