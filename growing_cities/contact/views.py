@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 
@@ -13,7 +14,8 @@ class ContactFormView(_ContactFormView):
     template_name = 'contact_form/form.html'
 
     def form_valid(self, form):
-        subscribe(form.cleaned_data['email'])
+        if not settings.DEBUG:
+            subscribe(form.cleaned_data['email'])
         return super(ContactFormView, self).form_valid(form)
 
 

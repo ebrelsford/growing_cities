@@ -260,7 +260,7 @@ function initializeAddLocationPane() {
             },
         })
         .addplaceform({
-            placemap: $('#map').data('placemap'),
+            placemapSelector: '#map',
         });
 
     $mapDrawer.find('.add-place-cancel-button').click(function() {
