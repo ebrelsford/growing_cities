@@ -10,7 +10,10 @@ ADMINS = (
     ('localhost', 'localhost@example.com'),
 )
 
-MANAGERS = ADMINS
+MANAGERS = (
+    ('manager', 'manager@example.com'),
+)
+
 DJANGO_MODERATION_MODERATORS = ('localhost@example.com',)
 
 TIME_ZONE = 'America/New_York'
