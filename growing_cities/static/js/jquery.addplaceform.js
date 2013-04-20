@@ -65,13 +65,19 @@
         },
 
 
+        _getPlacemap: function() {
+            var instance = this;
+            return $(instance.options.placemapSelector).data('placemap');
+        },
+
+
         /*
          * Add a marker to the map where the user is adding a location.
          */
         addLocationMarker: function(placeLocation) {
             var instance = this;
-            instance.options.placemap.removeAddedPoints();
-            instance.popupId = instance.options.placemap.addPoint(
+            instance._getPlacemap().removeAddedPoints();
+            instance.popupId = instance._getPlacemap().addPoint(
                     placeLocation.latLng.lat, 
                     placeLocation.latLng.lng);
             instance.$popup = $('#' + instance.popupId);
@@ -108,7 +114,7 @@
 
         _getCurrentBbox: function() {
             var instance = this;
-            var bounds = instance.options.placemap.map.getBounds();
+            var bounds = instance._getPlacemap().map.getBounds();
             // For Mapquest geocoding: north, west, south, east
             var bbox = [
                 bounds.getNorthWest().lat,
@@ -132,7 +138,7 @@
          */
         centerOnLocation: function(placeLocation) {
             var instance = this;
-            instance.options.placemap.centerOn(placeLocation.latLng.lat, 
+            instance._getPlacemap().centerOn(placeLocation.latLng.lat, 
                     placeLocation.latLng.lng);
         },
 
@@ -219,8 +225,9 @@
                 this.each(function () {
                     var instance = $.data(this, 'addplaceform'); 
                     if (instance) {
-                        // update options of current instance
-                        instance.update(options);
+                        // Could update options of current instance, but this
+                        // is unnecessary for our purposes
+                        //instance.update(options);
                     } else {
                         // initialize new instance
                         instance = new $.addplaceform(options, this);
