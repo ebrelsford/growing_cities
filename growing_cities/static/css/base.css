@@ -655,6 +655,7 @@ ul.story-list li {
     position:fixed;
     width: 150px;
     cursor: pointer;
+    z-index: 1980;
 }
 
 #buy-button .edit-link {
