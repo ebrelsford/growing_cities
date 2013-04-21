@@ -420,8 +420,6 @@ function showBuyButton() {
 
 function updateWatchTheTrailerButton() {
     if ($('#map').length >= 1) {
-        // Update status so that Trailer will play when the state changes
-        GROWING_CITIES.play_trailer = true;
         $('.trailer-map-button')
             .removeClass('back-to-map')
             .attr('href', '/the-film/');
@@ -432,6 +430,17 @@ function updateWatchTheTrailerButton() {
             .addClass('back-to-map')
             .attr('href', '/');
     }
+}
+
+
+function initializeWatchTheTrailerButton() {
+    // Update status so that Trailer will play when the state changes
+    $('.trailer-map-button')
+        .click(function() {
+            if ($('#map').length >= 1) {
+                GROWING_CITIES.play_trailer = true;
+            }
+        });
 }
 
 
@@ -496,6 +505,9 @@ $(window).on('statechangecomplete', function() {
 $(window).load(function() {
     // Make grid elements that should have the same height match
     setRowHeights();
+
+    // Initialize watch the trailer/back to map button
+    initializeWatchTheTrailerButton();
 });
 
 $(document).ready(function() {
