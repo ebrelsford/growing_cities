@@ -199,8 +199,6 @@ function playTrailer() {
         player.addEvent('play', makeRoomForTrailer);
 
         // Restore state of page when trailer is finished or paused.
-        function trailerNotPlaying() {
-        }
         player.addEvent('finish', undoMakeRoomForTrailer);
         player.addEvent('pause', undoMakeRoomForTrailer);
 
