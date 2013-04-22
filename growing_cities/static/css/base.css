@@ -181,7 +181,10 @@ h1 {
 }
 
 .article-wrapper {
-    padding: 25px 50px;
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 25px;
 }
 
 .errorlist {
@@ -214,6 +217,23 @@ body.loading .loading-indicator {
     font-size: 20px;
     line-height: 20px;
     text-align: center;
+}
+
+.action-button {
+    border: 2px solid #4C4A33;
+    cursor: pointer;
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-size: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* One common variation on the action button. */
+.action-button-a {
+    background-color: #545436;
+    color: #E7E8D6;
 }
 
 #social-buttons {
@@ -450,21 +470,6 @@ body.loading .loading-indicator {
 
 
 /* Add places to the map */
-.add-place-button,
-.add-place-save-button {
-    border: 2px solid #4C4A33;
-    cursor: pointer;
-    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
-    font-size: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.add-place-button {
-    background-color: #545436;
-}
 
 .add-place-success-button,
 .add-place-cancel-button {
@@ -726,6 +731,11 @@ ul.story-list li {
 
 .host-screening-instructions {
     display: none;
+}
+
+.host-screening-form-show {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .host-screening-form #id_price_prefix {
