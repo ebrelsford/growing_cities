@@ -49,7 +49,7 @@ GC.onStateChangeStart = function() {
  */
 GC.onStateChangeComplete = function() {
     GC.setHeights();
-    GC.addSubmenu();
+    GC.submenu.initialize();
     findLocationByIP();
     GC.setRowHeights();
     GC.trailer.undoMakeRoom();
@@ -261,7 +261,7 @@ GC.trailer = {
      */
     makeRoom: function() {
         GC.hideBuyButton();
-        GC.hideSubmenu();
+        GC.submenu.hide();
     },
 
     /*
@@ -269,7 +269,7 @@ GC.trailer = {
     */
     undoMakeRoom: function() {
         GC.showBuyButton();
-        GC.showSubmenu();
+        GC.submenu.show();
     },
 
 };
@@ -340,89 +340,89 @@ GC.loadAddLocationPane = function() {
  * Submenu.
  */
 
+GC.submenu = {
 
-GC.hideSubmenu = function() {
-    $('.submenu').hide();
-};
+    initialize: function() {
+        var $submenu = $('.submenu');
+        if ($submenu.length === 0) return;
 
-
-GC.showSubmenu = function() {
-    $('.submenu').show();
-    GC.positionSubmenu();
-};
-
-
-GC.positionSubmenu = function() {
-    $('.submenu.stuck')
-        .width($('#content').innerWidth())
-        .position({
-            my: 'left top',
-            at: 'left+2 top+1',
-            of: '#content-wrapper',
+        // Find sections to add to the submenu
+        $('#content h3').each(function() {
+            var text = $(this).text();
+            var $li = $('<li></li>');
+            $li.append(
+                $('<a></a>')
+                    .attr('href', '#' + text)
+                    .text(text)
+            );
+            $submenu.find('ul').append($li);
         });
-};
 
-
-GC.addSubmenu = function() {
-    var $submenu = $('.submenu');
-    if ($submenu.length === 0) return;
-
-    // Find sections to add to the submenu
-    $('#content h3').each(function() {
-        var text = $(this).text();
-        var $li = $('<li></li>');
-        $li.append(
-            $('<a></a>')
-                .attr('href', '#' + text)
-                .text(text)
-        );
-        $submenu.find('ul').append($li);
-    });
-
-    // If nothing was found, jump out
-    if ($submenu.find('li').length === 0) {
-        $submenu.addClass('empty');
-        return;
-    }
-
-    // Add ScrollTo to submenu items
-    $submenu.find('a').click(function() {
-        // Handle return-to-top link
-        if ($(this).hasClass('submenu-top-link')) {
-            $('#content-wrapper').animate({ scrollTop: 0});
+        // If nothing was found, jump out
+        if ($submenu.find('li').length === 0) {
+            $submenu.addClass('empty');
+            return;
         }
-        else {
-            var headerText = $(this).text();
-            var $target = $('#content h3:contains("' + headerText + '")');
-            if (!$target.is(':visible')) {
-                $target = $target.parents(':visible:eq(0)');
-            }
-            $target.ScrollTo({
-                offsetTop: $submenu.outerHeight(),
-            });
-        }
-    });
 
-    // Make sticky
-    $submenu.waypoint('sticky', { 
-        context: '#content-wrapper', 
-        handler: function(direction) {
-            if (direction === 'down') {
-                // handle stuck
-                $('.submenu.stuck')
-                    .width($('#content').innerWidth())
-                    .position({
-                        my: 'left top',
-                        at: 'left+2 top+1',
-                        of: '#content-wrapper',
-                    });
+        // Add ScrollTo to submenu items
+        $submenu.find('a').click(function() {
+            // Handle return-to-top link
+            if ($(this).hasClass('submenu-top-link')) {
+                $('#content-wrapper').animate({ scrollTop: 0});
             }
             else {
-                // handle unstuck
-                $submenu.width('100%');
+                var headerText = $(this).text();
+                var $target = $('#content h3:contains("' + headerText + '")');
+                if (!$target.is(':visible')) {
+                    $target = $target.parents(':visible:eq(0)');
+                }
+                $target.ScrollTo({
+                    offsetTop: $submenu.outerHeight(),
+                });
             }
-        },
-    });
+        });
+
+        // Make sticky
+        $submenu.waypoint('sticky', { 
+            context: '#content-wrapper', 
+            handler: function(direction) {
+                if (direction === 'down') {
+                    // handle stuck
+                    $('.submenu.stuck')
+                        .width($('#content').innerWidth())
+                        .position({
+                            my: 'left top',
+                            at: 'left+2 top+1',
+                            of: '#content-wrapper',
+                        });
+                }
+                else {
+                    // handle unstuck
+                    $submenu.width('100%');
+                }
+            },
+        });
+    },
+
+    position: function() {
+        $('.submenu.stuck')
+            .width($('#content').innerWidth())
+            .position({
+                my: 'left top',
+                at: 'left+2 top+1',
+                of: '#content-wrapper',
+            });
+    },
+
+    hide: function() {
+        $('.submenu').hide();
+    },
+
+    show: function() {
+        $('.submenu').show();
+        GC.submenu.position();
+    },
+
 };
 
 
@@ -551,7 +551,7 @@ $(document).ready(function() {
     GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
 
-    GC.addSubmenu();
+    GC.submenu.initialize();
 
     initializeStoryForm();
     GC.trailer.initialize();
