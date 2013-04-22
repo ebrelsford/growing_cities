@@ -239,7 +239,7 @@ GC.trailer = {
         GC.trailer_player = $f($('#trailer-player')[0]);
         GC.trailer_player.addEvent('ready', function() {
             // Clean up page for trailer to play
-            GC.trailer_player.addEvent('play', GC.trailer.makeRoom());
+            GC.trailer_player.addEvent('play', GC.trailer.makeRoom);
 
             // Restore state of page when trailer is finished or paused.
             GC.trailer_player.addEvent('finish', GC.trailer.undoMakeRoom);
