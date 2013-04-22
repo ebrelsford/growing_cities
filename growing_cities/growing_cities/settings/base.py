@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'contact',
     'growing_places',
     'news',
+    'newsletter',
     'pages',
     'photos',
     'products',

@@ -916,35 +916,38 @@ ul.story-list li {
     margin-bottom: 10px;
 }
 
-.contact-form input,
-.contact-form textarea {
-    font-size: 24px;
-    padding: 10px;
-}
 
-.contact-form .loading {
+/* Forms */
+.ajax-form .loading {
     background: url(/static/img/loading_small.gif);
     display: none;
     height: 16px;
     width: 16px;
 }
-.contact-form.submitting .loading {
+
+.ajax-form.submitting .loading {
     display: inline-block;
 }
 
-.contact-form label {
+.content-page-form input,
+.content-page-form textarea {
+    font-size: 24px;
+    padding: 10px;
+}
+
+.content-page-form label {
     display: none;
 }
 
-.contact-form input {
+.content-page-form input {
     width: 80%;
 }
 
-.contact-form textarea {
+.content-page-form textarea {
     width: 100%;
 }
 
-.contact-form input[type="submit"] {
+.content-page-form input[type="submit"] {
     width: 100px;
 }
 

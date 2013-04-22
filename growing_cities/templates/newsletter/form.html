@@ -1,0 +1,13 @@
+<form action="{% url "newsletter:form" %}" class="signup-form ajax-form content-page-form" method="post">
+    {% csrf_token %}
+
+    <div class="from-row">
+        {{ form.email.errors }}
+        <div class="grid">
+            {{ form.email.label_tag }} {{ form.email }}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <input type="submit" value="Sign up" />
+    <div class="loading"></div>
+</form>

@@ -2,7 +2,6 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import now
 from django.views.generic import TemplateView
 
-from contact_form.forms import BasicContactForm
 from fiber.views import FiberPageMixin
 
 from books.models import Book
@@ -66,13 +65,15 @@ class ShopPage(FiberPageMixin, TemplateView):
 class ContactPage(FiberPageMixin, TemplateView):
     template_name = 'pages/contact.html'
 
-    def get_context_data(self):
-        context = super(ContactPage, self).get_context_data()
-        context['form'] = BasicContactForm()
-        return context
-
     def get_fiber_page_url(self):
         return reverse('pages_contact')
+
+
+class SignUpPage(FiberPageMixin, TemplateView):
+    template_name = 'pages/signup.html'
+
+    def get_fiber_page_url(self):
+        return reverse('pages_signup')
 
 
 class NewsPage(FiberPageMixin, TemplateView):

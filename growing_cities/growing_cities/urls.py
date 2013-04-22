@@ -9,7 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from growing_places.views import GrowingPlacesMapView
 from pages.views import (FilmPage, ContactPage, LearnPage, ScreeningsPage,
-                         ShopPage, NewsPage)
+                         ShopPage, NewsPage, SignUpPage)
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,
                      show_indexes=True)
@@ -26,11 +26,13 @@ urlpatterns += patterns('',
     url(r'^screenings/', ScreeningsPage.as_view(), name='pages_screenings'),
     url(r'^shop/', ShopPage.as_view(), name='pages_shop'),
     url(r'^news/', NewsPage.as_view(), name='pages_news'),
+    url(r'^signup/', SignUpPage.as_view(), name='pages_signup'),
 
     # first-party views
     url(r'^contact/', include('contact.urls', 'contact_form')),
     url(r'^growing_places/', include('growing_places.urls')),
     url(r'^inplace/', include('inplace.urls', 'inplace')),
+    url(r'^newsletter/', include('newsletter.urls', 'newsletter')),
     url(r'^stories/', include('stories.urls', 'stories')),
 
     # third-party views
