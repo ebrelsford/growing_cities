@@ -69,7 +69,7 @@ GC.onResize = function() {
     GC.setHeights();
     GC.mapDrawer.position();
     GC.mapOverlay.position();
-    GC.positionBuyButton();
+    GC.buyButton.position();
 };
 
 
@@ -259,7 +259,7 @@ GC.trailer = {
      * Clean up content area so the trailer is not obscured.
      */
     makeRoom: function() {
-        GC.hideBuyButton();
+        GC.buyButton.hide();
         GC.submenu.hide();
     },
 
@@ -267,7 +267,7 @@ GC.trailer = {
     * Re-show elements that were hidden for the trailer.
     */
     undoMakeRoom: function() {
-        GC.showBuyButton();
+        GC.buyButton.show();
         GC.submenu.show();
     },
 
@@ -450,24 +450,26 @@ GC.findLocationByIP = function() {
 };
 
 
-GC.positionBuyButton = function() {
-    $('#buy-button')
-        .position({
-            my: 'right bottom',
-            at: 'right bottom',
-            of: '#content-wrapper',
-        });
-};
+GC.buyButton = {
 
+    position: function() {
+        $('#buy-button')
+            .position({
+                my: 'right bottom',
+                at: 'right bottom',
+                of: '#content-wrapper',
+            });
+    },
 
-GC.hideBuyButton = function() {
-    $('#buy-button').hide();
-};
+    hide: function() {
+        $('#buy-button').hide();
+    },
 
+    show: function() {
+        $('#buy-button').show();
+        GC.buyButton.position();
+    },
 
-GC.showBuyButton = function() {
-    $('#buy-button').show();
-    GC.positionBuyButton();
 };
 
 
@@ -582,7 +584,7 @@ $(document).ready(function() {
         GC.mapOverlay.show();
     }
 
-    GC.positionBuyButton();
+    GC.buyButton.position();
     GC.updateWatchTheTrailerButton();
 
     // Get ready for zooming
