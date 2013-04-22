@@ -40,8 +40,7 @@ GC.onStateChangeStart = function() {
     GC.mapOverlay.hide();
 
     // Prepare the loading indicator
-    positionLoadingIndicator();
-
+    GC.positionLoadingIndicator();
 };
 
 /*
@@ -50,12 +49,12 @@ GC.onStateChangeStart = function() {
 GC.onStateChangeComplete = function() {
     GC.setHeights();
     GC.submenu.initialize();
-    findLocationByIP();
+    GC.findLocationByIP();
     GC.setRowHeights();
     GC.trailer.undoMakeRoom();
-    updateWatchTheTrailerButton();
+    GC.updateWatchTheTrailerButton();
     GC.trailer.initialize();
-    initializeStoryForm();
+    GC.initializeStoryForm();
     $('#map').placemap('toggleMapDrawer');
 
     $('input[type=text], textarea').placeholder();
@@ -429,7 +428,7 @@ GC.submenu = {
 /*
  * Loading indicator.
  */
-function positionLoadingIndicator() {
+GC.positionLoadingIndicator = function() {
     $('.loading-indicator').position({
         my: 'center center',
         at: 'center center',
@@ -442,13 +441,13 @@ function positionLoadingIndicator() {
  * Geolocation.
  */
 
-function findLocationByIP() {
+GC.findLocationByIP = function() {
     if (GC.user_ip === null || GC.user_ip === '127.0.0.1') return;
     $.getJSON('http://freegeoip.net/json/' + GC.user_ip, function(data) {
         GC.user_lat = data['latitude'];
         GC.user_lon = data['longitude'];
     });
-}
+};
 
 
 GC.positionBuyButton = function() {
@@ -476,7 +475,7 @@ GC.showBuyButton = function() {
  * Watch the Trailer / Back to Map button.
  */
 
-function updateWatchTheTrailerButton() {
+GC.updateWatchTheTrailerButton = function() {
     if ($('#map').length >= 1) {
         $('.trailer-map-button')
             .removeClass('back-to-map')
@@ -491,7 +490,7 @@ function updateWatchTheTrailerButton() {
 };
 
 
-function initializeWatchTheTrailerButton() {
+GC.initializeWatchTheTrailerButton = function() {
     // Update status so that Trailer will play when the state changes
     $('.trailer-map-button')
         .click(function() {
@@ -506,7 +505,7 @@ function initializeWatchTheTrailerButton() {
  * Story form
  */
 
-function initializeStoryForm() {
+GC.initializeStoryForm = function() {
     $('.story-form input[type=file]').change(function() {
         if (!$(this).val()) return;
         $('.image-input-button').hide();
@@ -529,7 +528,7 @@ $(window).on('statechangestart', GC.onStateChangeStart);
 $(window).on('statechangecomplete', GC.onStateChangeComplete);
 
 // Triggered on ajaxForm success
-$(window).on('formajaxsuccess', initializeStoryForm);
+$(window).on('formajaxsuccess', GC.initializeStoryForm);
 $(window).on('formajaxsuccess', function() {
     GC.initializeAddLocationPane();
     $('.add-place-success-button').click(function() {
@@ -543,7 +542,7 @@ $(window).load(function() {
     GC.setRowHeights();
 
     // Initialize watch the trailer/back to map button
-    initializeWatchTheTrailerButton();
+    GC.initializeWatchTheTrailerButton();
 });
 
 $(document).ready(function() {
@@ -553,7 +552,7 @@ $(document).ready(function() {
 
     GC.submenu.initialize();
 
-    initializeStoryForm();
+    GC.initializeStoryForm();
     GC.trailer.initialize();
 
     $('input[type=text], textarea').placeholder();
@@ -584,10 +583,10 @@ $(document).ready(function() {
     }
 
     GC.positionBuyButton();
-    updateWatchTheTrailerButton();
+    GC.updateWatchTheTrailerButton();
 
     // Get ready for zooming
-    findLocationByIP();
+    GC.findLocationByIP();
 
     $('.add-place-button').click(function() {
         $('#map-drawer')
