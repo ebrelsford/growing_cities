@@ -8,12 +8,22 @@
 var GROWING_CITIES = GROWING_CITIES || {};
 
 GROWING_CITIES = {
+
+    /*
+     * Objects used throughout the site
+     */
+    trailer_player: null,
+
+    /*
+     * User state
+     */
     map_center: null,
     map_zoom: null,
     play_trailer: false,
     user_lat: null,
     user_lon: null,
     user_ip: null,
+
 };
 
 
@@ -185,36 +195,25 @@ function undoMakeRoomForTrailer() {
 }
 
 
-/*
- * Play the trailer.
- */
-function playTrailer() {
-    // Make sure user can see trailer
-    $('#trailer-player').ScrollTo();
+function initializeTrailer() {
+    if ($('#trailer-player').length === 0) return;
 
-    var player = $f($('#trailer-player')[0]);
-    player.addEvent('ready', function() {
-
+    GROWING_CITIES.trailer_player = $f($('#trailer-player')[0]);
+    GROWING_CITIES.trailer_player.addEvent('ready', function() {
         // Clean up page for trailer to play
-        player.addEvent('play', makeRoomForTrailer);
+        GROWING_CITIES.trailer_player.addEvent('play', makeRoomForTrailer);
 
         // Restore state of page when trailer is finished or paused.
-        player.addEvent('finish', undoMakeRoomForTrailer);
-        player.addEvent('pause', undoMakeRoomForTrailer);
+        GROWING_CITIES.trailer_player.addEvent('finish', undoMakeRoomForTrailer);
+        GROWING_CITIES.trailer_player.addEvent('pause', undoMakeRoomForTrailer);
 
-        // Auto-play trailer
-        player.api('play');
+        // Play it now if we should
+        if (GROWING_CITIES.play_trailer) {
+            // Auto-play trailer
+            $('#trailer-player').ScrollTo();
+            GROWING_CITIES.trailer_player.api('play');
+        }
     });
-}
-
-
-/*
- * Attempt to play trailer.
- */
-function attemptToPlayTrailer() {
-    if (!GROWING_CITIES.play_trailer) return;
-    GROWING_CITIES.play_trailer = false;
-    playTrailer();
 }
 
 
@@ -473,12 +472,12 @@ $(window).on('statechangestart', function(event) {
 });
 
 $(window).on('statechangecomplete', addSubmenu);
-$(window).on('statechangecomplete', attemptToPlayTrailer);
 $(window).on('statechangecomplete', findLocationByIP);
 $(window).on('statechangecomplete', setHeights);
 $(window).on('statechangecomplete', setRowHeights);
 $(window).on('statechangecomplete', undoMakeRoomForTrailer);
 $(window).on('statechangecomplete', updateWatchTheTrailerButton);
+$(window).on('statechangecomplete', initializeTrailer);
 
 $(window).on('statechangecomplete', initializeStoryForm);
 $(window).on('statechangecomplete', function() {
@@ -526,6 +525,7 @@ $(document).ready(function() {
     addSubmenu();
 
     initializeStoryForm();
+    initializeTrailer();
 
     $('input[type=text], textarea').placeholder();
 
