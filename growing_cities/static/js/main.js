@@ -37,9 +37,11 @@ GC = {
 GC.onStateChangeStart = function() {
     // If map-drawer is out, hide it
     GC.hideMapDrawer($('#map-drawer'), $('#map'));
+    GC.mapOverlay.hide();
 
     // Prepare the loading indicator
     positionLoadingIndicator();
+
 };
 
 /*
@@ -67,7 +69,7 @@ GC.onStateChangeComplete = function() {
 GC.onResize = function() {
     GC.setHeights();
     GC.positionMapDrawer();
-    GC.positionMapOverlay();
+    GC.mapOverlay.position();
     GC.positionBuyButton();
 };
 
@@ -126,30 +128,31 @@ GC.setRowHeights = function() {
 /*
  * Map overlay.
  */
+GC.mapOverlay = {
 
-GC.showMapOverlay = function() {
-    GC.positionMapOverlay();
-    $('#map-overlay').show();
-};
+    position: function() {
+        var $relativeTo = $('#content-wrapper');
+        $('#map-overlay')
+            .width($relativeTo.innerWidth() - 10)
+            .height($relativeTo.innerHeight() - 2)
+            .position({
+                my: 'left top',
+                at: 'left+2 top+2',
+                of: $relativeTo,
+                collision: 'fit fit',
+                within: $relativeTo,
+            });
+    },
 
+    show: function() {
+        GC.mapOverlay.position();
+        $('#map-overlay').show();
+    },
 
-GC.positionMapOverlay = function() {
-    var $relativeTo = $('#content-wrapper');
-    $('#map-overlay')
-        .width($relativeTo.innerWidth() - 10)
-        .height($relativeTo.innerHeight() - 2)
-        .position({
-            my: 'left top',
-            at: 'left+2 top+2',
-            of: $relativeTo,
-            collision: 'fit fit',
-            within: $relativeTo,
-        });
-};
+    hide: function() {
+        $('#map-overlay').hide();
+    },
 
-
-GC.hideMapOverlay = function() {
-    $('#map-overlay').hide();
 };
 
 
@@ -555,7 +558,7 @@ $(document).ready(function() {
     $('#map-activities').chosen();
 
     $('.map-overlay-hide').click(function() {
-        GC.hideMapOverlay();
+        GC.mapOverlay.hide();
 
         $('#map').placemap('locate', 
             function(event) {
@@ -571,10 +574,9 @@ $(document).ready(function() {
         $('#map').placemap('toggleMapDrawer');
         return false;
     });
-    $(window).on('statechangestart', GC.hideMapOverlay);
 
     if ($('#map').length === 1) {
-        GC.showMapOverlay();
+        GC.mapOverlay.show();
     }
 
     GC.positionBuyButton();
