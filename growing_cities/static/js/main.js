@@ -52,9 +52,9 @@ GC.onStateChangeComplete = function() {
     GC.addSubmenu();
     findLocationByIP();
     GC.setRowHeights();
-    GC.undoMakeRoomForTrailer();
+    GC.trailer.undoMakeRoom();
     updateWatchTheTrailerButton();
-    GC.initializeTrailer();
+    GC.trailer.initialize();
     initializeStoryForm();
     $('#map').placemap('toggleMapDrawer');
 
@@ -232,46 +232,48 @@ GC.mapDrawer = {
 };
 
 
+GC.trailer = {
 
-/*
- * Clean up content area so the trailer is not obscured.
- */
-GC.makeRoomForTrailer = function() {
-    GC.hideBuyButton();
-    GC.hideSubmenu();
-}
+    initialize: function() {
+        if ($('#trailer-player').length === 0) return;
 
+        GC.trailer_player = $f($('#trailer-player')[0]);
+        GC.trailer_player.addEvent('ready', function() {
+            // Clean up page for trailer to play
+            GC.trailer_player.addEvent('play', GC.trailer.makeRoom());
 
-/*
- * Re-show elements that were hidden for the trailer.
- */
-GC.undoMakeRoomForTrailer = function() {
-    GC.showBuyButton();
-    GC.showSubmenu();
+            // Restore state of page when trailer is finished or paused.
+            GC.trailer_player.addEvent('finish', GC.trailer.undoMakeRoom);
+            GC.trailer_player.addEvent('pause', GC.trailer.undoMakeRoom);
+
+            // Play it now if we should
+            if (GC.play_trailer) {
+                // Auto-play trailer
+                GC.play_trailer = false;
+                $('#trailer-player').ScrollTo();
+                GC.trailer_player.api('play');
+            }
+        });
+    },
+
+    /*
+     * Clean up content area so the trailer is not obscured.
+     */
+    makeRoom: function() {
+        GC.hideBuyButton();
+        GC.hideSubmenu();
+    },
+
+    /*
+    * Re-show elements that were hidden for the trailer.
+    */
+    undoMakeRoom: function() {
+        GC.showBuyButton();
+        GC.showSubmenu();
+    },
+
 };
 
-
-GC.initializeTrailer = function() {
-    if ($('#trailer-player').length === 0) return;
-
-    GC.trailer_player = $f($('#trailer-player')[0]);
-    GC.trailer_player.addEvent('ready', function() {
-        // Clean up page for trailer to play
-        GC.trailer_player.addEvent('play', GC.makeRoomForTrailer);
-
-        // Restore state of page when trailer is finished or paused.
-        GC.trailer_player.addEvent('finish', GC.undoMakeRoomForTrailer);
-        GC.trailer_player.addEvent('pause', GC.undoMakeRoomForTrailer);
-
-        // Play it now if we should
-        if (GC.play_trailer) {
-            // Auto-play trailer
-            GC.play_trailer = false;
-            $('#trailer-player').ScrollTo();
-            GC.trailer_player.api('play');
-        }
-    });
-};
 
 
 /*
@@ -552,7 +554,7 @@ $(document).ready(function() {
     GC.addSubmenu();
 
     initializeStoryForm();
-    GC.initializeTrailer();
+    GC.trailer.initialize();
 
     $('input[type=text], textarea').placeholder();
 
