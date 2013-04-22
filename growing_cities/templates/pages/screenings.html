@@ -2,6 +2,32 @@
 {% load fiber_tags %}
 
 {% block page_content %}
+<script>
+    $(document).ready(function() {
+        $('#host-screening-form').load('{% url "screenings:host_screening_form" %}', function() {
+            $(document.body).ajaxify();
+
+            $('#host-screening-form form').submit(function() {
+                $(this).find(':input[type=submit]').attr('disabled', 'disabled');
+                $(this).addClass('submitting');
+            });
+
+            $('#id_date').datepicker({
+                minDate: 0,   
+            });
+
+            $('#id_time').timePicker({
+                show24Hours: false,
+            });
+        });
+
+        $('.host-screening-form-show').click(function() {
+            $('.host-screening-instructions').slideToggle();
+            return false;
+        });
+    });
+</script>
+
 <div class="screenings lead-in">
     {% show_page_content "screenings-lead-in" %}
 </div>
@@ -18,5 +44,14 @@
     <a href="{% url "admin:screenings_screening_add" %}" class="no-ajax">add screening</a>
     {% endif %}
     <div class="clear"></div>
+</div>
+
+<div class="host-screening lead-in">
+    {% show_page_content "host-screening-lead-in" %}
+    <a class="host-screening-form-show">Host a screening</a>
+</div>
+<div class="host-screening-instructions">
+    {% show_page_content "host-screening-instructions" %}
+    <div id="host-screening-form" class="ajax-form-wrapper"></div>
 </div>
 {% endblock %}

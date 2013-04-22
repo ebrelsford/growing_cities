@@ -1,0 +1,71 @@
+<form action="{% url "screenings:host_screening_form" %}" class="host-screening-form ajax-form content-page-form" method="post">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    <div>
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.date.label_tag }}
+            </div>
+            <div>
+                {{ form.date.errors }}
+                {{ form.date }}
+            </div>
+        </div>
+        <div class="grid grid-1-2">
+            <div>
+                {{ form.time.label_tag }}
+            </div>
+            <div>
+                {{ form.time.errors }}
+                {{ form.time }}
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid">
+            <div>
+                {{ form.price.label_tag }}
+            </div>
+            <div>
+                {{ form.price.errors }}
+                <span id="id_price_prefix">$</span>{{ form.price }}
+            </div>
+        </div>
+        <div class="clear"></div>
+        
+        <div class="grid grid-1-3">
+            <div>
+                {{ form.venue_name.label_tag }}
+            </div>
+            <div>
+                {{ form.venue_name.errors }}
+                {{ form.venue_name }}
+            </div>
+        </div>
+        <div class="grid grid-1-3">
+            <div>
+                {{ form.venue_city.label_tag }}
+            </div>
+            <div>
+                {{ form.venue_city.errors }}
+                {{ form.venue_city }}
+            </div>
+        </div>
+        <div class="grid grid-1-3">
+            <div>
+                {{ form.venue_state_province.label_tag }}
+            </div>
+            <div>
+                {{ form.venue_state_province.errors }}
+                {{ form.venue_state_province }}
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <input type="submit" value="Add your screening" />
+    <div class="loading"></div>
+</form>

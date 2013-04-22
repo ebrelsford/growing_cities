@@ -1,7 +1,7 @@
 <form action="{% url "newsletter:form" %}" class="signup-form ajax-form content-page-form" method="post">
     {% csrf_token %}
 
-    <div class="from-row">
+    <div>
         {{ form.email.errors }}
         <div class="grid">
             {{ form.email.label_tag }} {{ form.email }}

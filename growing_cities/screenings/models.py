@@ -3,6 +3,9 @@ from django.utils.timezone import get_current_timezone
 from django.utils.translation import ugettext_lazy as _
 
 from inplace.models import Place
+from moderation import moderation
+
+from growing_cities.moderators import SiteModerator
 
 
 class Screening(models.Model):
@@ -20,10 +23,15 @@ class Screening(models.Model):
     venue = models.ForeignKey('Venue')
 
     def __unicode__(self):
-        time = self.time.astimezone(get_current_timezone())
+        try:
+            time = self.time.astimezone(get_current_timezone())
+        except Exception:
+            time = self.time
         return '%s: %s' % (self.venue.name, time.strftime('%b %d, %Y at %I:%M %Z'))
 
 
 class Venue(Place):
     def __unicode__(self):
         return self.name
+
+moderation.register(Screening, SiteModerator)

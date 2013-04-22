@@ -20,8 +20,6 @@
     <![endif]-->
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
-    <script src="{{ STATIC_URL }}js/lib/froogaloop.min.js"></script>
-
     {% compress js %}
     <script type="text/javascript">
     WebFontConfig = { fontdeck: { id: '30649' } };
@@ -36,6 +34,9 @@
         s.parentNode.insertBefore(wf, s);
     })();
     </script>
+
+    <script src="{{ STATIC_URL }}js/lib/froogaloop.min.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/jquery.timePicker.min.js"></script>
 
     <!-- Dynamically load pages -->
     <script src="{{ STATIC_URL }}js/lib/jquery.scrollto.min.js"></script>

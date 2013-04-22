@@ -724,6 +724,18 @@ ul.story-list li {
     font-weight: bold;
 }
 
+.host-screening-instructions {
+    display: none;
+}
+
+.host-screening-form #id_price_prefix {
+    font-size: 30px;;
+}
+
+.host-screening-form #id_price {
+    max-width: 100px;
+}
+
 
 /* Shop page */
 .shop .lead-in {
@@ -916,6 +928,10 @@ ul.story-list li {
     margin-bottom: 10px;
 }
 
+.contact-form label {
+    display: none;
+}
+
 
 /* Forms */
 .ajax-form .loading {
@@ -929,14 +945,14 @@ ul.story-list li {
     display: inline-block;
 }
 
+.content-page-form label {
+    color: #868576;
+}
+
 .content-page-form input,
 .content-page-form textarea {
     font-size: 24px;
     padding: 10px;
-}
-
-.content-page-form label {
-    display: none;
 }
 
 .content-page-form input {
@@ -948,7 +964,7 @@ ul.story-list li {
 }
 
 .content-page-form input[type="submit"] {
-    width: 100px;
+    max-width: 200px;
 }
 
 
@@ -967,6 +983,10 @@ ul.story-list li {
 .ui-button-icon-only .ui-icon {
     left: 0 !important;
     top: 0 !important;
+}
+
+#ui-datepicker-div {
+    display: none;
 }
 
 
@@ -1180,4 +1200,42 @@ ul.story-list li {
     box-shadow: 0 0 0;
     margin-top: -29px;
     top: 0;
+}
+
+
+/*
+ * timePicker
+ */
+
+div.time-picker {
+    position: absolute;
+    height: 191px;
+    width:4em; /* needed for IE */
+    overflow: auto;
+    background: #fff;
+    border: 1px solid #aaa;
+    z-index: 99;
+    margin: 0;
+}
+
+div.time-picker-12hours {
+    width:6em; /* needed for IE */
+}
+
+div.time-picker ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.time-picker li {
+    cursor: pointer;
+    height: 10px;
+    font: 12px/1 Helvetica, Arial, sans-serif;
+    padding: 4px 3px;
+}
+
+div.time-picker li.selected {
+    background: #0063CE;
+    color: #fff;
 }
