@@ -47,11 +47,11 @@ L.Control.MapDrawer = L.Control.extend({
     toggleMapDrawer: function() {
         var $drawer = this.options.$drawer;
         if ($drawer.hasClass('is-open')) {
-            hideMapDrawer($drawer);
+            GC.hideMapDrawer($drawer);
             $(this.mapDrawerControl.button).removeClass('is-open');
         }
         else {
-            showMapDrawer($drawer);
+            GC.showMapDrawer($drawer);
             $(this.mapDrawerControl.button).addClass('is-open');
         }
     },

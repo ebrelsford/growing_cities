@@ -74,8 +74,8 @@
 
                 $drawer: $('#map-drawer'),
 
-                initialCenter: GROWING_CITIES.map_center,
-                initialZoom: GROWING_CITIES.map_zoom,
+                initialCenter: GC.map_center,
+                initialZoom: GC.map_zoom,
             });
 
 
@@ -140,8 +140,8 @@
              */
             $('#map').data('placemap').map.on('moveend', function(e) {
                 var center = e.target.getCenter();
-                GROWING_CITIES.map_center = [center.lat, center.lng];
-                GROWING_CITIES.map_zoom = e.target.getZoom();
+                GC.map_center = [center.lat, center.lng];
+                GC.map_zoom = e.target.getZoom();
             });
 
         });

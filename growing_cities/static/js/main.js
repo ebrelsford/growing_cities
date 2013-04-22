@@ -5,9 +5,9 @@
  *
  ****************************************************************************/
 
-var GROWING_CITIES = GROWING_CITIES || {};
+var GC = GC || {};
 
-GROWING_CITIES = {
+GC = {
 
     /*
      * Objects used throughout the site
@@ -27,15 +27,63 @@ GROWING_CITIES = {
 };
 
 
-function pxToInt(px) {
+/*
+ * Ajax page loading events
+ */
+
+/*
+ * Handle statechangestart event from ajaxpages
+ */
+GC.onStateChangeStart = function() {
+    // If map-drawer is out, hide it
+    GC.hideMapDrawer($('#map-drawer'), $('#map'));
+
+    // Prepare the loading indicator
+    positionLoadingIndicator();
+};
+
+/*
+ * Handle statechangecomplete event from ajaxpages
+ */
+GC.onStateChangeComplete = function() {
+    GC.setHeights();
+    GC.addSubmenu();
+    findLocationByIP();
+    GC.setRowHeights();
+    GC.undoMakeRoomForTrailer();
+    updateWatchTheTrailerButton();
+    GC.initializeTrailer();
+    initializeStoryForm();
+    $('#map').placemap('toggleMapDrawer');
+
+    $('input[type=text], textarea').placeholder();
+    $('#content-wrapper').animate({ scrollTop: 0});
+};
+
+
+/*
+ * Handle resize events
+ */
+GC.onResize = function() {
+    GC.setHeights();
+    GC.positionMapDrawer();
+    GC.positionMapOverlay();
+    GC.positionBuyButton();
+};
+
+
+/*
+ * Utility--convert px string to integer
+ */
+GC.pxToInt = function(px) {
     return parseInt(px.replace('px', ''));
-}
+};
 
 
 /*
  * Let things that want to take up the full height of the window do so.
  */
-function setHeights() {
+GC.setHeights = function() {
     var height = $(window).height();
 
     $('#application-pane-wrapper').outerHeight($(window).height() - 15);
@@ -43,17 +91,17 @@ function setHeights() {
     var $applicationPane = $('#application-pane');
 
     var innerDivHeight = $applicationPane.innerHeight() -
-            pxToInt($applicationPane.css('padding-top')) -
-            pxToInt($applicationPane.css('padding-bottom'));
+            GC.pxToInt($applicationPane.css('padding-top')) -
+            GC.pxToInt($applicationPane.css('padding-bottom'));
     $applicationPane.find('.full-height')
         .outerHeight(innerDivHeight);
 
     $('#map').height(innerDivHeight - 4);
     $('#map-drawer').outerHeight(innerDivHeight - 4);
     $('#map-overlay').outerHeight(innerDivHeight);
-}
+};
 
-function setRowHeights() {
+GC.setRowHeights = function() {
     var $rows = $('.match-row-heights');
     if ($rows.length === 0) return;
 
@@ -72,19 +120,20 @@ function setRowHeights() {
             $(this).outerHeight(height);
         });
     });
-}
+};
 
 
 /*
  * Map overlay.
  */
 
-function showMapOverlay() {
-    positionMapOverlay();
+GC.showMapOverlay = function() {
+    GC.positionMapOverlay();
     $('#map-overlay').show();
-}
+};
 
-function positionMapOverlay() {
+
+GC.positionMapOverlay = function() {
     var $relativeTo = $('#content-wrapper');
     $('#map-overlay')
         .width($relativeTo.innerWidth() - 10)
@@ -95,20 +144,20 @@ function positionMapOverlay() {
             of: $relativeTo,
             collision: 'fit fit',
             within: $relativeTo,
-        })
-        ;
-}
+        });
+};
 
-function hideMapOverlay() {
+
+GC.hideMapOverlay = function() {
     $('#map-overlay').hide();
-}
+};
 
 
 /*
  * Map drawer.
  */
 
-function positionMapDrawer() {
+GC.positionMapDrawer = function() {
     var relativeTo = '#content';
     var $drawer = $('#map-drawer');
 
@@ -122,12 +171,13 @@ function positionMapDrawer() {
             at: 'left top',
             of: relativeTo,
         });
-}
+};
 
-function showMapDrawer($mapDrawer) {
+
+GC.showMapDrawer = function($mapDrawer) {
     var newWidth = $('#content').outerWidth() * .25;
-    var innerWidth = newWidth - pxToInt($mapDrawer.css('padding-left')) 
-        - pxToInt($mapDrawer.css('padding-right'));;
+    var innerWidth = newWidth - GC.pxToInt($mapDrawer.css('padding-left')) 
+        - GC.pxToInt($mapDrawer.css('padding-right'));;
 
     $mapDrawer.find('#map-drawer-content').width(innerWidth);
 
@@ -153,9 +203,10 @@ function showMapDrawer($mapDrawer) {
     $('.leaflet-left').animate({
         left: newWidth,
     }, 'fast');
-}
+};
 
-function hideMapDrawer($mapDrawer) {
+
+GC.hideMapDrawer = function($mapDrawer) {
     $mapDrawer
         .position({
             my: 'left top',
@@ -174,76 +225,78 @@ function hideMapDrawer($mapDrawer) {
     $('.leaflet-left').animate({
         left: 0,
     }, 'fast');
-}
+};
 
 
 /*
  * Clean up content area so the trailer is not obscured.
  */
-function makeRoomForTrailer() {
-    hideBuyButton();
-    hideSubmenu();
+GC.makeRoomForTrailer = function() {
+    GC.hideBuyButton();
+    GC.hideSubmenu();
 }
 
 
 /*
  * Re-show elements that were hidden for the trailer.
  */
-function undoMakeRoomForTrailer() {
-    showBuyButton();
-    showSubmenu();
-}
+GC.undoMakeRoomForTrailer = function() {
+    GC.showBuyButton();
+    GC.showSubmenu();
+};
 
 
-function initializeTrailer() {
+GC.initializeTrailer = function() {
     if ($('#trailer-player').length === 0) return;
 
-    GROWING_CITIES.trailer_player = $f($('#trailer-player')[0]);
-    GROWING_CITIES.trailer_player.addEvent('ready', function() {
+    GC.trailer_player = $f($('#trailer-player')[0]);
+    GC.trailer_player.addEvent('ready', function() {
         // Clean up page for trailer to play
-        GROWING_CITIES.trailer_player.addEvent('play', makeRoomForTrailer);
+        GC.trailer_player.addEvent('play', GC.makeRoomForTrailer);
 
         // Restore state of page when trailer is finished or paused.
-        GROWING_CITIES.trailer_player.addEvent('finish', undoMakeRoomForTrailer);
-        GROWING_CITIES.trailer_player.addEvent('pause', undoMakeRoomForTrailer);
+        GC.trailer_player.addEvent('finish', GC.undoMakeRoomForTrailer);
+        GC.trailer_player.addEvent('pause', GC.undoMakeRoomForTrailer);
 
         // Play it now if we should
-        if (GROWING_CITIES.play_trailer) {
+        if (GC.play_trailer) {
             // Auto-play trailer
+            GC.play_trailer = false;
             $('#trailer-player').ScrollTo();
-            GROWING_CITIES.trailer_player.api('play');
+            GC.trailer_player.api('play');
         }
     });
-}
+};
 
 
 /*
  * Update the city selector based on the city name.
  */
-function updateCitySelector(city) {
+GC.updateCitySelector = function(city) {
     // Update selected option
     $('#map-city option').removeAttr('selected');
     $('#map-city option:contains("' + city + '")').attr('selected', 'selected');
 
     // Let Chosen know that the input has changed
     $('#map-city').trigger('liszt:updated');
-}
+};
 
-function moveToUserLocation(lat, lon) {
+
+GC.moveToUserLocation = function(lat, lon) {
     $.getJSON('/growing_places/city/find/?' + $.param({
         lat: lat,
         lon: lon,
     }), function(data) {
         if (data.city !== null) {
             // Only bother if we have a city
-            updateCitySelector(data.city);
+            GC.updateCitySelector(data.city);
             $('#map').placemap('centerOn', lat, lon);
         }
     });
-}
+};
 
 
-function initializeAddLocationPane() {
+GC.initializeAddLocationPane = function() {
     $mapDrawer = $('#map-drawer');
 
     var $addPlaceForm = $('#add-place-form');
@@ -265,14 +318,15 @@ function initializeAddLocationPane() {
             .removeClass('add-location')
             .animate({ scrollTop: 0});
     });
-}
+};
 
-function loadAddLocationPane() {
+
+GC.loadAddLocationPane = function() {
     $('#map-drawer-add-pane').load(
         $('#map-drawer-add-pane').data('form-url'),
-        initializeAddLocationPane
+        GC.initializeAddLocationPane
     );
-}
+};
 
 
 /*
@@ -280,18 +334,18 @@ function loadAddLocationPane() {
  */
 
 
-function hideSubmenu() {
+GC.hideSubmenu = function() {
     $('.submenu').hide();
-}
+};
 
 
-function showSubmenu() {
+GC.showSubmenu = function() {
     $('.submenu').show();
-    positionSubmenu();
-}
+    GC.positionSubmenu();
+};
 
 
-function positionSubmenu() {
+GC.positionSubmenu = function() {
     $('.submenu.stuck')
         .width($('#content').innerWidth())
         .position({
@@ -299,10 +353,10 @@ function positionSubmenu() {
             at: 'left+2 top+1',
             of: '#content-wrapper',
         });
-}
+};
 
 
-function addSubmenu() {
+GC.addSubmenu = function() {
     var $submenu = $('.submenu');
     if ($submenu.length === 0) return;
 
@@ -362,7 +416,7 @@ function addSubmenu() {
             }
         },
     });
-}
+};
 
 
 /*
@@ -374,7 +428,7 @@ function positionLoadingIndicator() {
         at: 'center center',
         of: '#content-wrapper',
     });
-}
+};
 
 
 /*
@@ -382,33 +436,33 @@ function positionLoadingIndicator() {
  */
 
 function findLocationByIP() {
-    if (GROWING_CITIES.user_ip === null || GROWING_CITIES.user_ip === '127.0.0.1') return;
-    $.getJSON('http://freegeoip.net/json/' + GROWING_CITIES.user_ip, function(data) {
-        GROWING_CITIES.user_lat = data['latitude'];
-        GROWING_CITIES.user_lon = data['longitude'];
+    if (GC.user_ip === null || GC.user_ip === '127.0.0.1') return;
+    $.getJSON('http://freegeoip.net/json/' + GC.user_ip, function(data) {
+        GC.user_lat = data['latitude'];
+        GC.user_lon = data['longitude'];
     });
 }
 
 
-function positionBuyButton() {
+GC.positionBuyButton = function() {
     $('#buy-button')
         .position({
             my: 'right bottom',
             at: 'right bottom',
             of: '#content-wrapper',
         });
-}
+};
 
 
-function hideBuyButton() {
+GC.hideBuyButton = function() {
     $('#buy-button').hide();
-}
+};
 
 
-function showBuyButton() {
+GC.showBuyButton = function() {
     $('#buy-button').show();
-    positionBuyButton();
-}
+    GC.positionBuyButton();
+};
 
 
 /*
@@ -427,7 +481,7 @@ function updateWatchTheTrailerButton() {
             .addClass('back-to-map')
             .attr('href', '/');
     }
-}
+};
 
 
 function initializeWatchTheTrailerButton() {
@@ -435,10 +489,10 @@ function initializeWatchTheTrailerButton() {
     $('.trailer-map-button')
         .click(function() {
             if ($('#map').length >= 1) {
-                GROWING_CITIES.play_trailer = true;
+                GC.play_trailer = true;
             }
         });
-}
+};
 
 
 /*
@@ -456,76 +510,44 @@ function initializeStoryForm() {
         $('.story-form form').submit();
         return false;
     });
-}
+};
 
 
 /*
  * Event handling and initialization.
  */
 
-$(window).on('statechangestart', function(event) {
-    // If map-drawer is out, hide it
-    hideMapDrawer($('#map-drawer'), $('#map'));
 
-    // Prepare the loading indicator
-    positionLoadingIndicator();
-});
-
-$(window).on('statechangecomplete', addSubmenu);
-$(window).on('statechangecomplete', findLocationByIP);
-$(window).on('statechangecomplete', setHeights);
-$(window).on('statechangecomplete', setRowHeights);
-$(window).on('statechangecomplete', undoMakeRoomForTrailer);
-$(window).on('statechangecomplete', updateWatchTheTrailerButton);
-$(window).on('statechangecomplete', initializeTrailer);
-
-$(window).on('statechangecomplete', initializeStoryForm);
-$(window).on('statechangecomplete', function() {
-    $('#map').placemap('toggleMapDrawer');
-});
+$(window).on('statechangestart', GC.onStateChangeStart);
+$(window).on('statechangecomplete', GC.onStateChangeComplete);
 
 // Triggered on ajaxForm success
 $(window).on('formajaxsuccess', initializeStoryForm);
 $(window).on('formajaxsuccess', function() {
-    initializeAddLocationPane();
+    GC.initializeAddLocationPane();
     $('.add-place-success-button').click(function() {
         $('#map-drawer').removeClass('add-location');
-        loadAddLocationPane();
+        GC.loadAddLocationPane();
     });   
-});
-
-$(window).on('statechangecomplete', function() {
-    $('input[type=text], textarea').placeholder();
-    $('#content-wrapper').animate({ scrollTop: 0});
 });
 
 $(window).load(function() {
     // Make grid elements that should have the same height match
-    setRowHeights();
+    GC.setRowHeights();
 
     // Initialize watch the trailer/back to map button
     initializeWatchTheTrailerButton();
 });
 
 $(document).ready(function() {
+    GC.setHeights();
+    GC.positionMapDrawer();
+    $(window).smartresize(GC.onResize);
 
-    // make sidebar and map take up entire window height
-    setHeights();
-    $(window).smartresize(setHeights);
-
-    // keep map drawer in the proper position
-    positionMapDrawer();
-    $(window).smartresize(positionMapDrawer);
-
-    // keep map overlay in the proper position
-    $(window).smartresize(positionMapOverlay);
-
-    $(window).smartresize(positionBuyButton);
-
-    addSubmenu();
+    GC.addSubmenu();
 
     initializeStoryForm();
-    initializeTrailer();
+    GC.initializeTrailer();
 
     $('input[type=text], textarea').placeholder();
 
@@ -533,30 +555,29 @@ $(document).ready(function() {
     $('#map-activities').chosen();
 
     $('.map-overlay-hide').click(function() {
-        hideMapOverlay();
+        GC.hideMapOverlay();
 
         $('#map').placemap('locate', 
             function(event) {
                 // Success: zoom to Geolocation API-detected location
-                moveToUserLocation(event.latlng.lat, event.latlng.lng);
+                GC.moveToUserLocation(event.latlng.lat, event.latlng.lng);
             },
             function() {
                 // Fallback: zoom to IP-detected location
-                moveToUserLocation(GROWING_CITIES.user_lat,
-                    GROWING_CITIES.user_lon);
+                GC.moveToUserLocation(GC.user_lat, GC.user_lon);
             }
         );
 
         $('#map').placemap('toggleMapDrawer');
         return false;
     });
-    $(window).on('statechangestart', hideMapOverlay);
+    $(window).on('statechangestart', GC.hideMapOverlay);
 
     if ($('#map').length === 1) {
-        showMapOverlay();
+        GC.showMapOverlay();
     }
 
-    positionBuyButton();
+    GC.positionBuyButton();
     updateWatchTheTrailerButton();
 
     // Get ready for zooming
@@ -568,5 +589,5 @@ $(document).ready(function() {
             .animate({ scrollTop: 0});
     });
 
-    loadAddLocationPane();
+    GC.loadAddLocationPane();
 });
