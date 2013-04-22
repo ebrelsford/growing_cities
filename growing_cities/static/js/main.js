@@ -36,7 +36,7 @@ GC = {
  */
 GC.onStateChangeStart = function() {
     // If map-drawer is out, hide it
-    GC.hideMapDrawer($('#map-drawer'), $('#map'));
+    GC.mapDrawer.hide($('#map-drawer'), $('#map'));
     GC.mapOverlay.hide();
 
     // Prepare the loading indicator
@@ -68,7 +68,7 @@ GC.onStateChangeComplete = function() {
  */
 GC.onResize = function() {
     GC.setHeights();
-    GC.positionMapDrawer();
+    GC.mapDrawer.position();
     GC.mapOverlay.position();
     GC.positionBuyButton();
 };
@@ -159,76 +159,78 @@ GC.mapOverlay = {
 /*
  * Map drawer.
  */
+GC.mapDrawer = {
 
-GC.positionMapDrawer = function() {
-    var relativeTo = '#content';
-    var $drawer = $('#map-drawer');
+    position: function() {
+        var relativeTo = '#content';
+        var $drawer = $('#map-drawer');
 
-    if (!$drawer.hasClass('is-open')) {
-        relativeTo = '#sidebar';
-        $drawer.outerWidth($(relativeTo).outerWidth());
-    }
-    $drawer
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: relativeTo,
-        });
+        if (!$drawer.hasClass('is-open')) {
+            relativeTo = '#sidebar';
+            $drawer.outerWidth($(relativeTo).outerWidth());
+        }
+        $drawer
+            .position({
+                my: 'left top',
+                at: 'left top',
+                of: relativeTo,
+            });
+    },
+
+    show: function($mapDrawer) {
+        var newWidth = $('#content').outerWidth() * .25;
+        var innerWidth = newWidth - GC.pxToInt($mapDrawer.css('padding-left')) 
+            - GC.pxToInt($mapDrawer.css('padding-right'));;
+
+        $mapDrawer.find('#map-drawer-content').width(innerWidth);
+
+        $mapDrawer.find('.chzn-container').width(innerWidth);
+        $mapDrawer.find('.chzn-container input').width(innerWidth - 7);
+        $mapDrawer.find('.chzn-container .chzn-drop').width(innerWidth);
+
+        $mapDrawer
+            .position({
+                my: 'left top',
+                at: 'left top',
+                of: '#content',
+                using: function(pos) {
+                    $mapDrawer.animate({
+                        left: pos.left,
+                        width: newWidth,
+                    }, 'fast');
+                },
+            })
+            .addClass('is-open');
+
+        // move any map controls on the left
+        $('.leaflet-left').animate({
+            left: newWidth,
+        }, 'fast');
+    },
+
+    hide: function($mapDrawer) {
+        $mapDrawer
+            .position({
+                my: 'left top',
+                at: 'left top',
+                of: '#sidebar',
+                using: function(pos) {
+                    $mapDrawer.animate({
+                        left: pos.left, 
+                        width: $('#sidebar').outerWidth(),
+                    }, 'fast');
+                },
+            })
+            .removeClass('is-open');
+
+        // return any map controls on the left back to normal
+        $('.leaflet-left').animate({
+            left: 0,
+        }, 'fast');
+    },
+
 };
 
-
-GC.showMapDrawer = function($mapDrawer) {
-    var newWidth = $('#content').outerWidth() * .25;
-    var innerWidth = newWidth - GC.pxToInt($mapDrawer.css('padding-left')) 
-        - GC.pxToInt($mapDrawer.css('padding-right'));;
-
-    $mapDrawer.find('#map-drawer-content').width(innerWidth);
-
-    $mapDrawer.find('.chzn-container').width(innerWidth);
-    $mapDrawer.find('.chzn-container input').width(innerWidth - 7);
-    $mapDrawer.find('.chzn-container .chzn-drop').width(innerWidth);
-
-    $mapDrawer
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: '#content',
-            using: function(pos) {
-                $mapDrawer.animate({
-                    left: pos.left,
-                    width: newWidth,
-                }, 'fast');
-            },
-        })
-        .addClass('is-open');
-
-    // move any map controls on the left
-    $('.leaflet-left').animate({
-        left: newWidth,
-    }, 'fast');
-};
-
-
-GC.hideMapDrawer = function($mapDrawer) {
-    $mapDrawer
-        .position({
-            my: 'left top',
-            at: 'left top',
-            of: '#sidebar',
-            using: function(pos) {
-                $mapDrawer.animate({
-                    left: pos.left, 
-                    width: $('#sidebar').outerWidth(),
-                }, 'fast');
-            },
-        })
-        .removeClass('is-open');
-
-    // return any map controls on the left back to normal
-    $('.leaflet-left').animate({
-        left: 0,
-    }, 'fast');
-};
 
 
 /*
@@ -544,7 +546,7 @@ $(window).load(function() {
 
 $(document).ready(function() {
     GC.setHeights();
-    GC.positionMapDrawer();
+    GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
 
     GC.addSubmenu();
