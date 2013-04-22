@@ -236,6 +236,14 @@ body.loading .loading-indicator {
     color: #E7E8D6;
 }
 
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
 #social-buttons {
     height: 25px;
     width: 100px;
