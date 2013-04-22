@@ -27,5 +27,3 @@ class HostScreeningForm(forms.Form):
         label=_('State'),
         max_length=40,
     )
-
-    # TODO moderation
