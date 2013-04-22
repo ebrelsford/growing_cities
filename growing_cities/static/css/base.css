@@ -573,8 +573,8 @@ header {
 .story-form input[type="file"] {
     margin-top: 5px;
     margin-bottom: 15px;
-    padding: 10px;
-    width: 85%;
+    padding: 15px;
+    width: 120px;
 
     /* for file input overlay */
     filter: alpha(opacity=0);
@@ -583,10 +583,15 @@ header {
     z-index: 2;
 }
 
+.story-form .image-input-wrapper {
+    width: 150px;
+}
+
 .story-form .image-input-overlay {
     position: absolute;
     top: 0;
     left: 0;
+    width: 150px;
     z-index: 1;
 }
 
@@ -595,9 +600,10 @@ header {
     color: #ECEADE;
     font-family: "Acier BAT Text Solid", Futura, Arial, sans-serif;
     margin-top: 5px;
-    padding: 13px;
+    padding-top: 13px;
+    padding-bottom: 13px;
     text-align: center;
-    width: 120px;
+    width: 100%;
 }
 
 .story-form .image-input-selected-file {

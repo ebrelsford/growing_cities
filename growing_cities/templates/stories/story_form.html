@@ -24,10 +24,12 @@
             </div>
             <div style="position: relative;">
                 {{ form.image.errors }}
-                {{ form.image }}
-                <div class="image-input-overlay">
-                    <div class="image-input-button">Choose File</div>
-                    <div class="image-input-selected-file"></div>
+                <div class="image-input-wrapper">
+                    {{ form.image }}
+                    <div class="image-input-overlay">
+                        <div class="image-input-button">Choose File</div>
+                        <div class="image-input-selected-file"></div>
+                    </div>
                 </div>
             </div>
         </div>
