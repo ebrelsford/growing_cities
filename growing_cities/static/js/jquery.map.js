@@ -40,6 +40,9 @@
                 zoom: instance.options.initialZoom,
             });
 
+            // Move attribution to the left
+            instance.map.attributionControl.setPosition('bottomleft');
+
             var cloudmade = new L.TileLayer(
                 'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png', 
                 {
