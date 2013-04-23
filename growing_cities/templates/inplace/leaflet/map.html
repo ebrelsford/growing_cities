@@ -30,12 +30,22 @@
                 $result.append($('<div/>').addClass('clear'));
                 $results.append($result);
             });
-            $('.map-results-container').removeClass('loading');
+            doneLoading();
         }
 
 
         function clearMapResults() {
             $('#map-results').empty();
+        }
+
+
+        function startLoading() {
+            $('.map-results-container').addClass('loading');
+        }
+
+
+        function doneLoading() {
+            $('.map-results-container').removeClass('loading');
         }
 
 
@@ -50,6 +60,7 @@
             })
             .fail(function() {
                 clearMapResults();
+                doneLoading();
             });
         }
 
@@ -58,7 +69,7 @@
          * Get parameters for loading map results, get them.
          */
         function reloadMapResults() {
-            $('.map-results-container').addClass('loading');
+            startLoading();
             var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
             var activityPks = [];
             $('#map-activities option:selected').each(function() {

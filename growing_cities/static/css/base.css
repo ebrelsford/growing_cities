@@ -457,6 +457,10 @@ body.loading .loading-indicator {
     width: 32px;
 }
 
+.map-results-container {
+    margin-bottom: 45px;
+}
+
 .map-result {
     border-bottom: 1px solid gray;
     cursor: pointer;
