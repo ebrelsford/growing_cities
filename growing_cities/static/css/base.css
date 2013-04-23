@@ -759,21 +759,25 @@ ul.story-list li {
 }
 
 .book,
+.partner,
 .product {
     border-right: 1px solid #D5D3C7;
     padding: 20px;
     text-align: center;
 }
 .book.right,
+.partner.right,
 .product.right {
     border-right: 0;
 }
 
 .book-row,
+.partner-row,
 .product-row {
     border-top: 1px solid #D5D3C7;
 }
 .book-row.count-1,
+.partner-row.count-1,
 .product-row.count-1 {
     border-top: 0;
 }

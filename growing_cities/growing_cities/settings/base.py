@@ -142,6 +142,7 @@ INSTALLED_APPS = (
     'news',
     'newsletter',
     'pages',
+    'partners',
     'photos',
     'products',
     'rsssync',

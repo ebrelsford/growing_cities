@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from fiber.views import FiberPageMixin
 
 from books.models import Book
+from partners.models import Partner
 from products.models import Product
 from screenings.models import Screening
 from stories.forms import StoryForm
@@ -17,6 +18,7 @@ class FilmPage(FiberPageMixin, TemplateView):
 
     def get_context_data(self):
         context = super(FilmPage, self).get_context_data()
+        context['partners'] = Partner.objects.all()
         context['teammembers'] = TeamMember.objects.all()[:6]
         return context
 

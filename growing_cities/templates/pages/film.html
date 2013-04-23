@@ -65,7 +65,18 @@
     </div>
 
     <div class="content-section partners">
-        {% show_page_content "partners" %}
+        <h3>Partners</h3>
+
+        <div class="partners-text">
+            {% show_page_content "partners" %}
+        </div>
+
+        {% if 'add_partner' in perms %}
+        <a href="{% url "admin:partners_partner_add" %}" class="no-ajax">
+            add partner
+        </a>
+        {% endif %}
+        {% include "partners/_partner_list.html" %}
     </div>
 
 </div>

@@ -1,0 +1,21 @@
+{% load fiber_tags imagekit %}
+
+<div>
+    <a href="{{ partner.link }}">
+        {% thumbnail '150x150' partner.image %}
+    </a>
+
+    <div>
+        {{ partner.text|safe }}
+
+        <span class="partner-name">
+            {{ partner.name }}
+        </span>
+    </div>
+</div>
+
+{% if 'change_partner' in perms %}
+<a href="{% url "admin:partners_partner_change" partner.pk %}" class="no-ajax">
+    edit
+</a>
+{% endif %}
