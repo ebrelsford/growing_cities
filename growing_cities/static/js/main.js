@@ -171,7 +171,7 @@ GC.mapDrawer = {
         $drawer
             .position({
                 my: 'left top',
-                at: 'left+2 top+2',
+                at: 'left top+2',
                 of: relativeTo,
             });
     },
@@ -554,15 +554,15 @@ $(window).on('formajaxsuccess', function() {
 $(window).load(function() {
     // Make grid elements that should have the same height match
     GC.setRowHeights();
-
-    // Initialize watch the trailer/back to map button
-    GC.initializeWatchTheTrailerButton();
 });
 
 $(document).ready(function() {
     GC.setHeights();
     GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
+
+    // Initialize watch the trailer/back to map button
+    GC.initializeWatchTheTrailerButton();
 
     GC.submenu.initialize();
 
