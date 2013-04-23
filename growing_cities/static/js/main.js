@@ -171,7 +171,7 @@ GC.mapDrawer = {
         $drawer
             .position({
                 my: 'left top',
-                at: 'left top',
+                at: 'left+2 top+2',
                 of: relativeTo,
             });
     },

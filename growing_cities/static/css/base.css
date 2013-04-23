@@ -485,10 +485,7 @@ body.loading .loading-indicator {
 /* Add places to the map */
 
 .add-place-success-button {
-    color: #E7E8D6;
-    cursor: pointer;
-    font-family: Courier, "Lucida Console", monospace;
-    text-decoration: underline;
+    width: 100%;
 }
 
 .add-place-button {
