@@ -587,10 +587,14 @@ body.loading .loading-indicator {
 }
 
 .submenu-top-link {
+    background: url(/static/img/top_arrow.png);
     cursor: pointer;
     display: none;
-    float: right;
-    padding-right: 10px;
+    height: 38px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 39px;
 }
 .submenu.stuck .submenu-top-link {
     display: inline-block;
