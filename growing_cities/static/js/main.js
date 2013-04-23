@@ -54,6 +54,7 @@ GC.onStateChangeComplete = function() {
     GC.trailer.undoMakeRoom();
     GC.updateWatchTheTrailerButton();
     GC.trailer.initialize();
+    GC.initializeFileInputs();
     GC.initializeStoryForm();
     $('#map').placemap('toggleMapDrawer');
 
@@ -304,6 +305,7 @@ GC.moveToUserLocation = function(lat, lon) {
 GC.initializeAddLocationPane = function() {
     $mapDrawer = $('#map-drawer');
     $('.add-place-activities select').chosen();
+    GC.initializeFileInputs();
 
     var $addPlaceForm = $('#add-place-form');
     $addPlaceForm
@@ -508,13 +510,21 @@ GC.initializeWatchTheTrailerButton = function() {
  * Story form
  */
 
-GC.initializeStoryForm = function() {
-    $('.story-form input[type=file]').change(function() {
+GC.initializeFileInputs = function() {
+    $('input[type=file]').change(function() {
         if (!$(this).val()) return;
-        $('.image-input-button').hide();
-        $('.image-input-selected-file').text($(this).val()).show();
-    });
 
+        // Try to get a nicer filename to display
+        var filename = $(this).val();
+        if (filename.indexOf("\\") >= 0) {
+            filename = filename.split("\\").pop();
+        }
+        $(this).parent().find('.image-input-button').hide();
+        $(this).parent().find('.image-input-selected-file').text(filename).show();
+    });
+};
+
+GC.initializeStoryForm = function() {
     $('.story-form-submit').click(function() {
         $('.story-form form').submit();
         return false;
@@ -531,6 +541,7 @@ $(window).on('statechangestart', GC.onStateChangeStart);
 $(window).on('statechangecomplete', GC.onStateChangeComplete);
 
 // Triggered on ajaxForm success
+$(window).on('formajaxsuccess', GC.initializeFileInputs);
 $(window).on('formajaxsuccess', GC.initializeStoryForm);
 $(window).on('formajaxsuccess', function() {
     GC.initializeAddLocationPane();
@@ -555,6 +566,7 @@ $(document).ready(function() {
 
     GC.submenu.initialize();
 
+    GC.initializeFileInputs();
     GC.initializeStoryForm();
     GC.trailer.initialize();
 

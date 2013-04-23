@@ -494,7 +494,7 @@ body.loading .loading-indicator {
 
 .add-place-cancel-button {
     margin-bottom: 5px;
-    margin-top: 5px;
+    margin-top: 40px;
     width: 100%;
 }
 
@@ -509,6 +509,14 @@ body.loading .loading-indicator {
     font-size: 18px;
     line-height: 18px;
     height: 100%;
+    width: 100%;
+}
+
+#add-place-form .image-input-overlay {
+    width: 100%;
+}
+
+#add-place-form .image-input-wrapper {
     width: 100%;
 }
 
@@ -656,7 +664,7 @@ body.loading .loading-indicator {
     width: 85%;
 }
 
-.story-form input[type="file"] {
+input[type="file"] {
     font-size: 38px;
     margin-top: 5px;
     width: 100%;
@@ -668,11 +676,11 @@ body.loading .loading-indicator {
     z-index: 2;
 }
 
-.story-form .image-input-wrapper {
+.image-input-wrapper {
     width: 150px;
 }
 
-.story-form .image-input-overlay {
+.image-input-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -680,10 +688,12 @@ body.loading .loading-indicator {
     z-index: 1;
 }
 
-.story-form .image-input-button {
+.image-input-button {
     background-color: #656447;
+    border: 0;
     color: #ECEADE;
     font-family: "Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-size: 16px;
     margin-top: 5px;
     padding-top: 13px;
     padding-bottom: 13px;

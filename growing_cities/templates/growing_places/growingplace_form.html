@@ -38,8 +38,16 @@
 
     <div class="map-drawer-section">
         <h3>{{ form.photo.label_tag }}</h3>
-        {{ form.photo.errors }}
-        {{ form.photo }}
+        <div style="position: relative;">
+            {{ form.photo.errors }}
+            <div class="image-input-wrapper">
+                {{ form.photo }}
+                <div class="image-input-overlay">
+                    <button class="image-input-button">Choose File</button>
+                    <div class="image-input-selected-file"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button class="add-place-cancel-button action-button action-button-a" type="button">
