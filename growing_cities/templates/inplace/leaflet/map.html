@@ -30,6 +30,7 @@
                 $result.append($('<div/>').addClass('clear'));
                 $results.append($result);
             });
+            $('.map-results-container').removeClass('loading');
         }
 
 
@@ -57,6 +58,7 @@
          * Get parameters for loading map results, get them.
          */
         function reloadMapResults() {
+            $('.map-results-container').addClass('loading');
             var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
             var activityPks = [];
             $('#map-activities option:selected').each(function() {
