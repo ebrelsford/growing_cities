@@ -568,7 +568,6 @@ $(document).ready(function() {
     GC.initializeWatchTheTrailerButton();
     $('#map-city').chosen();
     $('#map-activities').chosen();
-    GC.buyButton.position();
     GC.loadAddLocationPane();
 
     if ($('#map').length === 1) {
@@ -588,6 +587,8 @@ $(document).ready(function() {
     GC.initializeStoryForm();
     GC.trailer.initialize();
 
+    // Buy button likes to have other things positioned first
+    GC.buyButton.position();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
