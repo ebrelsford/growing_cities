@@ -34,6 +34,10 @@ ul {
     list-style: none;
 }
 
+ol {
+    margin-left: 50px;
+}
+
 p {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -780,8 +784,17 @@ ul.story-list li {
     font-weight: bold;
 }
 
+.host-screening.lead-in {
+    padding-top: 25px;
+}
+
 .host-screening-instructions {
     display: none;
+}
+
+.host-screening-instructions-text {
+    padding-bottom: 25px;
+    padding-top: 25px;
 }
 
 .host-screening-form-show {

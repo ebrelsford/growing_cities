@@ -52,7 +52,9 @@
     <a class="host-screening-form-show action-button action-button-a">Host a screening</a>
 </div>
 <div class="host-screening-instructions">
-    {% show_page_content "host-screening-instructions" %}
+    <div class="host-screening-instructions-text">
+        {% show_page_content "host-screening-instructions" %}
+    </div>
     <div id="host-screening-form" class="ajax-form-wrapper"></div>
 </div>
 {% endblock %}
