@@ -67,7 +67,6 @@ GC.onStateChangeComplete = function() {
  */
 GC.onResize = function() {
     GC.setHeights();
-    //GC.mapDrawer.position();
     GC.mapOverlay.position();
     GC.buyButton.position();
 };
