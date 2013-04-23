@@ -557,6 +557,9 @@ $(window).on('formajaxsuccess', function() {
 $(window).load(function() {
     // Make grid elements that should have the same height match
     GC.setRowHeights();
+
+    // Buy button likes to have other things positioned first
+    GC.buyButton.position();
 });
 
 $(document).ready(function() {
@@ -586,9 +589,6 @@ $(document).ready(function() {
     GC.initializeFileInputs();
     GC.initializeStoryForm();
     GC.trailer.initialize();
-
-    // Buy button likes to have other things positioned first
-    GC.buyButton.position();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
