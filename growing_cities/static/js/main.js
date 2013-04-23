@@ -324,7 +324,7 @@ GC.initializeAddLocationPane = function() {
     $mapDrawer.find('.add-place-cancel-button').click(function() {
         $mapDrawer
             .removeClass('add-location')
-            .animate({ scrollTop: 0});
+            .scrollTop(0);
     });
 };
 
@@ -595,7 +595,7 @@ $(document).ready(function() {
     $('.add-place-button').click(function() {
         $('#map-drawer')
             .addClass('add-location')
-            .animate({ scrollTop: 0});
+            .scrollTop(0);
     });
 
     GC.loadAddLocationPane();

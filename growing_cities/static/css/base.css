@@ -236,6 +236,11 @@ body.loading .loading-indicator {
     color: #E7E8D6;
 }
 
+.action-button-b {
+    background-color: #DFC92B;
+    color: #4C4A33;
+}
+
 .form-row {
     margin-bottom: 15px;
 }
@@ -479,17 +484,24 @@ body.loading .loading-indicator {
 
 /* Add places to the map */
 
-.add-place-success-button,
-.add-place-cancel-button {
+.add-place-success-button {
     color: #E7E8D6;
     cursor: pointer;
     font-family: Courier, "Lucida Console", monospace;
     text-decoration: underline;
 }
 
+.add-place-button {
+    width: 100%;
+}
+
+.add-place-cancel-button {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+}
+
 .add-place-save-button {
-    background-color: #DFC92B;
-    color: #4C4A33;
     width: 100%;
 }
 
@@ -499,6 +511,7 @@ body.loading .loading-indicator {
     color: #E7E8D6;
     font-size: 18px;
     line-height: 18px;
+    height: 100%;
     width: 100%;
 }
 
@@ -776,12 +789,14 @@ ul.story-list li {
     font-size: 26px;
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
-    line-height: 24px;
     text-align: center;
     position:fixed;
     width: 150px;
-    cursor: pointer;
     z-index: 1980;
+}
+
+.buy-button-inner {
+    line-height: 24px;
 }
 
 #buy-button .edit-link {
