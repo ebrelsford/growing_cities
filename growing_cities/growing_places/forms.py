@@ -15,7 +15,7 @@ class GrowingPlaceForm(BaseModeratedObjectForm):
     # Fields in the GrowingPlace model that we're tweaking for the form
     #
     activities = forms.ModelMultipleChoiceField(
-        label=_('What do you do?'),
+        label=_('How can people get involved?'),
         queryset=Activity.objects.all(),
         required=False,
         widget=forms.SelectMultiple(),
@@ -25,7 +25,7 @@ class GrowingPlaceForm(BaseModeratedObjectForm):
         max_length=300,
     )
     mission = forms.CharField(
-        label=_('Describe your project'),
+        label=_('Describe your project in one sentence'),
         widget=forms.Textarea(),
     )
     address_line1 = forms.CharField(
@@ -54,7 +54,7 @@ class GrowingPlaceForm(BaseModeratedObjectForm):
     # Fields not present in the GrowingPlace model
     #
     location = forms.CharField(
-        label=_(u'Where are you?'),
+        label="What's your project's address?",
         max_length=300,
     )
     photo = forms.ImageField(

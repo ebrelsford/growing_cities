@@ -25,6 +25,12 @@
     </div>
 
     <div class="map-drawer-section">
+        <h3>Project website</h3>
+        {{ form.url.errors }}
+        {{ form.url }}
+    </div>
+
+    <div class="map-drawer-section">
         <h3>{{ form.mission.label_tag }}</h3>
         {{ form.mission.errors }}
         {{ form.mission }}
@@ -34,12 +40,6 @@
         <h3>{{ form.photo.label_tag }}</h3>
         {{ form.photo.errors }}
         {{ form.photo }}
-    </div>
-
-    <div class="map-drawer-section">
-        <h3>Add a link to your project</h3>
-        {{ form.url.errors }}
-        {{ form.url }}
     </div>
 
     <a class="add-place-cancel-button">cancel</a>
