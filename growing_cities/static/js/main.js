@@ -247,6 +247,10 @@ GC.trailer = {
             // Play it now if we should
             if (GC.play_trailer) {
                 // Auto-play trailer
+
+                // NB: This does not work when the Film page is initially
+                // loaded, the map page is loaded, then the "Watch the Trailer"
+                // button is invoked. But it does work from every other page.
                 GC.play_trailer = false;
                 $('#trailer-player').ScrollTo();
                 GC.trailer_player.api('play');
