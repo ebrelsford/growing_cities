@@ -47,19 +47,18 @@ GC.onStateChangeStart = function() {
  * Handle statechangecomplete event from ajaxpages
  */
 GC.onStateChangeComplete = function() {
+    $('#content-wrapper').scrollTop(0);
     GC.setHeights();
     GC.submenu.initialize();
     GC.findLocationByIP();
     GC.setRowHeights();
     GC.trailer.undoMakeRoom();
     GC.updateWatchTheTrailerButton();
-    GC.trailer.initialize();
+    $('#map').placemap('toggleMapDrawer');
+    $('input[type=text], textarea').placeholder();
     GC.initializeFileInputs();
     GC.initializeStoryForm();
-    $('#map').placemap('toggleMapDrawer');
-
-    $('input[type=text], textarea').placeholder();
-    $('#content-wrapper').animate({ scrollTop: 0});
+    GC.trailer.initialize();
 };
 
 
@@ -557,23 +556,34 @@ $(window).load(function() {
 });
 
 $(document).ready(function() {
-    GC.setHeights();
+    /*
+     * Things that should only have to happen once, on the initial load.
+     */
     GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
-
-    // Initialize watch the trailer/back to map button
     GC.initializeWatchTheTrailerButton();
+    $('#map-city').chosen();
+    $('#map-activities').chosen();
+    GC.buyButton.position();
+    GC.loadAddLocationPane();
 
+    if ($('#map').length === 1) {
+        GC.mapOverlay.show();
+    }
+
+
+    /*
+     * Things that should happen on every page load.
+     */
+    GC.setHeights();
     GC.submenu.initialize();
-
+    GC.findLocationByIP();
+    GC.updateWatchTheTrailerButton();
+    $('input[type=text], textarea').placeholder();
     GC.initializeFileInputs();
     GC.initializeStoryForm();
     GC.trailer.initialize();
 
-    $('input[type=text], textarea').placeholder();
-
-    $('#map-city').chosen();
-    $('#map-activities').chosen();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
@@ -593,21 +603,9 @@ $(document).ready(function() {
         return false;
     });
 
-    if ($('#map').length === 1) {
-        GC.mapOverlay.show();
-    }
-
-    GC.buyButton.position();
-    GC.updateWatchTheTrailerButton();
-
-    // Get ready for zooming
-    GC.findLocationByIP();
-
     $('.add-place-button').click(function() {
         $('#map-drawer')
             .addClass('add-location')
             .scrollTop(0);
     });
-
-    GC.loadAddLocationPane();
 });
