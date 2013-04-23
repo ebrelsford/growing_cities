@@ -498,6 +498,7 @@ body.loading .loading-indicator {
 #add-place-form textarea {
     color: #E7E8D6;
     font-size: 18px;
+    line-height: 18px;
     width: 100%;
 }
 
@@ -1124,6 +1125,21 @@ ul.story-list li {
     width: 100%;
 }
 
+#map-drawer .chzn-choices {
+    background: url(/static/img/city-filterinput-bg.png);
+    border: 0;
+}
+
+#map-drawer .chzn-choices .search-field {
+    width: 100%;
+}
+
+#map-drawer .chzn-container-active .chzn-choices .search-field input {
+    color: #E7E8D6 !important;
+    height: 100%;
+    width: 100% !important;
+}
+
 #map-drawer .chzn-container-active .chzn-single {
     border: 0;
     box-shadow: 0;
@@ -1216,10 +1232,12 @@ ul.story-list li {
     -webkit-box-shadow: 0 0 0;
     -moz-box-shadow: 0 0 0;
     box-shadow: 0 0 0;
-    margin-top: -29px;
     top: 0;
 }
 
+#map-drawer .chzn-container-single .chzn-drop {
+    margin-top: -29px;
+}
 
 /*
  * timePicker

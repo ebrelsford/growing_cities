@@ -304,12 +304,14 @@ GC.moveToUserLocation = function(lat, lon) {
 
 GC.initializeAddLocationPane = function() {
     $mapDrawer = $('#map-drawer');
+    $('.add-place-activities select').chosen();
 
     var $addPlaceForm = $('#add-place-form');
     $addPlaceForm
         .ajaxForm({
             target: $('#map-drawer-add-pane'), 
             success: function() {
+                $('.add-place-activities select').chosen();
                 $(document.body).ajaxify();
                 initializeFiber();
                 $(window).trigger('formajaxsuccess');
