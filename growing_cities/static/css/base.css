@@ -117,6 +117,10 @@ h1 {
     text-align: right;
 }
 
+.terms p {
+    padding: 0;
+}
+
 
 /*
  * _layout_
