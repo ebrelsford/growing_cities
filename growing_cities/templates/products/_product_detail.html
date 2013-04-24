@@ -1,8 +1,8 @@
-{% load fiber_tags %}
+{% load fiber_tags imagekit %}
 
 <div>
 
-    <img src="{{ product.image.url }}" />
+    {% thumbnail '150x150' product.image %}
     <div>
         {{ product.text|safe }}
 

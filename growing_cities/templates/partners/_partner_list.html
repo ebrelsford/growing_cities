@@ -1,16 +1,19 @@
-<div class="partner-list">
+<div class="partner-list grid-table">
     {% for partner in partners %}
         {% cycle 'left' 'middle' 'right' as position silent %}
+
         {% if position == 'left' %}
-        <div class="partner-row count-{{ forloop.counter }} match-row-heights">
+        <div class="grid-row count-{{ forloop.counter }}">
         {% endif %}
-            <div class="partner grid grid-1-3 {{ position }} match-row-height">
+
+            <div class="grid-cell grid grid-1-3 {{ position }}">
                 {% include "partners/_partner_detail.html" %}
             </div>
+
         {% if position == 'right' %}
-            <div class="clear"></div>
         </div>
         {% endif %}
+
     {% endfor %}
     <div class="clear"></div>
 </div>

@@ -51,7 +51,6 @@ GC.onStateChangeComplete = function() {
     GC.setHeights();
     GC.submenu.initialize();
     GC.findLocationByIP();
-    GC.setRowHeights();
     GC.trailer.undoMakeRoom();
     GC.updateWatchTheTrailerButton();
     $('#map').placemap('toggleMapDrawer');
@@ -99,27 +98,6 @@ GC.setHeights = function() {
     $('#map').height(innerDivHeight - 4);
     $('#map-drawer').outerHeight(innerDivHeight - 4);
     $('#map-overlay').outerHeight(innerDivHeight);
-};
-
-GC.setRowHeights = function() {
-    var $rows = $('.match-row-heights');
-    if ($rows.length === 0) return;
-
-    var height = 0;
-    $rows.each(function(i) {
-        var $rowElements = $(this).find('.match-row-height');
-
-        // Find the tallest element
-        $rowElements.each(function(i) {
-            var thisHeight = $(this).outerHeight();
-            if (thisHeight > height) height = thisHeight;
-        });
-
-        // Make everything that tall
-        $rowElements.each(function(i) {
-            $(this).outerHeight(height);
-        });
-    });
 };
 
 
@@ -555,9 +533,6 @@ $(window).on('formajaxsuccess', function() {
 });
 
 $(window).load(function() {
-    // Make grid elements that should have the same height match
-    GC.setRowHeights();
-
     // Buy button likes to have other things positioned first
     GC.buyButton.position();
 });
