@@ -1,0 +1,19 @@
+<div class="teammember-list grid-table">
+    {% for member in teammembers %}
+        {% cycle 'left' 'right' as position silent %}
+
+        {% if position == "left" %}
+        <div class="grid-row count-{{ forloop.counter }}">
+        {% endif %}
+
+            <div class="grid-cell grid grid-1-2 {{ position }}">
+                {% include "team/_teammember_detail.html" %}
+            </div>
+
+        {% if position == "right" %}
+        </div>
+        {% endif %}
+
+    {% endfor %}
+    <div class="clear"></div>
+</div>

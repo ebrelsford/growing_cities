@@ -44,20 +44,7 @@
             add to the team
         </a>
         {% endif %}
-        {% for member in teammembers %}
-            {% cycle 'left' 'right' as position silent %}
-            {% if position == "left" %}
-            <div class="team-member-row count-{{ forloop.counter }} match-row-heights">
-            {% endif %}
-                <div class="team-member grid grid-1-2 {{ position }} match-row-height">
-                    {% include "team/_teammember_detail.html" %}
-                </div>
-            {% if position == "right" %}
-                <div class="clear"></div>
-            </div>
-            {% endif %}
-        {% endfor %}
-        <div class="clear"></div>
+        {% include "team/_teammember_list.html" %}
     </div>
 
     <div class="content-section press">
