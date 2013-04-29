@@ -103,6 +103,9 @@
                 });
             });
 
+            // Make external links open in new tabs
+            $this.find('a').not(':internal').attr('target', '_blank');
+
 			// Chain
 			return $this;
 		};
