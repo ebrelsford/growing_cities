@@ -1,0 +1,79 @@
+{% extends "admin/change_form.html" %}
+{% load i18n imagekit %}
+
+{% block extrahead %}
+<style type="text/css">
+    ins, del {
+    text-decoration:none;
+    }
+
+    del {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#FFCCCC none repeat scroll 0 0;
+    }
+
+    ins {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#BBFFBB none repeat scroll 0 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% block object-tools %}
+    {% if object_admin_url %}
+        <ul class="object-tools">
+            <li>
+                <a href="{{ object_admin_url }}" class="historylink">
+                    {% trans "Change object" %}
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<div>
+<form enctype="multipart/form-data" action="" method="post" id="moderatedobject_form">
+    {% csrf_token %}
+
+	<fieldset class="module aligned ">
+        <h2>Object differences {{ original.pk }}</h2>
+
+        {% for change in changes %}
+        <div class="form-row {{ change.verbose_name }}">
+            <div>
+                <label style="font-size: 14px; font-weight: bold;">
+                    {{ change.verbose_name }}
+                </label>
+                <p style="width:800px;">{{ change.diff|safe }}</p>
+            </div>
+        </div>
+        {% endfor %}
+	</fieldset>
+
+    {% if original.content_object.photos.all.count > 0 %}
+	<fieldset class="module aligned ">
+        <h2>Photo</h2>
+        <div class="form-row photo">
+            {% thumbnail '150x150' original.content_object.photos.all.0.original_image %}
+        </div>
+	</fieldset>
+    {% endif %}
+
+	{% for fieldset in adminform %}
+		{% include "admin/includes/fieldset.html" %}
+	{% endfor %}
+
+    <div class="submit-row" >
+        <input type="submit" value="Approve" name="approve" />
+        <input type="submit" value="Reject" name="reject"  />
+    </div>
+
+</form>
+</div>
+{% endblock %}
