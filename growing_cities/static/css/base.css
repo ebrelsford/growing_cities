@@ -568,6 +568,11 @@ body.loading .loading-indicator {
     width: 100%;
 }
 
+#add-place-form input[type="file"],
+#add-place-form .image-input-button {
+    margin-top: 0;
+}
+
 #add-place-form .image-input-overlay {
     width: 100%;
 }
