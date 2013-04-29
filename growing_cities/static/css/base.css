@@ -1054,6 +1054,11 @@ ul.story-list li {
     padding: 10px;
 }
 
+.content-page-form input[type="text"],
+.content-page-form textarea {
+    border: 0;
+}
+
 .content-page-form input {
     width: 80%;
 }
