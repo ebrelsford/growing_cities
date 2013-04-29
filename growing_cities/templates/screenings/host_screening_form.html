@@ -52,6 +52,15 @@
             </div>
             <div class="grid grid-1-3">
                 <div>
+                    {{ form.venue_address_line1.label_tag }}
+                </div>
+                <div>
+                    {{ form.venue_address_line1.errors }}
+                    {{ form.venue_address_line1 }}
+                </div>
+            </div>
+            <div class="grid grid-1-3">
+                <div>
                     {{ form.venue_city.label_tag }}
                 </div>
                 <div>
@@ -59,6 +68,9 @@
                     {{ form.venue_city }}
                 </div>
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="grid grid-1-3">
                 <div>
                     {{ form.venue_state_province.label_tag }}
@@ -66,6 +78,15 @@
                 <div>
                     {{ form.venue_state_province.errors }}
                     {{ form.venue_state_province }}
+                </div>
+            </div>
+            <div class="grid grid-1-3">
+                <div>
+                    {{ form.venue_postal_code.label_tag }}
+                </div>
+                <div>
+                    {{ form.venue_postal_code.errors }}
+                    {{ form.venue_postal_code }}
                 </div>
             </div>
             <div class="clear"></div>

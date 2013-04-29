@@ -17,8 +17,10 @@ class HostScreeningFormView(FormView):
         # Create the venue
         venue, created = Venue.objects.get_or_create(
             name=form.cleaned_data['venue_name'],
+            address_line1=form.cleaned_data['venue_address_line1'],
             city=form.cleaned_data['venue_city'],
             state_province=form.cleaned_data['venue_state_province'],
+            postal_code=form.cleaned_data['venue_postal_code'],
         )
 
         # Create the screening
