@@ -154,8 +154,12 @@ class FindCityView(JSONView):
     """
 
     def get_context_data(self, **kwargs):
-        lon = float(self.request.GET.get('lon', 0))
-        lat = float(self.request.GET.get('lat', 0))
+        try:
+            lon = float(self.request.GET.get('lon', 0))
+            lat = float(self.request.GET.get('lat', 0))
+        except Exception:
+            lon = 0
+            lat = 0
         miles = self.request.GET.get('miles', None)
         return {
             'city': self._find_city(lon, lat, miles=miles),
