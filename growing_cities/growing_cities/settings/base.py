@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'buttons',
     'contact',
     'growing_places',
+    'howtos',
     'news',
     'newsletter',
     'pages',

@@ -1,0 +1,21 @@
+{% load fiber_tags imagekit %}
+
+<div>
+    <a href="{{ howto.link }}">
+        {% thumbnail '150x150' howto.image %}
+    </a>
+
+    <div>
+        {{ howto.text|safe }}
+
+        <span class="howto-name">
+            {{ howto.name }}
+        </span>
+    </div>
+</div>
+
+{% if 'change_howto' in perms %}
+<a href="{% url "admin:howtos_howto_change" howto.pk %}" class="no-ajax">
+    edit
+</a>
+{% endif %}
