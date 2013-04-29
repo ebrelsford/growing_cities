@@ -178,8 +178,8 @@ GC.mapDrawer = {
             })
             .addClass('is-open');
 
-        // move any map controls on the left
-        $('.leaflet-left').animate({
+        // move top map controls on the left
+        $('.leaflet-left.leaflet-top').animate({
             left: newWidth,
         }, 'fast');
     },
