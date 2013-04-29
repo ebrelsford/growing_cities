@@ -18,7 +18,7 @@ class GrowingPlaceForm(BaseModeratedObjectForm):
         label=_('How can people get involved?'),
         queryset=Activity.objects.all(),
         required=False,
-        widget=forms.SelectMultiple(attrs={'data-placeholder': 'Pick activities'}),
+        widget=forms.SelectMultiple(attrs={'data-placeholder': 'Pick'}),
     )
     name = forms.CharField(
         label="What's your project name?",
