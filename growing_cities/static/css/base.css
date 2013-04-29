@@ -1325,8 +1325,8 @@ ul.story-list li {
     top: 0;
 }
 
-#map-drawer .chzn-container-single .chzn-drop {
-    margin-top: -29px;
+#map-drawer .chzn-container-multi .chzn-drop {
+    margin-top: 29px;
 }
 
 /*

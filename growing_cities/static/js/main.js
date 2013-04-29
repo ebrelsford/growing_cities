@@ -285,15 +285,21 @@ GC.moveToUserLocation = function(lat, lon) {
 
 GC.initializeAddLocationPane = function() {
     $mapDrawer = $('#map-drawer');
-    $('.add-place-activities select').chosen();
-    GC.initializeFileInputs();
 
-    var $addPlaceForm = $('#add-place-form');
-    $addPlaceForm
+    var initializeForm = function(selector) {
+        $(selector).find('.add-place-activities select').chosen({ 
+            width: '100%',
+        });
+        GC.initializeFileInputs();
+    };
+
+    initializeForm('#add-place-form');
+
+    $('#add-place-form')
         .ajaxForm({
             target: $('#map-drawer-add-pane'), 
             success: function() {
-                $('.add-place-activities select').chosen();
+                initializeForm('#add-place-form');
                 $(document.body).ajaxify();
                 initializeFiber();
                 $(window).trigger('formajaxsuccess');
