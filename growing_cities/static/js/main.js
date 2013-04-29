@@ -284,36 +284,38 @@ GC.moveToUserLocation = function(lat, lon) {
 
 
 GC.initializeAddLocationPane = function() {
-    $mapDrawer = $('#map-drawer');
-
     var initializeForm = function(selector) {
         $(selector).find('.add-place-activities select').chosen({ 
             width: '100%',
         });
+        $(selector).addplaceform({
+            placemapSelector: '#map',
+        });
         GC.initializeFileInputs();
-    };
 
-    initializeForm('#add-place-form');
+        $mapDrawer = $('#map-drawer');
+        $mapDrawer.find('.add-place-cancel-button').click(function() {
+            $mapDrawer
+                .removeClass('add-location')
+                .scrollTop(0);
+        });
 
-    $('#add-place-form')
-        .ajaxForm({
+        $(selector).ajaxForm({
             target: $('#map-drawer-add-pane'), 
             success: function() {
-                initializeForm('#add-place-form');
                 $(document.body).ajaxify();
                 initializeFiber();
                 $(window).trigger('formajaxsuccess');
-            },
-        })
-        .addplaceform({
-            placemapSelector: '#map',
-        });
 
-    $mapDrawer.find('.add-place-cancel-button').click(function() {
-        $mapDrawer
-            .removeClass('add-location')
-            .scrollTop(0);
-    });
+                // Initialize the form when it is loaded via AJAX after submit
+                initializeForm('#add-place-form');
+            },
+        });
+    };
+
+    // Initialize the form the first time
+    $(window).trigger('formajaxsuccess');
+    initializeForm('#add-place-form');
 };
 
 
@@ -531,7 +533,6 @@ $(window).on('statechangecomplete', GC.onStateChangeComplete);
 $(window).on('formajaxsuccess', GC.initializeFileInputs);
 $(window).on('formajaxsuccess', GC.initializeStoryForm);
 $(window).on('formajaxsuccess', function() {
-    GC.initializeAddLocationPane();
     $('.add-place-success-button').click(function() {
         $('#map-drawer').removeClass('add-location');
         GC.loadAddLocationPane();
