@@ -1050,8 +1050,8 @@ ul.story-list li {
 
 .content-page-form input,
 .content-page-form textarea {
-    font-size: 24px;
-    padding: 10px;
+    font-size: 22px;
+    padding: 5px;
 }
 
 .content-page-form input[type="text"],
