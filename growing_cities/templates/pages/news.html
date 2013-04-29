@@ -8,19 +8,43 @@
 
 <div>
 
-    <div class="grid grid-1-4 news-twitter">
-        <div>The Latest</div>
-        <div class="meta twitter-via">via twitter</div>
+    <div class="grid grid-1-4">
 
-        {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
-        <ul class="tweets">
-            {% for tweet in tweets %}
-            <li class="tweet">
-                <div class="tweet-content">{{ tweet.content|urlize|make_links_target_blank|safe }}</div>
-                at <a class="twitter-date" href="{{ tweet.url }}" target="_blank">{{ tweet.created_date }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="news-signup">
+            <script>
+                $(document).ready(function() {
+                    $('#signup-form').load('{% url "newsletter:form" %}', function() {
+                        $(document.body).ajaxify();
+
+                        $('#signup-form form').submit(function() {
+                            $(this).find(':input[type=submit]').attr('disabled', 'disabled');
+                            $(this).addClass('submitting');
+                        });
+                    });
+                });
+            </script>
+
+            <div class="signup lead-in">
+                {% show_page_content "signup-lead-in" %}
+            </div>
+
+            <div id="signup-form" class="ajax-form-wrapper"></div>
+        </div>
+
+        <div class="news-twitter">
+            <div>The Latest</div>
+            <div class="meta twitter-via">via twitter</div>
+
+            {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
+            <ul class="tweets">
+                {% for tweet in tweets %}
+                <li class="tweet">
+                    <div class="tweet-content">{{ tweet.content|urlize|make_links_target_blank|safe }}</div>
+                    at <a class="twitter-date" href="{{ tweet.url }}" target="_blank">{{ tweet.created_date }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
     <div class="grid grid-3-4 news-wordpress">

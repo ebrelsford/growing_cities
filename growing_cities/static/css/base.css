@@ -888,6 +888,16 @@ ul.story-list li {
     text-align: center;
 }
 
+.news-signup {
+    border-bottom: 1px solid #D5D3C7;
+    padding: 20px;
+}
+
+.news-signup #signup-form input {
+    font-size: 18px;
+    padding: 5px;
+}
+
 .twitter-date {
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
