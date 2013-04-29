@@ -1,4 +1,4 @@
-<h2 class="map-drawer-title">Add Your Location</h2>
+<h2 class="map-drawer-title">Add Your Project</h2>
 <form action="{% url "gcplace_place_add" %}" id="add-place-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -55,6 +55,6 @@
     </button>
 
     <button class="add-place-save-button action-button action-button-b" type="submit">
-        Add My Location
+        Add My Project
     </button>
 </form>
