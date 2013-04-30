@@ -8,14 +8,7 @@
 
 <h3 style="display: none;">Stories</h3>
 <div class="story-list-wrapper">
-    <ul class="story-list">
-    {% for story in stories %}
-        <li class="grid grid-1-3 story">
-            {% include "stories/_story_detail.html" %}
-        </li>
-    {% endfor %}
-    </ul>
-    <div class="clear"></div>
+    {% include "stories/_story_list.html" %}
 </div>
 
 <div class="story-submit">
