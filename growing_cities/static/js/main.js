@@ -56,6 +56,7 @@ GC.onStateChangeComplete = function() {
     $('#map').placemap('toggleMapDrawer');
     $('input[type=text], textarea').placeholder();
     GC.initializeFileInputs();
+    GC.initializeStoryCarousel();
     GC.initializeStoryForm();
     GC.trailer.initialize();
 };
@@ -521,6 +522,34 @@ GC.initializeStoryForm = function() {
 };
 
 
+GC.initializeStoryCarousel = function() {
+    var $carouselWrapper = $('.story-list-wrapper');
+
+    var loadStoryPage = function(carousel, page_number) {
+        carousel.lock();
+        var url = $carouselWrapper.data('list-url') + '?page=' + page_number;
+        $.get(url, function(html) {
+            carousel.add(page_number, html);   
+            carousel.unlock();
+        });
+    };
+
+    $carouselWrapper.jcarousel({
+        itemLoadCallback: function(carousel, state) {
+            for (var i = carousel.first; i <= carousel.last; i++) {
+                // Check if the item already exists
+                if (!carousel.has(i)) {
+                    loadStoryPage(carousel, i);
+                }
+            }
+        },
+        scroll: 1,
+        size: $carouselWrapper.data('list-pages'),
+        visible: 1,
+    });
+};
+
+
 /*
  * Event handling and initialization.
  */
@@ -569,6 +598,7 @@ $(document).ready(function() {
     GC.updateWatchTheTrailerButton();
     $('input[type=text], textarea').placeholder();
     GC.initializeFileInputs();
+    GC.initializeStoryCarousel();
     GC.initializeStoryForm();
     GC.trailer.initialize();
 

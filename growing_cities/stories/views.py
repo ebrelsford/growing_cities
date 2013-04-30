@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -14,3 +14,11 @@ class CreateStoryView(CreateView):
 
 class DetailStoryView(DetailView):
     model = Story
+
+
+class ListStoryView(ListView):
+    model = Story
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Story.objects.filter(featured=True)

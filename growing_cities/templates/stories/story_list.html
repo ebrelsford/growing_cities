@@ -1,5 +1,5 @@
 <div class="story-list grid-table">
-    {% for story in stories %}
+    {% for story in story_list %}
         {% cycle 'left' 'middle' 'right' as position silent %}
 
         {% if position == 'left' %}
@@ -13,6 +13,10 @@
         {% if position == 'right' %}
         </div>
         {% endif %}
+
+        {% comment %}
+        TODO fill rows with less than three items
+        {% endcomment %}
 
     {% endfor %}
 </div>

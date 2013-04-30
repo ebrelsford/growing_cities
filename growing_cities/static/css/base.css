@@ -238,7 +238,7 @@ h1 {
 }
 
 .loading-indicator {
-    background: url(/static/img/loading.gif);
+    background: url(/static/img/loading.gif) no-repeat;
     display: none;
     height: 128px;
     position: absolute;
@@ -784,6 +784,7 @@ input[type="file"] {
 
 .story-list .grid-cell {
     border: 0;
+    height: 175px;
     overflow-x: auto;
     padding: 15px;
 }

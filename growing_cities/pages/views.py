@@ -1,3 +1,5 @@
+from math import ceil
+
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now
 from django.views.generic import TemplateView
@@ -31,10 +33,12 @@ class LearnPage(FiberPageMixin, TemplateView):
     template_name = 'pages/learn.html'
 
     def get_context_data(self):
+        stories = Story.objects.filter(featured=True)
+
         context = super(LearnPage, self).get_context_data()
         context['books'] = Book.objects.all()[:6]
         context['howtos'] = HowTo.objects.all()[:6]
-        context['stories'] = Story.objects.filter(featured=True)[:6]
+        context['story_pages'] = int(ceil(stories.count() / 6.0))
         context['story_form'] = StoryForm()
         return context
 
