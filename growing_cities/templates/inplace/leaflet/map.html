@@ -50,6 +50,7 @@
 
 
         function getMapResults(bboxString, activityPks, onSuccess) {
+            startLoading();
             var url = '{% url "gcplace_places_find" %}?';
             url += $.param({
                 activities: activityPks.join(','),
@@ -69,7 +70,6 @@
          * Get parameters for loading map results, get them.
          */
         function reloadMapResults() {
-            startLoading();
             var bbox = $('#map').data('placemap').map.getBounds().toBBoxString();
             var activityPks = [];
             $('#map-activities option:selected').each(function() {
