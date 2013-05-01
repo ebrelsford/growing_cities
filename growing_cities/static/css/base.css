@@ -1087,7 +1087,11 @@ input[type="file"] {
 }
 
 #ui-datepicker-div {
-    font-size: 12px;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    font-size: 14px;
+    font-family: "Bookman Regular", serif;
 }
 
 
@@ -1348,8 +1352,9 @@ div.time-picker ul {
 
 div.time-picker li {
     cursor: pointer;
-    height: 10px;
-    font: 12px/1 Helvetica, Arial, sans-serif;
+    height: 12px;
+    font-family: "Bookman Regular", serif;
+    font-size: 14px;
     padding: 4px 3px;
 }
 
