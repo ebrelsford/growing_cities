@@ -1,0 +1,12 @@
+{{#each places}}
+<li class="map-result" data-placeid="{{id}}">
+    <div class="thumbnail">
+        {{#if thumbnail}}
+        <img src="{{thumbnail}}" />
+        {{/if}}
+    </div>
+    <div class="name">{{name}}</div>
+    <div class="location">{{city}}, {{state_province}}</div>
+    <div class="clear"></div>
+</li>
+{{/each}}

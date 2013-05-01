@@ -8,28 +8,11 @@
         function updateMapResults(places) {
             var $results = $('#map-results');
             clearMapResults();
-            $.each(places, function(i, place) {
-                var $result = $('<li/>');
-                $result
-                    .data('placeId', place.id)
-                    .addClass('map-result');
-                if (place.thumbnail !== null) {
-                    $result.append(
-                        $('<div/>')
-                            .addClass('thumbnail')
-                            .append($('<img/>')
-                                .attr('src', place.thumbnail))
-                    );
-                }
-                $result.append($('<div/>')
-                    .text(place.name)
-                    .addClass('name'));
-                $result.append($('<div/>')
-                    .text(place.city + ', ' + place.state_province)
-                    .addClass('location'));
-                $result.append($('<div/>').addClass('clear'));
-                $results.append($result);
-            });
+
+            $results.html(Handlebars.templates.mapresults({
+                'places': places,
+            }));
+
             doneLoading();
         }
 
@@ -115,9 +98,9 @@
             /*
              * Prepare activity selector.
              */
-            $('#map-activities:not(.initialized)').change(function(e) {
-                reloadMapResults();
-            }).addClass('initialized');
+            $('#map-activities:not(.initialized)')
+                .change(reloadMapResults)
+                .addClass('initialized');
 
 
             /*
@@ -129,7 +112,7 @@
                 if (!$target.hasClass('.map-result')) {
                     $target = $target.parent('.map-result');
                 }
-                $('#map').placemap('openPlace', $target.data('placeId'));
+                $('#map').placemap('openPlace', $target.data('placeid'));
             }).addClass('initialized');
 
 

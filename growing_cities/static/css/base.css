@@ -512,7 +512,7 @@ body.loading .loading-indicator {
 
 
 /* Map results (in sidebar) */
-.map-results-container.loading .loading-indicator {
+.map-results-container.loading .map-results-loading-indicator {
     background: url(/static/img/loading_small_map_drawer.gif);
     display: block;
     float: right;
