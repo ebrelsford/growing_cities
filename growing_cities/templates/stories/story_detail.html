@@ -4,7 +4,10 @@
 <div class="article-wrapper story-detail">
     <a href="{% url "pages_learn" %}">back</a>
     <h2>{{ story.title }}</h2>
-    <img class="story-detail-image" src="{{ story.image.url }}" />
-    {{ story.text|striptags|linebreaks }}
+
+    <div class="article-content">
+        <img class="story-detail-image" src="{{ story.image.url }}" />
+        {{ story.text|striptags|linebreaks }}
+    </div>
 </div>
 {% endblock %}

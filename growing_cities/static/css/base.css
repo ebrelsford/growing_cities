@@ -223,10 +223,13 @@ h1 {
 }
 
 .article-wrapper {
-    padding-bottom: 100px;
+    padding-bottom: 500px;
+    padding-top: 25px;
+}
+
+.article-content {
     padding-left: 50px;
     padding-right: 50px;
-    padding-top: 25px;
 }
 
 .errorlist {

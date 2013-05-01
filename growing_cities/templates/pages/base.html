@@ -7,9 +7,11 @@
 
         {% include "_submenu.html" %}
 
-        {% block page_content %}
-        {% show_page_content "main" %}
-        {% endblock %}
+        <div class="article-content">
+            {% block page_content %}
+            {% show_page_content "main" %}
+            {% endblock %}
+        </div>
 
     </div>
 {% endblock %}
