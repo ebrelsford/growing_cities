@@ -108,11 +108,10 @@ class FindPlacesView(JSONResponseMixin, ListView):
             raise Http404
 
     def get_queryset(self):
-        qs = super(FindPlacesView, self).get_queryset()
-
         # Find places in the bbox
         bbox = self._get_bbox()
-        qs = qs.filter(centroid__within=bbox)
+        qs = GrowingPlace.objects.filter(centroid__isnull=False,
+                                         centroid__within=bbox)
 
         activity_pks = self._get_activity_pks()
         if activity_pks:
