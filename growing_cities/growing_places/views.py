@@ -83,8 +83,7 @@ class CityBBOXView(JSONResponseMixin, ListView):
         }
 
     def get_queryset(self):
-        qs = super(CityBBOXView, self).get_queryset()
-        qs = qs.filter(**self._get_filters())
+        qs = GrowingPlace.objects.filter(**self._get_filters())
         return qs
 
     def _get_filters(self):
