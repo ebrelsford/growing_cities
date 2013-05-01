@@ -1,13 +1,27 @@
 {% extends "base.html" %}
+{% load imagekit videos_tags %}
+
+{% block title %}{{ story.title }}{% endblock %}
 
 {% block content %}
 <div class="article-wrapper story-detail">
-    <a href="{% url "pages_learn" %}">back</a>
-    <h2>{{ story.title }}</h2>
-
+    <div class="story-detail-back-link">
+        <a href="{% url "pages_learn" %}" class="meta">&laquo; back</a>
+    </div>
     <div class="article-content">
-        <img class="story-detail-image" src="{{ story.image.url }}" />
-        {{ story.text|striptags|linebreaks }}
+        <h2 class="story-detail-title">{{ story.title }}</h2>
+
+        {% if story.image %}
+            {% generateimage 'stories:detailthumbnail' source=story.image %}
+        {% endif %}
+
+        {% if story.video_url %}
+            {{ story.video_url|embed_by_url:"400px,245px" }}
+        {% endif %}
+
+        <p>
+            {{ story.text|striptags|linebreaks }}
+        </p>
     </div>
 </div>
 {% endblock %}

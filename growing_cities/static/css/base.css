@@ -814,6 +814,23 @@ input[type="file"] {
     max-width: 100%;
 }
 
+.story-detail .article-content {
+    text-align: center;
+}
+
+.story-detail .article-content img {
+}
+
+.story-detail-back-link {
+    margin-left: 15px;
+    text-align: left;
+}
+
+.story-detail-title {
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+
 .story-submit .lead-in {
     margin-bottom: 75px;
 }
