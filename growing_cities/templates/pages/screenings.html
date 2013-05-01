@@ -15,7 +15,7 @@
     {% show_page_content "screenings-lead-in" %}
 </div>
 
-<div class="screening-list-wrapper">
+<div class="grid grid-1-2 screening-list-wrapper">
     <ul class="screening-list">
     {% for screening in screenings %}
         <li class="screening">
@@ -29,16 +29,18 @@
     <div class="clear"></div>
 </div>
 
-<div class="host-screening lead-in">
-    {% show_page_content "host-screening-lead-in" %}
-    <button class="host-screening-form-show action-button action-button-a" type="button">
-        Host a screening
-    </button>
-</div>
-<div class="host-screening-instructions">
-    <div class="host-screening-instructions-text">
-        {% show_page_content "host-screening-instructions" %}
+<div class="grid grid-1-2 screenings-host-screening-wrapper">
+    <div class="host-screening lead-in">
+        {% show_page_content "host-screening-lead-in" %}
+        <button class="host-screening-form-show action-button action-button-a" type="button">
+            Host a screening
+        </button>
     </div>
-    <div id="host-screening-form-wrapper" class="ajax-form-wrapper" data-form-url="{% url "screenings:host_screening_form" %}"></div>
+    <div class="host-screening-instructions">
+        <div class="host-screening-instructions-text">
+            {% show_page_content "host-screening-instructions" %}
+        </div>
+        <div id="host-screening-form-wrapper" class="ajax-form-wrapper" data-form-url="{% url "screenings:host_screening_form" %}"></div>
+    </div>
 </div>
 {% endblock %}

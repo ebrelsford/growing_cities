@@ -836,12 +836,27 @@ input[type="file"] {
 }
 
 /* Screenings page */
+.screening-list-wrapper {
+    padding: 20px;
+}
+
+.screening {
+    margin-bottom: 50px;
+}
+
+.screenings-host-screening-wrapper {
+    border-left: 1px solid #D5D3C7;
+    padding: 20px;
+}
+
 .screening-location {
-    font-weight: bold;
+}
+
+.screening-time {
+    font-size: 24px;
 }
 
 .host-screening.lead-in {
-    padding-top: 25px;
 }
 
 .host-screening-instructions {

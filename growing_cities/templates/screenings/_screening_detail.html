@@ -1,14 +1,16 @@
 <div>
-    <span class="screening-location">
-        {{ screening.venue.city }}, {{ screening.venue.state_province }}
-    </span><br />
-    {{ screening.venue.name }}<br />
-    {{ screening.time }}<br />
-    {% if screening.price and screening.price != 0 %}
-    ${{ screening.price }}
-    {% else %}
-    free
-    {% endif %}
+    <div class="screening-time">{{ screening.time }}</div>
+    <div class="screening-price">
+        {% if screening.price and screening.price != 0 %}
+        ${{ screening.price }}
+        {% else %}
+        free
+        {% endif %}
+    </div>
+    <div class="screening-location">
+        {{ screening.venue.city }}, {{ screening.venue.state_province }} &mdash;
+        {{ screening.venue.name }}
+    </div>
 </div>
 
 {% if 'change_screening' in perms %}
