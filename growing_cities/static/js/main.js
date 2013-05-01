@@ -579,6 +579,8 @@ GC.initializeStoryCarousel = function() {
     };
 
     $carouselWrapper.jcarousel({
+        buttonNextHTML: '<div>&raquo;</div>',
+        buttonPrevHTML: '<div>&laquo;</div>',
         itemLoadCallback: function(carousel, state) {
             for (var i = carousel.first; i <= carousel.last; i++) {
                 // Check if the item already exists
