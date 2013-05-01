@@ -98,7 +98,10 @@
                     target: $(this), 
                     success: function() {
                         $body.ajaxify();
-                        initializeFiber();
+                        try {
+                            initializeFiber();
+                        }
+                        catch(e) { }
                         $window.trigger('formajaxsuccess');
                     },
                 });

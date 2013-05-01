@@ -287,7 +287,7 @@ body.loading .loading-indicator {
     text-transform: uppercase;
 }
 
-/* One common variation on the action button. */
+/* Variations on the action button. */
 .action-button-a {
     background-color: #545436;
     color: #E7E8D6;
@@ -296,6 +296,18 @@ body.loading .loading-indicator {
 .action-button-b {
     background-color: #DFC92B;
     color: #4C4A33;
+}
+
+.action-button-submit {
+    background: #E1DFD3;
+    border: 1px solid #B5B3A7;
+    display: block;
+    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 250px;
 }
 
 .form-row {
@@ -782,19 +794,6 @@ input[type="file"] {
     padding: 13px;
     padding-left: 0;
     text-decoration: underline;
-}
-
-.story-form-submit {
-    background: #E1DFD3;
-    border: 1px solid #B5B3A7;
-    cursor: pointer;
-    font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
-    font-size: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    text-align: center;
-    width: 250px;
 }
 
 .story-list .grid-cell {

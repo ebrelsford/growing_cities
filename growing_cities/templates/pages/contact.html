@@ -2,24 +2,11 @@
 {% load fiber_tags %}
 
 {% block page_content %}
-<script>
-    $(document).ready(function() {
-        $('#contact-form').load('{% url "contact_form:form" %}', function() {
-            $(document.body).ajaxify();
-
-            $('#contact-form form').submit(function() {
-                $(this).find(':input[type=submit]').attr('disabled', 'disabled');
-                $(this).addClass('submitting');
-            });
-        });
-    });
-</script>
-
 <div class="contact lead-in">
     {% show_page_content "lead-in" %}
 </div>
 
-<div id="contact-form" class="ajax-form-wrapper"></div>
+<div id="contact-form-wrapper" class="ajax-form-wrapper" data-form-url="{% url "contact_form:form" %}"></div>
 
 <div class="contact-mailing">
     {% show_page_content "mailing" %}

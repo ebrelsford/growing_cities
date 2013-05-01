@@ -55,9 +55,10 @@ GC.onStateChangeComplete = function() {
     GC.updateWatchTheTrailerButton();
     $('#map').placemap('toggleMapDrawer');
     $('input[type=text], textarea').placeholder();
+    GC.contactForm.load();
+    GC.hostScreeningForm.load();
     GC.initializeFileInputs();
     GC.initializeStoryCarousel();
-    GC.initializeStoryForm();
     GC.trailer.initialize();
 };
 
@@ -514,11 +515,54 @@ GC.initializeFileInputs = function() {
     });
 };
 
-GC.initializeStoryForm = function() {
-    $('.story-form-submit').click(function() {
-        $('.story-form form').submit();
-        return false;
-    });
+
+GC.contactForm = {
+
+    load: function() {
+        // Load the form first if it doesn't exist
+        var $formWrapper = $('#contact-form-wrapper');
+        $formWrapper.load($formWrapper.data('form-url'), function() {
+            $(document.body).ajaxify();
+            GC.contactForm.initialize();
+        });
+    },
+
+    initialize: function() {
+        $('#contact-form-wrapper').find('form').submit(function() {
+            $(this).find('button[type=submit]').attr('disabled', 'disabled');
+            $(this).addClass('submitting');
+        });
+    },
+
+};
+
+
+GC.hostScreeningForm = {
+
+    load: function() {
+        var $formWrapper = $('#host-screening-form-wrapper');
+        $formWrapper.load($formWrapper.data('form-url'), function() {
+            $(document.body).ajaxify();
+            GC.hostScreeningForm.initialize();
+        });
+    },
+
+    initialize: function() {
+        var $formWrapper = $('#host-screening-form-wrapper');
+        $formWrapper.find('form').submit(function() {
+            $(this).find('button[type=submit]').attr('disabled', 'disabled');
+            $(this).addClass('submitting');
+        });
+
+        $formWrapper.find('#id_date').datepicker({
+            minDate: 0,
+        });
+
+        $formWrapper.find('#id_time').timePicker({
+            show24Hours: false,
+        });
+    },
+
 };
 
 
@@ -559,8 +603,9 @@ $(window).on('statechangestart', GC.onStateChangeStart);
 $(window).on('statechangecomplete', GC.onStateChangeComplete);
 
 // Triggered on ajaxForm success
+$(window).on('formajaxsuccess', GC.contactForm.initialize);
+$(window).on('formajaxsuccess', GC.hostScreeningForm.initialize);
 $(window).on('formajaxsuccess', GC.initializeFileInputs);
-$(window).on('formajaxsuccess', GC.initializeStoryForm);
 $(window).on('formajaxsuccess', function() {
     $('.add-place-success-button').click(function() {
         $('#map-drawer').removeClass('add-location');
@@ -597,9 +642,10 @@ $(document).ready(function() {
     GC.findLocationByIP();
     GC.updateWatchTheTrailerButton();
     $('input[type=text], textarea').placeholder();
+    GC.contactForm.load();
+    GC.hostScreeningForm.load();
     GC.initializeFileInputs();
     GC.initializeStoryCarousel();
-    GC.initializeStoryForm();
     GC.trailer.initialize();
 
     $('.map-overlay-hide').click(function() {

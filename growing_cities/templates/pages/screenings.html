@@ -4,24 +4,6 @@
 {% block page_content %}
 <script>
     $(document).ready(function() {
-        $('#host-screening-form').load('{% url "screenings:host_screening_form" %}', function() {
-            $(document.body).ajaxify();
-
-            $('#host-screening-form form').submit(function() {
-                $(this).find(':input[type=submit]').attr('disabled', 'disabled');
-                $(this).addClass('submitting');
-            });
-
-            // TODO theme this
-            $('#id_date').datepicker({
-                minDate: 0,
-            });
-
-            $('#id_time').timePicker({
-                show24Hours: false,
-            });
-        });
-
         $('.host-screening-form-show').click(function() {
             $('.host-screening-instructions').slideToggle();
             return false;
@@ -57,6 +39,6 @@
     <div class="host-screening-instructions-text">
         {% show_page_content "host-screening-instructions" %}
     </div>
-    <div id="host-screening-form" class="ajax-form-wrapper"></div>
+    <div id="host-screening-form-wrapper" class="ajax-form-wrapper" data-form-url="{% url "screenings:host_screening_form" %}"></div>
 </div>
 {% endblock %}
