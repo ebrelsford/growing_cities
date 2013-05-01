@@ -627,8 +627,8 @@ body.loading .loading-indicator {
     width: 100%;
     z-index: 2000; /* get over Django Fiber gradient */
     background: url(/static/img/submenu-bg.png);
-    border-top: 1px solid #4C4A33;
-    border-bottom: 1px solid #4C4A33;
+    border-top: 1px solid #D5D3C7;
+    border-bottom: 1px solid #D5D3C7;
     padding-top: 20px;
     padding-bottom: 20px;
     height: 20px;
