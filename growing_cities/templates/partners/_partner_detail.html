@@ -2,16 +2,8 @@
 
 <div>
     <a href="{{ partner.link }}">
-        {% thumbnail '150x150' partner.image %}
+        {% thumbnail '150x150' partner.image -- alt=partner.name title=partner.name %}
     </a>
-
-    <div>
-        {{ partner.text|safe }}
-
-        <span class="partner-name">
-            {{ partner.name }}
-        </span>
-    </div>
 </div>
 
 {% if 'change_partner' in perms %}
