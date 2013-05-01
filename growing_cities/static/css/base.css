@@ -707,6 +707,13 @@ body.loading .loading-indicator {
 }
 
 
+.meta {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
 /* Map page */
 .map-marker {
     width: 34px;
@@ -1173,12 +1180,6 @@ input[type="file"] {
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     font-style: normal;
-}
-
-#map .leaflet-popup-content .meta {
-    font-family: Courier, "Lucida Console", monospace;
-    font-size: 12px;
-    font-weight: normal;
 }
 
 #map .leaflet-popup-content .address,

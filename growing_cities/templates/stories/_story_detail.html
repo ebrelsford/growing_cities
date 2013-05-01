@@ -8,5 +8,8 @@
     </a>
 {% else %}
     <p>{{ story.title }}</p>
-    <a href="{{ story.get_absolute_url }}">read more</a>
 {% endif %}
+
+<div class="story-detail-permalink meta">
+    <a href="{{ story.get_absolute_url }}">read more &raquo;</a>
+</div>
