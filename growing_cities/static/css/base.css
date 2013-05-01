@@ -1087,7 +1087,7 @@ input[type="file"] {
 }
 
 #ui-datepicker-div {
-    display: none;
+    font-size: 12px;
 }
 
 

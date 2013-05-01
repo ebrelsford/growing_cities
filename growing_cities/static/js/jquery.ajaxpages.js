@@ -32,7 +32,8 @@
 			completedEventName = 'statechangecomplete',
 
             // Don't ajaxify Django-fiber's sidebar links
-            excludedLinksSelector = '#df-sidebar a, .no-ajax',
+            excludedLinksSelector = '#df-sidebar a, .no-ajax, ' +
+                ' .ui-datepicker-prev, .ui-datepicker-next ',
  
             // Selector for forms that can be ajax-submitted
             formWrapperSelector = '.ajax-form-wrapper',
