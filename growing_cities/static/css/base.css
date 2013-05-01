@@ -944,9 +944,6 @@ input[type="file"] {
 
 
 /* Film page */
-.team-member.right {
-    border-right: 0;
-}
 
 .story-submit .lead-in,
 .film .lead-in {
@@ -987,23 +984,8 @@ input[type="file"] {
     padding-top: 0;
 }
 
-.team-member {
-    border-right: 1px solid #D5D3C7;
-    padding: 20px;
-}
-.team-member.right {
-    border-right: 0;
-}
-.team-member.count-1,
-.team-member.count-2 {
-    border-top: 0;
-}
-
-.team-member-row {
-    border-top: 1px solid #D5D3C7;
-}
-.team-member-row.count-1 {
-    border-top: 0;
+.teammember-cell {
+    text-align: left;
 }
 
 .team-member-thumbnail {
