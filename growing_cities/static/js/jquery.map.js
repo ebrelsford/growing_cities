@@ -133,10 +133,12 @@
 
         zoomTo: function(bbox) {
             var instance = this;
-            instance.map.fitBounds([
-                [bbox[1], bbox[0]],
-                [bbox[3], bbox[2]],
-            ]);
+            instance.map
+                .fitBounds([
+                    [bbox[1], bbox[0]],
+                    [bbox[3], bbox[2]],
+                ])
+                .zoomOut();
         },
 
         toggleMapDrawer: function() {
