@@ -306,7 +306,10 @@ GC.initializeAddLocationPane = function() {
             target: $('#map-drawer-add-pane'), 
             success: function() {
                 $(document.body).ajaxify();
-                initializeFiber();
+                try {
+                    initializeFiber();
+                }
+                catch(e) {}
                 $(window).trigger('formajaxsuccess');
 
                 // Initialize the form when it is loaded via AJAX after submit
