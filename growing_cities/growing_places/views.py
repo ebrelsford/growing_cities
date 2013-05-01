@@ -73,6 +73,9 @@ class JSONView(JSONResponseMixin, View):
 
 
 class CityBBOXView(JSONResponseMixin, ListView):
+    """
+    Get a bounding box for the GrowingPlaces matching the given city and state.
+    """
     allowed_filters = ('city', 'state_province',)
     model = GrowingPlace
 
