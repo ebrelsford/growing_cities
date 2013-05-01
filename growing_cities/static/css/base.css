@@ -255,9 +255,9 @@ textarea {
 .loading-indicator {
     background: url(/static/img/loading.gif) no-repeat;
     display: none;
-    height: 128px;
+    height: 50px;
     position: absolute;
-    width: 128px;
+    width: 50px;
 }
 
 body.loading .loading-indicator {
