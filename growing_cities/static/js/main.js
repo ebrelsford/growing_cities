@@ -272,6 +272,7 @@ GC.updateCitySelector = function(city) {
 
 
 GC.moveToUserLocation = function(lat, lon) {
+    if (!(lat && lon)) return;
     $.getJSON('/growing_places/city/find/?' + $.param({
         lat: lat,
         lon: lon,
