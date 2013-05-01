@@ -27,11 +27,11 @@ class Screening(models.Model):
             time = self.time.astimezone(get_current_timezone())
         except Exception:
             time = self.time
-        return '%s: %s' % (self.venue.name, time.strftime('%b %d, %Y at %I:%M %Z'))
+        return u'%s: %s' % (self.venue.name, time.strftime('%b %d, %Y at %I:%M %Z'))
 
 
 class Venue(Place):
     def __unicode__(self):
-        return self.name
+        return self.name or u'%d' % self.pk
 
 moderation.register(Screening, SiteModerator)
