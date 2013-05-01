@@ -285,14 +285,24 @@ GC.moveToUserLocation = function(lat, lon) {
 };
 
 
-GC.initializeAddLocationPane = function() {
-    var initializeForm = function(selector) {
+GC.addLocationForm = {
+    load: function() {
+        var $formWrapper = $('#map-drawer-add-pane');
+        $formWrapper.load($formWrapper.data('form-url'), function() {
+            $(document.body).ajaxify();
+            GC.addLocationForm.initialize();
+        });
+    },
+
+    initialize: function() {
+        var selector = '#add-place-form';
         $(selector).find('.add-place-activities select').chosen({ 
             width: '100%',
         });
         $(selector).addplaceform({
             placemapSelector: '#map',
         });
+
         GC.initializeFileInputs();
 
         $mapDrawer = $('#map-drawer');
@@ -302,33 +312,13 @@ GC.initializeAddLocationPane = function() {
                 .scrollTop(0);
         });
 
-        $(selector).ajaxForm({
-            target: $('#map-drawer-add-pane'), 
-            success: function() {
-                $(document.body).ajaxify();
-                try {
-                    initializeFiber();
-                }
-                catch(e) {}
-                $(window).trigger('formajaxsuccess');
-
-                // Initialize the form when it is loaded via AJAX after submit
-                initializeForm('#add-place-form');
-            },
+        $(selector).submit(function() {
+            $(this).find('button[type=submit]').attr('disabled', 'disabled');
+            $(this).addClass('submitting');
         });
-    };
 
-    // Initialize the form the first time
-    $(window).trigger('formajaxsuccess');
-    initializeForm('#add-place-form');
-};
+    },
 
-
-GC.loadAddLocationPane = function() {
-    $('#map-drawer-add-pane').load(
-        $('#map-drawer-add-pane').data('form-url'),
-        GC.initializeAddLocationPane
-    );
 };
 
 
@@ -608,13 +598,14 @@ $(window).on('statechangestart', GC.onStateChangeStart);
 $(window).on('statechangecomplete', GC.onStateChangeComplete);
 
 // Triggered on ajaxForm success
+$(window).on('formajaxsuccess', GC.addLocationForm.initialize);
 $(window).on('formajaxsuccess', GC.contactForm.initialize);
 $(window).on('formajaxsuccess', GC.hostScreeningForm.initialize);
 $(window).on('formajaxsuccess', GC.initializeFileInputs);
 $(window).on('formajaxsuccess', function() {
     $('.add-place-success-button').click(function() {
         $('#map-drawer').removeClass('add-location');
-        GC.loadAddLocationPane();
+        GC.addLocationForm.load();
     });   
 });
 
@@ -632,7 +623,7 @@ $(document).ready(function() {
     GC.initializeWatchTheTrailerButton();
     $('#map-city').chosen();
     $('#map-activities').chosen();
-    GC.loadAddLocationPane();
+    GC.addLocationForm.load();
 
     if ($('#map').length === 1) {
         GC.mapOverlay.show();

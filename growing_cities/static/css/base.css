@@ -608,6 +608,11 @@ body.loading .loading-indicator {
     width: 100%;
 }
 
+#add-place-form.submitting {
+    opacity: .5;
+    filter: alpha(opacity=.5);
+}
+
 
 /* Main menu */
 #mainmenu li {
