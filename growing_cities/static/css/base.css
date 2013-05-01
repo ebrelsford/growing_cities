@@ -47,6 +47,11 @@ a {
     color: #4C4A33;
 }
 
+a:hover {
+    color: #3e3e2e;
+    text-decoration: underline;
+}
+
 h1 {
     font-family: "Acier BAT Text Gris", Futura, Arial, sans-serif;
     font-size: 38px;
