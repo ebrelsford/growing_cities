@@ -112,20 +112,18 @@ GC.mapOverlay = {
     position: function() {
         var $relativeTo = $('#content-wrapper');
         $('#map-overlay')
-            .width($relativeTo.innerWidth() - 10)
-            .height($relativeTo.innerHeight() - 2)
+            .width($relativeTo.innerWidth())
+            .height($relativeTo.innerHeight())
             .position({
                 my: 'left top',
                 at: 'left+2 top+2',
                 of: $relativeTo,
-                collision: 'fit fit',
-                within: $relativeTo,
             });
     },
 
     show: function() {
-        GC.mapOverlay.position();
         $('#map-overlay').show();
+        GC.mapOverlay.position();
     },
 
     hide: function() {
