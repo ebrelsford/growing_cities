@@ -367,7 +367,7 @@ body.loading .loading-indicator {
     padding: 25px 10px;
     position: relative;
     width: 170px;
-    z-index: 1990;
+    z-index: 100;
 }
 
 .sidebar-section {
@@ -404,7 +404,7 @@ body.loading .loading-indicator {
     padding-top: 25px;
     position: absolute;
     width: 24%;
-    z-index: 1980; /* TODO something more appropriate */
+    z-index: 99;
 }
 
 #map-drawer.add-location {
@@ -661,7 +661,7 @@ body.loading .loading-indicator {
 
 .submenu {
     width: 100%;
-    z-index: 2000; /* get over Django Fiber gradient */
+    z-index: 100;
     background: url(/static/img/submenu-bg.png);
     border-top: 1px solid #D5D3C7;
     border-bottom: 1px solid #D5D3C7;
@@ -923,7 +923,7 @@ input[type="file"] {
     text-align: center;
     position:fixed;
     width: 150px;
-    z-index: 1980;
+    z-index: 100;
 }
 
 .buy-button-inner {
@@ -1180,6 +1180,10 @@ input[type="file"] {
     margin-bottom: 5px;
     width: 25px;
     height: 25px;
+}
+
+#map .leaflet-bottom {
+    z-index: 98;
 }
 
 #map .leaflet-control-zoom .leaflet-bar-part-top,
