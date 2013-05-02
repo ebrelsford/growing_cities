@@ -1393,6 +1393,10 @@ input[type="file"] {
     margin-top: 29px;
 }
 
+#map-drawer .chzn-container-multi .chzn-choices .search-choice {
+    line-height: 18px;
+}
+
 /*
  * timePicker
  */
