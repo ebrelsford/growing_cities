@@ -68,6 +68,11 @@ textarea {
     font-family: "Bookman Regular", serif;
 }
 
+form.submitting {
+    opacity: .5;
+    filter: alpha(opacity=.5);
+}
+
 
 /* Clearfix boilerplate */
 
@@ -608,11 +613,6 @@ body.loading .loading-indicator {
     width: 100%;
 }
 
-#add-place-form.submitting {
-    opacity: .5;
-    filter: alpha(opacity=.5);
-}
-
 
 /* Main menu */
 #mainmenu li {
@@ -745,6 +745,15 @@ body.loading .loading-indicator {
 /* Learn page */
 .story-lead-in {
 }
+
+.story-form-show {
+    display: block;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
 .story-form {
     padding: 50px;
     padding-top: 0;
@@ -837,7 +846,7 @@ input[type="file"] {
 }
 
 .story-submit .lead-in {
-    margin-bottom: 75px;
+    margin-bottom: 50px;
 }
 
 /* Screenings page */
@@ -1143,6 +1152,7 @@ input[type="file"] {
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
+    display: none;
     font-size: 14px;
     font-family: "Bookman Regular", serif;
 }

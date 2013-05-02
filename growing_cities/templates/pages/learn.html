@@ -2,6 +2,15 @@
 {% load fiber_tags %}
 
 {% block page_content %}
+<script>
+    $(document).ready(function() {
+        $('.story-form-show').click(function() {
+            $('.story-form').slideToggle();
+            return false;
+        });
+    });
+</script>
+
 <div class="learn lead-in">
     {% show_page_content "lead-in" %}
 </div>
@@ -24,7 +33,11 @@
         </div>
     </div>
 
-    <div class="story-form ajax-form-wrapper">
+    <button class="story-form-show action-button action-button-a" type="button">
+        Share your story
+    </button>
+
+    <div class="story-form ajax-form-wrapper" style="display: none;">
         {% with form=story_form %}
         {% include "stories/story_form.html" %}
         {% endwith %}

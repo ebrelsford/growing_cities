@@ -58,6 +58,7 @@ GC.onStateChangeComplete = function() {
     GC.contactForm.load();
     GC.hostScreeningForm.load();
     GC.initializeFileInputs();
+    GC.initializeForms();
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
 };
@@ -305,17 +306,13 @@ GC.addLocationForm = {
         });
 
         GC.initializeFileInputs();
+        GC.initializeForms();
 
         $mapDrawer = $('#map-drawer');
         $mapDrawer.find('.add-place-cancel-button').click(function() {
             $mapDrawer
                 .removeClass('add-location')
                 .scrollTop(0);
-        });
-
-        $(selector).submit(function() {
-            $(this).find('button[type=submit]').attr('disabled', 'disabled');
-            $(this).addClass('submitting');
         });
 
     },
@@ -491,6 +488,15 @@ GC.initializeWatchTheTrailerButton = function() {
 };
 
 
+GC.initializeForms = function() {
+    $('form').not('.initialized')
+        .submit(function() {
+            $(this).find('button[type=submit]').attr('disabled', 'disabled');
+            $(this).addClass('submitting');
+        })
+        .addClass('initialized');
+};
+
 /*
  * Story form
  */
@@ -522,10 +528,7 @@ GC.contactForm = {
     },
 
     initialize: function() {
-        $('#contact-form-wrapper').find('form').submit(function() {
-            $(this).find('button[type=submit]').attr('disabled', 'disabled');
-            $(this).addClass('submitting');
-        });
+        GC.initializeForms();
     },
 
 };
@@ -542,11 +545,9 @@ GC.hostScreeningForm = {
     },
 
     initialize: function() {
+        GC.initializeForms();
+
         var $formWrapper = $('#host-screening-form-wrapper');
-        $formWrapper.find('form').submit(function() {
-            $(this).find('button[type=submit]').attr('disabled', 'disabled');
-            $(this).addClass('submitting');
-        });
 
         $formWrapper.find('#id_date').datepicker({
             minDate: 0,
@@ -603,6 +604,7 @@ $(window).on('formajaxsuccess', GC.addLocationForm.initialize);
 $(window).on('formajaxsuccess', GC.contactForm.initialize);
 $(window).on('formajaxsuccess', GC.hostScreeningForm.initialize);
 $(window).on('formajaxsuccess', GC.initializeFileInputs);
+$(window).on('formajaxsuccess', GC.initializeForms);
 $(window).on('formajaxsuccess', function() {
     $('.add-place-success-button').click(function() {
         $('#map-drawer').removeClass('add-location');
@@ -642,6 +644,7 @@ $(document).ready(function() {
     GC.contactForm.load();
     GC.hostScreeningForm.load();
     GC.initializeFileInputs();
+    GC.initializeForms();
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
 
