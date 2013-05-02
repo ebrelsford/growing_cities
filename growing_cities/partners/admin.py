@@ -18,6 +18,7 @@ class PartnerAdmin(admin.ModelAdmin):
     admin_thumbnail = AdminThumbnail(image_field='thumbnail')
     form = PartnerForm
     list_display = ('name', 'admin_thumbnail', 'order',)
+    list_editable = ('order',)
     search_fields = ('name', 'text',)
 
 

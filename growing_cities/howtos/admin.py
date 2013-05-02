@@ -18,6 +18,7 @@ class HowToAdmin(admin.ModelAdmin):
     admin_thumbnail = AdminThumbnail(image_field='thumbnail')
     form = HowToForm
     list_display = ('name', 'admin_thumbnail', 'order',)
+    list_editable = ('order',)
     search_fields = ('name', 'text',)
 
 

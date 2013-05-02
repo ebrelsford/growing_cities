@@ -15,6 +15,7 @@ class TeamMemberAdmin(admin.ModelAdmin):
     admin_thumbnail = AdminThumbnail(image_field='thumbnail')
     form = TeamMemberForm
     list_display = ('name', 'order', 'admin_thumbnail',)
+    list_editable = ('order',)
     search_fields = ('name',)
 
 
