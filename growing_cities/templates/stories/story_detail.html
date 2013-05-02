@@ -11,15 +11,13 @@
     <div class="article-content">
         <h2 class="story-detail-title">{{ story.title }}</h2>
 
-        {% if story.image %}
-        <div class="story-detail-image">
-            {% generateimage 'stories:detailthumbnail' source=story.image %}
-        </div>
-        {% endif %}
-
         {% if story.video_url %}
         <div class="story-detail-video">
             {{ story.video_url|embed_by_url:"400px,245px" }}
+        </div>
+        {% elif story.image %}
+        <div class="story-detail-image">
+            {% generateimage 'stories:detailthumbnail' source=story.image %}
         </div>
         {% endif %}
 
