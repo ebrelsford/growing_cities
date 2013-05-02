@@ -119,8 +119,7 @@ class FindPlacesView(JSONResponseMixin, ListView):
         if activity_pks:
             qs = qs.filter(activities__in=activity_pks)
 
-        # Order by distance from the middle of bbox
-        return qs.distance(bbox.centroid).order_by('distance')[:25]
+        return qs.order_by('name')[:25]
 
     def _get_bbox(self):
         bbox_string = self.request.GET['bbox']
