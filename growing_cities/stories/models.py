@@ -39,8 +39,10 @@ class Story(models.Model):
     featured = models.BooleanField(_('featured'),
         default=True,
     )
+    order = models.PositiveIntegerField(_('order'), default=0)
 
     class Meta:
+        ordering = ('order',)
         verbose_name_plural = _('stories')
 
     @models.permalink
