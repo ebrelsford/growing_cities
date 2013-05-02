@@ -550,6 +550,10 @@ body.loading .loading-indicator {
     width: 50px;
 }
 
+.map-result .details {
+    margin-left: 60px;
+}
+
 .map-result .name {
     font-size: 14px;
     font-weight: bold;
@@ -562,11 +566,11 @@ body.loading .loading-indicator {
     font-weight: normal;
 }
 
-.map-result .location::after {
+.map-result .details::before {
     content: "\203a";
     float: right;
     font-size: 26px;
-    margin-top: -20px;
+    margin-top: 5px;
 }
 
 

@@ -109,8 +109,8 @@
             $('#map-results:not(.initialized)').click(function(e) {
                 // find the target map-result
                 var $target = $(e.target);
-                if (!$target.hasClass('.map-result')) {
-                    $target = $target.parent('.map-result');
+                if (!$target.hasClass('map-result')) {
+                    $target = $target.parents('.map-result');
                 }
                 $('#map').placemap('openPlace', $target.data('placeid'));
             }).addClass('initialized');

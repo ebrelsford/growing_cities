@@ -15,11 +15,11 @@ function program1(depth0,data) {
     + "\">\n    <div class=\"thumbnail\">\n        ";
   stack1 = helpers['if'].call(depth0, depth0.thumbnail, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"name\">";
+  buffer += "\n    </div>\n    <div class=\"details\">\n        <div class=\"name\">";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</div>\n    <div class=\"location\">";
+    + "</div>\n        <div class=\"location\">";
   if (stack1 = helpers.city) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.city; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -27,7 +27,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.state_province) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.state_province; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</div>\n    <div class=\"clear\"></div>\n</li>\n";
+    + "</div>\n    </div>\n    <div class=\"clear\"></div>\n</li>\n";
   return buffer;
   }
 function program2(depth0,data) {
