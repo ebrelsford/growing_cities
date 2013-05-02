@@ -2,17 +2,18 @@
     {% csrf_token %}
 
     <div class="from-row">
-        {{ form.name.errors }}
-        {{ form.email.errors }}
         <div class="grid grid-1-2">
+            {{ form.name.errors }}
             {{ form.name.label_tag }} {{ form.name }}
         </div>
         <div class="grid grid-1-2">
+            {{ form.email.errors }}
             {{ form.email.label_tag }} {{ form.email }}
         </div>
         <div class="clear"></div>
     </div>
     <div>
+        {{ form.body.errors }}
         {{ form.body.label_tag }} {{ form.body }}
     </div>
     <button class="action-button action-button-submit" type="submit">Submit</button>
