@@ -1248,13 +1248,20 @@ input[type="file"] {
     color: #4C4A33;
 }
 
-#map .leaflet-popup-content .mission {
+#map .leaflet-popup-content .popup-text {
     text-align: center;
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
     font-weight: normal;
+}
+
+#map .leaflet-popup-content .mission {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+#map .leaflet-popup-content .activities {
+    padding-top: 10px;
 }
 
 #map .leaflet-popup-content img {

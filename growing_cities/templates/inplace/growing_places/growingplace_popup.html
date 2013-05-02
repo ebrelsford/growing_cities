@@ -12,9 +12,18 @@
         {{ growingplace.city|default:"" }}, {{ growingplace.state_province|default:"" }}
     </div>
 
-    <div class="mission">
+    <div class="mission popup-text">
         {{ growingplace.mission|default:"" }}
     </div>
+
+    <div class="activities popup-text">
+        Things you can do here:
+        <ul>
+            {% for activity in growingplace.activities.all %}
+            <li>{{ activity }}</li>
+            {% endfor %}
+        </ul>
+    </ul>
 </div>
 
 <div class="website-link meta">
