@@ -315,6 +315,11 @@ body.loading .loading-indicator {
     width: 250px;
 }
 
+.action-button-submit-small {
+    font-size: 45px;
+    width: 200px;
+}
+
 .form-row {
     margin-bottom: 15px;
 }
