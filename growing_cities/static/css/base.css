@@ -760,10 +760,11 @@ body.loading .loading-indicator {
 
 .story-form-show {
     display: block;
+    font-size: 30px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
-    width: 200px;
+    width: 300px;
 }
 
 .story-form {
