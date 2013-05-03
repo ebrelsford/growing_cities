@@ -915,8 +915,8 @@ input[type="file"] {
 .shop .lead-in {
     font-size: 30px;
     font-style: none;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
     text-align: center;
 }
 
@@ -1031,8 +1031,8 @@ input[type="file"] {
 .story-submit .lead-in,
 .film .lead-in {
     text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .story-submit .lead-in-title,
