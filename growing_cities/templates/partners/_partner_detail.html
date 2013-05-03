@@ -6,6 +6,10 @@
     </a>
 </div>
 
+<div class="partner-text">
+    {{ partner.text }}
+</div>
+
 {% if 'change_partner' in perms %}
 <a href="{% url "admin:partners_partner_change" partner.pk %}" class="no-ajax">
     edit
