@@ -69,6 +69,7 @@
                             maxHeight: popupHeight,
                         };
                         if (L.Browser.mobile) {
+                            popupOptions.maxHeight = popupHeight = 150;
                             popupOptions.maxWidth = 200;
                         }
                         $.get(layer.feature.properties.popup_url, function(data) {
