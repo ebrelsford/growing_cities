@@ -616,6 +616,7 @@ GC.mobile = {
     initializeMenuBar: function() {
         $('#mobile-menu-bar').click(function() {
             $('#sidebar').show();
+            $('#mobile-menu-bar').hide();
         });
     },
 
@@ -626,6 +627,7 @@ GC.mobile = {
 
     onStateChangeStart: function() {
         if (GC.device_mobile) {
+            $('#mobile-menu-bar').show();
             $('#sidebar').hide();
         }
     },

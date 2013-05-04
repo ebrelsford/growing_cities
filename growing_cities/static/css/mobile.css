@@ -41,6 +41,9 @@
     .submenu {
         display: none;
     }
+    .sticky-wrapper {
+        display: none;
+    }
 
     .terms {
         display: none;
