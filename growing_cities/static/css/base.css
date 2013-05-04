@@ -28,6 +28,8 @@ body {
 
 img {
     border: 0;
+    height: auto;
+    max-width: 100%;
 }
 
 ul {
@@ -931,11 +933,17 @@ input[type="file"] {
 
 /* Shop page */
 .shop .lead-in {
-    font-size: 30px;
+    font-size: 20px;
     font-style: none;
-    margin-left: 5%;
-    margin-right: 5%;
     text-align: center;
+}
+
+@media (min-width: 800px) {
+    .shop .lead-in {
+        font-size: 30px;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 }
 
 #buy-button {
@@ -1024,8 +1032,14 @@ input[type="file"] {
 }
 
 .news-wordpress {
-    border-left: 1px solid #D5D3C7;
+    border-left: 0;
+    border-top: 1px solid #D5D3C7;
     padding: 20px;
+}
+
+@media (min-width: 800px) {
+    border-left: 1px solid #D5D3C7;
+    border-top: 0;
 }
 
 .wordpress-date {
