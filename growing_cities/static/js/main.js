@@ -15,6 +15,11 @@ GC = {
     trailer_player: null,
 
     /*
+     * Device info
+     */
+    device_mobile: false,
+
+    /*
      * User state
      */
     map_center: null,
@@ -41,6 +46,9 @@ GC.onStateChangeStart = function() {
 
     // Prepare the loading indicator
     GC.positionLoadingIndicator();
+
+    // Do any mobile-related things
+    GC.mobile.onStateChangeStart();
 };
 
 /*
@@ -61,6 +69,7 @@ GC.onStateChangeComplete = function() {
     GC.initializeForms();
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
+    GC.mobile.onStateChangeComplete();
 };
 
 
@@ -155,6 +164,7 @@ GC.mapDrawer = {
     },
 
     show: function($mapDrawer) {
+        if (GC.device_mobile) return;
         var newWidth = $('#content').outerWidth() * .25;
         var innerWidth = newWidth - GC.pxToInt($mapDrawer.css('padding-left')) 
             - GC.pxToInt($mapDrawer.css('padding-right'));;
@@ -401,6 +411,7 @@ GC.submenu = {
     },
 
     show: function() {
+        if (GC.device_mobile) return;
         $('.submenu').show();
         GC.submenu.position();
     },
@@ -412,10 +423,13 @@ GC.submenu = {
  * Loading indicator.
  */
 GC.positionLoadingIndicator = function() {
+    var relativeTo = '#content-wrapper';
+    if (GC.device_mobile) relativeTo = 'body';
+
     $('.loading-indicator').position({
         my: 'center center',
         at: 'center center',
-        of: '#content-wrapper',
+        of: relativeTo,
     });
 };
 
@@ -449,6 +463,7 @@ GC.buyButton = {
     },
 
     show: function() {
+        if (GC.device_mobile) return;
         $('#buy-button').show();
         GC.buyButton.position();
     },
@@ -589,6 +604,35 @@ GC.initializeStoryCarousel = function() {
 };
 
 
+GC.mobile = {
+
+    initialize: function() {
+        GC.device_mobile = ($(window).width() <= 480);
+        if (GC.device_mobile) {
+            GC.mobile.initializeMenuBar();
+        }
+    },
+
+    initializeMenuBar: function() {
+        $('#mobile-menu-bar').click(function() {
+            $('#sidebar').show();
+        });
+    },
+
+    onStateChangeComplete: function() {
+        if (GC.device_mobile) {
+        }
+    },
+
+    onStateChangeStart: function() {
+        if (GC.device_mobile) {
+            $('#sidebar').hide();
+        }
+    },
+
+};
+
+
 /*
  * Event handling and initialization.
  */
@@ -619,6 +663,7 @@ $(document).ready(function() {
     /*
      * Things that should only have to happen once, on the initial load.
      */
+    GC.mobile.initialize();
     GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
     GC.initializeWatchTheTrailerButton();

@@ -64,11 +64,15 @@
 
                         // TODO on click, make icon active
                         // TODO on de-select, make icon inactive
+                        var popupOptions = {
+                            autoPan: false,
+                            maxHeight: popupHeight,
+                        };
+                        if (L.Browser.mobile) {
+                            popupOptions.maxWidth = 300;
+                        }
                         $.get(layer.feature.properties.popup_url, function(data) {
-                            layer.bindPopup(data, {
-                                autoPan: false,
-                                maxHeight: popupHeight,
-                            }).openPopup();
+                            layer.bindPopup(data, popupOptions).openPopup();
                         });
 
                         // Center popup rather than fit popup.

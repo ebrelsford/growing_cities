@@ -73,6 +73,10 @@ form.submitting {
     filter: alpha(opacity=.5);
 }
 
+.mobile-only {
+    display: none;
+}
+
 
 /* Clearfix boilerplate */
 
@@ -156,7 +160,7 @@ form.submitting {
     width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .grid-1-6 {
         width: 16%;
     }
@@ -247,6 +251,13 @@ form.submitting {
 .article-content {
     padding-left: 50px;
     padding-right: 50px;
+}
+
+@media (min-width: 800px;) {
+    .article-content {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }
 
 .errorlist {
@@ -771,6 +782,13 @@ body.loading .loading-indicator {
 .story-form {
     padding: 50px;
     padding-top: 0;
+}
+
+@media (min-width: 800px;) {
+    .story-form {
+        padding: 10px;
+        padding-top: 0;
+    }
 }
 
 .story-form label {
