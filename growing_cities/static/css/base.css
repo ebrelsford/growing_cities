@@ -1053,8 +1053,10 @@ input[type="file"] {
 }
 
 @media (min-width: 800px) {
-    border-left: 1px solid #D5D3C7;
-    border-top: 0;
+    .news-wordpress {
+        border-left: 1px solid #D5D3C7;
+        border-top: 0;
+    }
 }
 
 .wordpress-date {
