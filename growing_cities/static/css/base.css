@@ -139,6 +139,14 @@ form.submitting {
     text-align: center;
 }
 
+@media (max-width: 800px) {
+    .content-title {
+        font-size: 80px;
+        line-height: 80px;
+        margin-bottom: 20px;
+    }
+}
+
 .terms {
     font-size: 12px;
     text-align: right;
@@ -214,7 +222,7 @@ form.submitting {
     border-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .grid-cell {
         border-right: 0;
         float: left;
@@ -895,6 +903,13 @@ input[type="file"] {
 .screenings-host-screening-wrapper {
     border-left: 1px solid #D5D3C7;
     padding: 20px;
+}
+
+@media (max-width: 800px) {
+    .screenings-host-screening-wrapper {
+        border-left: none;
+        border-top: 1px solid #D5D3C7;
+    }
 }
 
 .screening-location {

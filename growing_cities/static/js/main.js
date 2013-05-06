@@ -608,9 +608,9 @@ GC.mobile = {
 
     initialize: function() {
         GC.device_mobile = ($(window).width() <= 480);
-        if (GC.device_mobile) {
-            GC.mobile.initializeMenuBar();
-        }
+
+        // Always initialize menu bar, in case screen shrinks to that size
+        GC.mobile.initializeMenuBar();
     },
 
     initializeMenuBar: function() {
