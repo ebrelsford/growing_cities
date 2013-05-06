@@ -69,6 +69,7 @@ GC.onStateChangeComplete = function() {
     GC.initializeForms();
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
+    GC.trailer.resize();
     GC.mobile.onStateChangeComplete();
 };
 
@@ -80,6 +81,7 @@ GC.onResize = function() {
     GC.setHeights();
     GC.mapOverlay.position();
     GC.buyButton.position();
+    GC.trailer.resize();
 };
 
 
@@ -245,6 +247,32 @@ GC.trailer = {
                 GC.trailer_player.api('play');
             }
         });
+    },
+
+    resize: function() {
+        var $trailer = $('#trailer-player'),
+            availableHeight = $('#content-wrapper').height(),
+            availableWidth = $('.article-content').width(),
+            aspectRatio = $trailer.data('aspect-ratio');
+
+        // Calculate the aspect ratio if we don't already have one
+        if (!aspectRatio) {
+            aspectRatio = $trailer.height() / $trailer.width();
+            $trailer.data('aspect-ratio', aspectRatio);
+        }
+
+        // Try to make the trailer the full available width
+        var newWidth = availableWidth,
+            newHeight = newWidth * aspectRatio;
+
+        // If this will make the trailer too tall, use the available height
+        if (newHeight > availableHeight) {
+            newHeight = availableHeight;
+            newWidth = newHeight / aspectRatio;
+        }
+        $trailer
+            .width(newWidth)
+            .height(newHeight);
     },
 
     /*
@@ -692,6 +720,7 @@ $(document).ready(function() {
     GC.initializeForms();
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
+    GC.trailer.resize();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
