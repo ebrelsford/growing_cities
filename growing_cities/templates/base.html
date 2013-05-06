@@ -171,9 +171,7 @@
                     <select id="map-city" data-placeholder="Pick a city">
                         <option></option>
                         {% for city in cities %}
-                        <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">
-                            {{ city.city }}, {{ city.state_province }}
-                        </option>
+                        <option data-city="{{ city.city }}" data-state="{{ city.state_province }}">{{ city.city }}, {{ city.state_province }}</option>
                         {% endfor %}
                     </select>
                 </div>

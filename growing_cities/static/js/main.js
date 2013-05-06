@@ -335,6 +335,8 @@ GC.addLocationForm = {
     initialize: function() {
         var selector = '#add-place-form';
         $(selector).find('.add-place-activities select').chosen({ 
+            search_contains: true,
+            enable_split_word_search: true,
             width: '100%',
         });
         $(selector).addplaceform({
