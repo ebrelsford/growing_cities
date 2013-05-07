@@ -336,7 +336,6 @@ GC.addLocationForm = {
         var selector = '#add-place-form';
         $(selector).find('.add-place-activities select').chosen({ 
             search_contains: true,
-            enable_split_word_search: true,
             width: '100%',
         });
         $(selector).addplaceform({
@@ -699,8 +698,12 @@ $(document).ready(function() {
     GC.mapDrawer.position();
     $(window).smartresize(GC.onResize);
     GC.initializeWatchTheTrailerButton();
-    $('#map-city').chosen();
-    $('#map-activities').chosen();
+    $('#map-city').chosen({
+        search_contains: true,
+    });
+    $('#map-activities').chosen({
+        search_contains: true,
+    });
     GC.addLocationForm.load();
 
     if ($('#map').length === 1) {
