@@ -16,7 +16,7 @@ docutils==0.10
 feedparser==5.1.3
 geojson==1.0.1
 ipython==0.13.1
-johnny-cache==1.4
+-e git://github.com/Luluvise/johnny-cache.git@1ac599ae39e37ce7646e36cbf63b2a417ba4d5ea#egg=johnny_cache-dev
 psycopg2==2.4.6
 python-dateutil==2.1
 python-memcached==1.48
