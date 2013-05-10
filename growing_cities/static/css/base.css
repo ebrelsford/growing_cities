@@ -315,6 +315,8 @@ body.loading .loading-indicator {
     padding-top: 5px;
     text-align: center;
     text-transform: uppercase;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Variations on the action button. */
