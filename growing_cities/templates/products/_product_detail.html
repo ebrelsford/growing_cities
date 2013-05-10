@@ -11,7 +11,9 @@
         </span>
     </div>
 
-    {{ product.paypal_button|safe }}
+    <div class="paypal-button">
+        {{ product.paypal_button|safe }}
+    </div>
 </div>
 
 {% if 'change_product' in perms %}
