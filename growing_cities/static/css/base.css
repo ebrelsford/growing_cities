@@ -580,7 +580,12 @@ body.loading .loading-indicator {
 }
 
 .map-result .details {
-    margin-left: 60px;
+}
+
+.map-result .details::before {
+    content: "\203a";
+    float: right;
+    font-size: 26px;
 }
 
 .map-result .name {
@@ -593,13 +598,6 @@ body.loading .loading-indicator {
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
     font-weight: normal;
-}
-
-.map-result .details::before {
-    content: "\203a";
-    float: right;
-    font-size: 26px;
-    margin-top: 5px;
 }
 
 
