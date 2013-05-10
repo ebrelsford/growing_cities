@@ -16,5 +16,5 @@ class StoryForm(BaseModeratedObjectForm):
     )
 
     class Meta:
-        exclude = ('featured',)
+        exclude = ('featured', 'order',)
         model = Story
