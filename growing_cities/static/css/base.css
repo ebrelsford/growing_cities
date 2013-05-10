@@ -253,6 +253,10 @@ form.submitting {
     overflow-y: auto;
 }
 
+.map-page #content-wrapper {
+    overflow: hidden;
+}
+
 .article-wrapper {
     padding-bottom: 500px;
     padding-top: 25px;

@@ -71,6 +71,7 @@ GC.onStateChangeComplete = function() {
     GC.trailer.initialize();
     GC.trailer.resize();
     GC.mobile.onStateChangeComplete();
+    GC.setBodyClass();
 };
 
 
@@ -112,6 +113,15 @@ GC.setHeights = function() {
     $('#map').height(innerDivHeight - 4);
     $('#map-drawer').outerHeight(innerDivHeight - 4);
     $('#map-overlay').outerHeight(innerDivHeight);
+};
+
+GC.setBodyClass = function() {
+    if ($('#map').length > 0) {
+        $('body').addClass('map-page');
+    }
+    else {
+        $('body').removeClass('map-page');
+    }
 };
 
 
@@ -726,6 +736,7 @@ $(document).ready(function() {
     GC.initializeStoryCarousel();
     GC.trailer.initialize();
     GC.trailer.resize();
+    GC.setBodyClass();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
