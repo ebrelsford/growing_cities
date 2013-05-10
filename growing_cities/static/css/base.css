@@ -1021,8 +1021,12 @@ input[type="file"] {
 }
 
 .news-twitter {
+    border-bottom: 1px solid #D5D3C7;
     padding: 20px;
     text-align: center;
+}
+
+.news-blogroll {
 }
 
 .news-signup {
