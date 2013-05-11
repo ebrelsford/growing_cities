@@ -5,10 +5,10 @@ from imagekit.models import ImageSpecField
 from imagekit.processors.resize import ResizeToFit
 from moderation import moderation
 
-from growing_cities.moderators import SiteModerator
+from growing_cities.moderators import ModeratedMixin, SiteModerator
 
 
-class Story(models.Model):
+class Story(ModeratedMixin, models.Model):
     """
     A (user-submitted) story.
 

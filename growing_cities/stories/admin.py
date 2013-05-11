@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from moderation.admin import ModerationAdmin
-
+from growing_cities.moderators import SiteModerationAdmin
 from .models import Story
 
-class StoryAdmin(ModerationAdmin):
+
+class StoryAdmin(SiteModerationAdmin):
     list_display = ('title', 'image', 'video_url', 'featured', 'order',)
     list_editable = ('featured', 'order',)
     list_filter = ('featured',)

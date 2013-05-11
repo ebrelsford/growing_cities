@@ -1,11 +1,10 @@
 from django.contrib import admin
 
-from moderation.admin import ModerationAdmin
-
+from growing_cities.moderators import SiteModerationAdmin
 from .models import Screening, Venue
 
 
-class ScreeningAdmin(ModerationAdmin):
+class ScreeningAdmin(SiteModerationAdmin):
     list_display = ('time', 'price', 'venue',)
 
 

@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 
-from moderation.admin import ModerationAdmin
-
+from growing_cities.moderators import SiteModerationAdmin
 from inplace.admin import PlaceAdmin
 from photos.models import Photo
 from videos.models import Video
@@ -21,7 +20,7 @@ class VideoInline(generic.GenericTabularInline):
     model = Video
 
 
-class GrowingPlaceAdmin(ModerationAdmin, PlaceAdmin):
+class GrowingPlaceAdmin(SiteModerationAdmin, PlaceAdmin):
     fieldsets = (
         (None, {
             'fields': (

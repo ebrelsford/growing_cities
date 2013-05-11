@@ -4,13 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 
 from moderation import moderation
 
-from growing_cities.moderators import SiteModerator
+from growing_cities.moderators import ModeratedMixin, SiteModerator
 from inplace.models import Place
 from photos.models import Photo
 from videos.models import Video
 
 
-class GrowingPlace(Place):
+class GrowingPlace(ModeratedMixin, Place):
     contact = models.CharField(_('contact'),
         max_length=300,
         null=True,

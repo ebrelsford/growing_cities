@@ -5,10 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from inplace.models import Place
 from moderation import moderation
 
-from growing_cities.moderators import SiteModerator
+from growing_cities.moderators import ModeratedMixin, SiteModerator
 
 
-class Screening(models.Model):
+class Screening(ModeratedMixin, models.Model):
     """
     A screening.
 
