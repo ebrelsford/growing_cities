@@ -142,8 +142,15 @@
                 .fitBounds([
                     [bbox[1], bbox[0]],
                     [bbox[3], bbox[2]],
-                ])
-                .zoomOut();
+                ]);
+
+            if (instance.map.getZoom() <= 14) {
+                instance.map.zoomOut();
+            }
+            else {
+                // Zoom back to 14 if we have zoomed in very far
+                instance.map.setZoom(14);
+            }
         },
 
         toggleMapDrawer: function() {
