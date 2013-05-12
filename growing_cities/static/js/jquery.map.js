@@ -65,6 +65,7 @@
                         var popupOptions = {
                             autoPan: false,
                             maxHeight: popupHeight,
+                            maxWidth: 400,
                             placeId: layer.feature.id,
                         };
                         if (L.Browser.mobile) {
