@@ -484,7 +484,7 @@ body.loading .loading-indicator {
 
 /* Map overlay */
 #map-overlay {
-    background: url(/static/img/overlay-bg.png);
+    background: url(/static/img/map-overlay-bg.png);
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
