@@ -989,6 +989,10 @@ input[type="file"] {
     z-index: 1001;
 }
 
+#buy-button a:hover {
+    text-decoration: none;
+}
+
 .buy-button-inner {
     line-height: 24px;
 }

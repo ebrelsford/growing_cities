@@ -152,9 +152,9 @@
 
     {% if buy_button %}
     <div id="buy-button">
-        <button class="buy-button-inner action-button action-button-b" href="{{ buy_button.url }}">
+        <a class="buy-button-inner action-button action-button-b" href="{{ buy_button.url }}">
             {{ buy_button.text }}
-        </button>
+        </a>
         {% if "buttons.change_button" in perms %}
         <a class="admin-only edit-link no-ajax" href="{% url "admin:buttons_button_change" buy_button.pk %}">edit this button</a>
         {% endif %}
