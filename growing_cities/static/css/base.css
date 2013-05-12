@@ -569,13 +569,17 @@ body.loading .loading-indicator {
 .map-result {
     border-bottom: 1px solid gray;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 10px;
 }
 .map-result:last-child {
     border: 0;
 }
 
 .map-result:hover {
+}
+
+.map-result.selected {
+    background: url(/static/img/map-result-selected-bg.png);
 }
 
 .map-result .thumbnail {

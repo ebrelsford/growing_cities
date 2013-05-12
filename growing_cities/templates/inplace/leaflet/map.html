@@ -4,6 +4,7 @@
 <script>
 
     (function() {
+        var selectedPlaceId = null;
 
         function updateMapResults(places) {
             var $results = $('#map-results');
@@ -13,7 +14,21 @@
                 'places': places,
             }));
 
+            selectResult(selectedPlaceId);
             doneLoading();
+        }
+
+        function selectResult(id) {
+            selectedPlaceId = id;
+            if (selectedPlaceId !== null) {
+                $('.map-result[data-placeid=' + selectedPlaceId + ']')
+                    .addClass('selected');
+            }
+        }
+
+        function deselectResult() {
+            selectedPlaceId = null;
+            $('.map-result').removeClass('selected');
         }
 
 
@@ -112,7 +127,11 @@
                 if (!$target.hasClass('map-result')) {
                     $target = $target.parents('.map-result');
                 }
+                if ($target.length === 0) return;
                 $('#map').placemap('openPlace', $target.data('placeid'));
+
+                deselectResult();
+                selectResult($target.data('placeid'));
             }).addClass('initialized');
 
 
@@ -138,6 +157,14 @@
                 var center = e.target.getCenter();
                 GC.map_center = [center.lat, center.lng];
                 GC.map_zoom = e.target.getZoom();
+            });
+
+            $('#map').data('placemap').map.on('popupopen', function(e) {
+                selectResult(e.popup.options.placeId);
+            });
+
+            $('#map').data('placemap').map.on('popupclose', function(e) {
+                deselectResult();
             });
 
         });

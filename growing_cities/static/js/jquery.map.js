@@ -62,11 +62,10 @@
                     layer.on('click', function(e) {
                         var popupHeight = 200;
 
-                        // TODO on click, make icon active
-                        // TODO on de-select, make icon inactive
                         var popupOptions = {
                             autoPan: false,
                             maxHeight: popupHeight,
+                            placeId: layer.feature.id,
                         };
                         if (L.Browser.mobile) {
                             popupOptions.maxHeight = popupHeight = 150;
