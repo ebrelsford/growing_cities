@@ -285,9 +285,9 @@ form.submitting {
 .loading-indicator {
     background: url(/static/img/loading.gif) no-repeat;
     display: none;
-    height: 50px;
+    height: 32px;
     position: absolute;
-    width: 50px;
+    width: 32px;
 }
 
 body.loading .loading-indicator {
@@ -1187,7 +1187,7 @@ input[type="file"] {
 
 /* Forms */
 .ajax-form .loading {
-    background: url(/static/img/loading_small.gif);
+    background: url(/static/img/loading-small.gif);
     display: none;
     height: 16px;
     width: 16px;
