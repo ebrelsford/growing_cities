@@ -563,7 +563,11 @@ body.loading .loading-indicator {
 }
 
 .map-results-container {
-    margin-bottom: 45px;
+    padding-bottom: 25px;
+}
+
+#map-results {
+    overflow-y: scroll;
 }
 
 .map-result {

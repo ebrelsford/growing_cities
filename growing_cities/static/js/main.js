@@ -72,6 +72,7 @@ GC.onStateChangeComplete = function() {
     GC.trailer.resize();
     GC.mobile.onStateChangeComplete();
     GC.setBodyClass();
+    GC.mapDrawer.resize();
 };
 
 
@@ -80,6 +81,7 @@ GC.onStateChangeComplete = function() {
  */
 GC.onResize = function() {
     GC.setHeights();
+    GC.mapDrawer.resize();
     GC.mapOverlay.position();
     GC.buyButton.position();
     GC.trailer.resize();
@@ -159,6 +161,26 @@ GC.mapOverlay = {
  */
 GC.mapDrawer = {
 
+    resize: function() {
+        // Make results scroll
+        var $resultsContainer = $('.map-results-container');
+        var $mapDrawer = $('#map-drawer');
+        var availableHeight = $('#content-wrapper').innerHeight();
+
+        // Calculate height elements that will be visible take up
+        var takenHeight = 0;
+        takenHeight += GC.pxToInt($mapDrawer.css('padding-top'));
+        takenHeight += GC.pxToInt($mapDrawer.css('padding-bottom'));
+        $resultsContainer.siblings().each(function() {
+            takenHeight += $(this).outerHeight();
+        });
+        takenHeight += $resultsContainer.find('h3').outerHeight();
+        takenHeight += GC.pxToInt($resultsContainer.css('padding-top'));
+        takenHeight += GC.pxToInt($resultsContainer.css('padding-bottom'));
+
+        $('#map-results').outerHeight(availableHeight - takenHeight);
+    },
+
     position: function() {
         var relativeTo = '#content';
         var $drawer = $('#map-drawer');
@@ -205,6 +227,9 @@ GC.mapDrawer = {
         $('.leaflet-left.leaflet-top').animate({
             left: newWidth,
         }, 'fast');
+
+        // Resize drawer
+        GC.mapDrawer.resize();
     },
 
     hide: function($mapDrawer) {
@@ -737,6 +762,7 @@ $(document).ready(function() {
     GC.trailer.initialize();
     GC.trailer.resize();
     GC.setBodyClass();
+    GC.mapDrawer.resize();
 
     $('.map-overlay-hide').click(function() {
         GC.mapOverlay.hide();
