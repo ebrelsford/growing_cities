@@ -672,7 +672,13 @@ body.loading .loading-indicator {
     text-decoration: none;
 }
 
-#mainmenu li.current {
+#mainmenu a:hover {
+    background-color: #d9d8cc;
+}
+
+#mainmenu .current a {
+    background-color: #d9d8cc;
+    color: #232310;
 }
 
 
