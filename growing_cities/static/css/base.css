@@ -491,7 +491,7 @@ body.loading .loading-indicator {
     cursor: default;
     overflow: auto;
     position: absolute;
-    z-index: 5000;
+    z-index: 1000;
 }
 
 .map-overlay-content {
@@ -986,7 +986,7 @@ input[type="file"] {
     text-align: center;
     position:fixed;
     width: 150px;
-    z-index: 100;
+    z-index: 1001;
 }
 
 .buy-button-inner {
@@ -1216,6 +1216,10 @@ input[type="file"] {
 /*
  * _jqueryui_
  */
+
+.ui-front {
+    1002;
+}
 
 .ui-dialog {
     z-index: 2000;
