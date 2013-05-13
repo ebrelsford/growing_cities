@@ -12,6 +12,8 @@ class ProductForm(forms.ModelForm):
 
 class ProductAdmin(admin.ModelAdmin):
     form = ProductForm
-    list_display = ('name',)
+    list_display = ('name', 'order',)
+    list_editable = ('order',)
+    search_fields = ('name', 'text',)
 
 admin.site.register(Product, ProductAdmin)

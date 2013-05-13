@@ -16,5 +16,10 @@ class Product(models.Model):
         null=True,
     )
     paypal_button = models.TextField(_('paypal button'))
+    order = models.PositiveIntegerField(_('order'), default=0)
 
-    # TODO weight/ordering?
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('order',)
