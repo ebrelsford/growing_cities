@@ -139,18 +139,10 @@
         zoomTo: function(bbox) {
             var instance = this;
             instance.map
-                .fitBounds([
+                .fitBoundsZoom([
                     [bbox[1], bbox[0]],
                     [bbox[3], bbox[2]],
-                ]);
-
-            if (instance.map.getZoom() <= 11) {
-                instance.map.zoomOut();
-            }
-            else {
-                // Zoom back to 11 if we have zoomed in very far
-                instance.map.setZoom(11);
-            }
+                ], 12);
         },
 
         toggleMapDrawer: function() {
