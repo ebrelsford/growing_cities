@@ -31,6 +31,7 @@ urlpatterns += patterns('',
     # first-party views
     url(r'^contact/', include('contact.urls', 'contact_form')),
     url(r'^growing_places/', include('growing_places.urls')),
+    url(r'^howtos/', include('howtos.urls', 'howtos')),
     url(r'^inplace/', include('inplace.urls', 'inplace')),
     url(r'^newsletter/', include('newsletter.urls', 'newsletter')),
     url(r'^screenings/', include('screenings.urls', 'screenings')),

@@ -33,11 +33,12 @@ class LearnPage(FiberPageMixin, TemplateView):
     template_name = 'pages/learn.html'
 
     def get_context_data(self):
+        howtos = HowTo.objects.all()
         stories = Story.objects.filter(featured=True)
 
         context = super(LearnPage, self).get_context_data()
         context['books'] = Book.objects.all()[:9]
-        context['howtos'] = HowTo.objects.all()[:6]
+        context['howto_pages'] = int(ceil(howtos.count() / 6.0))
         context['story_pages'] = int(ceil(stories.count() / 6.0))
         context['story_form'] = StoryForm()
         return context

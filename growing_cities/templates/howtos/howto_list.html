@@ -1,0 +1,30 @@
+<div class="howto-list grid-table">
+    {% for howto in howto_list %}
+        {% cycle 'left' 'middle' 'right' as position silent %}
+
+        {% if position == 'left' %}
+        <div class="grid-row count-{{ forloop.counter }}">
+        {% endif %}
+
+            <div class="grid-cell grid grid-1-3 {{ position }}">
+                {% include "howtos/_howto_detail.html" %}
+            </div>
+
+            {% if forloop.last %}
+                {% comment %}
+                Filler, unfortunately necessary since we're using table-cell
+                {% endcomment %}
+                {% if position == 'left' %}
+                <div class="grid-cell grid grid-1-3 middle"></div>
+                <div class="grid-cell grid grid-1-3 right"></div>
+                {% elif position == 'middle' %}
+                <div class="grid-cell grid grid-1-3 right"></div>
+                {% endif %}
+            {% endif %}
+
+        {% if position == 'right' %}
+        </div>
+        {% endif %}
+
+    {% endfor %}
+</div>

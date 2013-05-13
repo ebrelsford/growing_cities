@@ -17,7 +17,7 @@
 
 <h3 style="display: none;">Stories</h3>
 <div>
-    <ul id="story-list-carousel" class="story-list-wrapper jcarousel-skin-growingcities" data-list-url="{% url "stories:story_list" %}" data-list-pages="{{ story_pages }}">
+    <ul id="story-list-carousel" class="carousel story-list-wrapper jcarousel-skin-growingcities" data-list-url="{% url "stories:story_list" %}" data-list-pages="{{ story_pages }}">
     </ul>
     <div class="clear"></div>
 </div>
@@ -54,6 +54,8 @@
     </a>
     {% endif %}
     {% include "howtos/_howto_list.html" %}
+    <ul id="howto-list-carousel" class="carousel howto-list-wrapper jcarousel-skin-howtos" data-list-url="{% url "howtos:howto_list" %}" data-list-pages="{{ howto_pages }}"></ul>
+    <div class="clear"></div>
 </div>
 
 <h3>Links</h3>

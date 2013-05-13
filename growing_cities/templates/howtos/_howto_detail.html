@@ -1,16 +1,18 @@
 {% load fiber_tags imagekit %}
 
 <div>
-    <a href="{{ howto.link }}">
-        {% thumbnail '150x150' howto.image %}
-    </a>
-
     <div>
-        {{ howto.text|safe }}
-
-        <span class="howto-name">
-            {{ howto.name }}
-        </span>
+    {% if howto.image %}
+        <a href="{{ howto.link }}" target="_blank">
+            {% generateimage "howtos:listthumbnail" source=howto.image -- alt=howto.title title=howto.title %}
+        </a>
+        <span class="howto-name">{{ howto.name }}</span>
+    {% elif howto.text %}
+        <div>{{ howto.text|safe }}</div>
+        <a href="{{ howto.link }}" target="_blank">
+            <span class="howto-name">{{ howto.name }}</span>
+        </a>
+    {% endif %}
     </div>
 </div>
 

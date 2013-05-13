@@ -13,12 +13,12 @@
 }
 
 .jcarousel-skin-growingcities .jcarousel-clip-horizontal {
-    height: 400px;
+    height: 500px;
 }
 
 .jcarousel-skin-growingcities .jcarousel-item {
     width: 800px;
-    height: 400px;
+    height: 500px;
 }
 
 .jcarousel-skin-growingcities .jcarousel-item-horizontal {
@@ -67,6 +67,84 @@
 .jcarousel-skin-growingcities .jcarousel-prev-disabled-horizontal:hover,
 .jcarousel-skin-growingcities .jcarousel-prev-disabled-horizontal:focus,
 .jcarousel-skin-growingcities .jcarousel-prev-disabled-horizontal:active {
+    cursor: default;
+    color: #D5D3C7;
+}
+
+
+/* 
+ * How-tos carousel 
+ */
+
+.jcarousel-skin-howtos .jcarousel-container {
+}
+
+.jcarousel-skin-howtos .jcarousel-container-horizontal {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.jcarousel-skin-howtos .jcarousel-clip {
+    overflow: hidden;
+    width: 800px;
+}
+
+.jcarousel-skin-howtos .jcarousel-clip-horizontal {
+    height: 500px;
+}
+
+.jcarousel-skin-howtos .jcarousel-item {
+    width: 800px;
+    height: 500px;
+}
+
+.jcarousel-skin-howtos .jcarousel-item-horizontal {
+}
+
+.jcarousel-skin-howtos .jcarousel-item-placeholder {
+    background: url(/static/img/loading.gif) no-repeat 0 0;
+    width: 800px;
+}
+
+/**
+ *  Horizontal Buttons
+ */
+.jcarousel-skin-howtos .jcarousel-next-horizontal,
+.jcarousel-skin-howtos .jcarousel-prev-horizontal {
+    cursor: pointer;
+    font-family: "Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-size: 32px;
+}
+
+.jcarousel-skin-howtos .jcarousel-next-horizontal {
+    float: right;
+}
+
+.jcarousel-skin-howtos .jcarousel-prev-horizontal {
+    float: left;
+}
+
+.jcarousel-skin-howtos .jcarousel-next-horizontal:hover,
+.jcarousel-skin-howtos .jcarousel-next-horizontal:focus,
+.jcarousel-skin-howtos .jcarousel-prev-horizontal:hover, 
+.jcarousel-skin-howtos .jcarousel-prev-horizontal:focus {
+    color: #3e3e2e;
+}
+
+.jcarousel-skin-howtos .jcarousel-next-horizontal:active,
+.jcarousel-skin-howtos .jcarousel-prev-horizontal:active {
+    color: #3e3e2e;
+}
+
+.jcarousel-skin-howtos .jcarousel-next-disabled-horizontal,
+.jcarousel-skin-howtos .jcarousel-next-disabled-horizontal:hover,
+.jcarousel-skin-howtos .jcarousel-next-disabled-horizontal:focus,
+.jcarousel-skin-howtos .jcarousel-next-disabled-horizontal:active,
+.jcarousel-skin-howtos .jcarousel-prev-disabled-horizontal,
+.jcarousel-skin-howtos .jcarousel-prev-disabled-horizontal:hover,
+.jcarousel-skin-howtos .jcarousel-prev-disabled-horizontal:focus,
+.jcarousel-skin-howtos .jcarousel-prev-disabled-horizontal:active {
     cursor: default;
     color: #D5D3C7;
 }

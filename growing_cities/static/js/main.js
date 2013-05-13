@@ -67,7 +67,7 @@ GC.onStateChangeComplete = function() {
     GC.hostScreeningForm.load();
     GC.initializeFileInputs();
     GC.initializeForms();
-    GC.initializeStoryCarousel();
+    GC.initializeCarousels();
     GC.trailer.initialize();
     GC.trailer.resize();
     GC.mobile.onStateChangeComplete();
@@ -638,32 +638,35 @@ GC.hostScreeningForm = {
 };
 
 
-GC.initializeStoryCarousel = function() {
-    var $carouselWrapper = $('.story-list-wrapper');
+GC.initializeCarousels = function() {
+    var $carousels = $('.carousel');
 
-    var loadStoryPage = function(carousel, page_number) {
-        carousel.lock();
-        var url = $carouselWrapper.data('list-url') + '?page=' + page_number;
-        $.get(url, function(html) {
-            carousel.add(page_number, html);   
-            carousel.unlock();
-        });
-    };
+    $carousels.each(function() {
+        var $carousel = $(this);
+        var loadPage = function(carousel, page_number) {
+            carousel.lock();
+            var url = $carousel.data('list-url') + '?page=' + page_number;
+            $.get(url, function(html) {
+                carousel.add(page_number, html);   
+                carousel.unlock();
+            });
+        };
 
-    $carouselWrapper.jcarousel({
-        buttonNextHTML: '<div>&raquo;</div>',
-        buttonPrevHTML: '<div>&laquo;</div>',
-        itemLoadCallback: function(carousel, state) {
-            for (var i = carousel.first; i <= carousel.last; i++) {
-                // Check if the item already exists
-                if (!carousel.has(i)) {
-                    loadStoryPage(carousel, i);
+        $carousel.jcarousel({
+            buttonNextHTML: '<div>&raquo;</div>',
+            buttonPrevHTML: '<div>&laquo;</div>',
+            itemLoadCallback: function(carousel, state) {
+                for (var i = carousel.first; i <= carousel.last; i++) {
+                    // Check if the item already exists
+                    if (!carousel.has(i)) {
+                        loadPage(carousel, i);
+                    }
                 }
-            }
-        },
-        scroll: 1,
-        size: $carouselWrapper.data('list-pages'),
-        visible: 1,
+            },
+            scroll: 1,
+            size: $carousel.data('list-pages'),
+            visible: 1,
+        });
     });
 };
 
@@ -758,7 +761,7 @@ $(document).ready(function() {
     GC.hostScreeningForm.load();
     GC.initializeFileInputs();
     GC.initializeForms();
-    GC.initializeStoryCarousel();
+    GC.initializeCarousels();
     GC.trailer.initialize();
     GC.trailer.resize();
     GC.setBodyClass();
