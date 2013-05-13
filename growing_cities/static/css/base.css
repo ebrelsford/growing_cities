@@ -767,6 +767,17 @@ body.loading .loading-indicator {
 }
 
 
+@media (max-width: 800px) {
+    .submenu li {
+        margin-right: 25px;
+    }
+
+    .submenu a {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
+
 .meta {
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
