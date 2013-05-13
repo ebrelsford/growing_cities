@@ -1,16 +1,18 @@
 {% load imagekit %}
 
 <div>
-    <a href="{{ book.link }}">
+    <a href="{{ book.link }}" target="_blank">
         {% thumbnail '150x150' book.image %}
     </a>
 
     <div>
         {{ book.text|safe }}
 
-        <span class="book-name">
-            {{ book.name }}
-        </span>
+        <a href="{{ book.link }}" target="_blank">
+            <span class="book-name">
+                {{ book.name }}
+            </span>
+        </a>
     </div>
 </div>
 
