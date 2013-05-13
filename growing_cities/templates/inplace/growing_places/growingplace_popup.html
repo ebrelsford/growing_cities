@@ -1,9 +1,9 @@
-{% load i18n videos_tags %}
+{% load i18n imagekit videos_tags %}
 
 {% if growingplace.photos.count %}
-<img src="{{ growingplace.photos.all.0.popup_thumbnail.url }}" />
+{% generateimage "growing_places:popupthumbnail" source=growingplace.photos.all.0.original_image %}
 {% elif growingplace.videos.count %}
-{{ growingplace.videos.all.0|embed:"300,50" }}
+{{ growingplace.videos.all.0|embed:"400,100" }}
 {% endif %}
 
 <div>
@@ -35,8 +35,7 @@
 </div>
 
 {% if perms.change_growingplace %}
-<a href="{% url "admin:growing_places_growingplace_change" growingplace.pk %}"
-    target="_blank" style="padding-left: 20px;">
+<a href="{% url "admin:growing_places_growingplace_change" growingplace.pk %}" target="_blank">
     {% trans "change or add content" %}
 </a>
 {% endif %}

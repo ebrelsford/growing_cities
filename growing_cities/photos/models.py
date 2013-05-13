@@ -19,13 +19,6 @@ class Photo(models.Model):
     thumbnail = ImageSpecField([SmartResize(200, 200)],
                                source='original_image', format='JPEG',
                                options={'quality': 90})
-    popup_thumbnail = ImageSpecField([SmartResize(300, 100)],
-                                     source='original_image',
-                                     format='JPEG',
-                                     options={'quality': 90})
-    results_thumbnail = ImageSpecField([SmartResize(50, 50)],
-                                       source='original_image', format='JPEG',
-                                       options={'quality': 90})
 
     name = models.CharField(_('name'), max_length=256, null=True, blank=True)
     description = models.TextField(_('description'), null=True, blank=True)

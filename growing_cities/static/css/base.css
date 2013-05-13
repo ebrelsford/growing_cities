@@ -1354,10 +1354,10 @@ input[type="file"] {
 
 #map .leaflet-popup-content {
     margin: 40px;
+    text-align: center;
 }
 
 #map .leaflet-popup-content h3 {
-    text-align: center;
     font-family: "Bookman Regular", serif;
     font-weight: normal;
     font-size: 24px;
@@ -1368,7 +1368,6 @@ input[type="file"] {
 
 .leaflet-popup-content .address,
 .leaflet-popup-content .website-link {
-    text-align: center;
     text-transform: uppercase;
 }
 
@@ -1381,7 +1380,6 @@ input[type="file"] {
 }
 
 .leaflet-popup-content .popup-text {
-    text-align: center;
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
     font-weight: normal;
