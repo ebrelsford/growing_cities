@@ -68,6 +68,8 @@ select,
 textarea {
     border: 0;
     font-family: "Bookman Regular", serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 form.submitting {
@@ -672,6 +674,8 @@ body.loading .loading-indicator {
     display: block;
     font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
     font-size: 20px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     line-height: 18px;
     padding-left: 5px;
     padding-right: 5px;
@@ -863,6 +867,8 @@ input[type="file"] {
     color: #ECEADE;
     font-family: "Acier BAT Text Solid", Futura, Arial, sans-serif;
     font-size: 16px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     margin-top: 5px;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -1062,6 +1068,14 @@ input[type="file"] {
     margin-top: 5px;
 }
 
+.newsletter-form-submit {
+    font-size: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .twitter-date {
     font-family: Courier, "Lucida Console", monospace;
     font-size: 12px;
@@ -1252,8 +1266,10 @@ input[type="file"] {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     display: none;
-    font-size: 14px;
     font-family: "Bookman Regular", serif;
+    font-size: 14px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 
@@ -1383,6 +1399,8 @@ input[type="file"] {
 .leaflet-popup-content .activities ul {
     font-family:"Bookman Regular", serif;
     font-size: 14px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 .leaflet-popup-content img {
@@ -1506,6 +1524,8 @@ input[type="file"] {
     background: url(/static/img/city-filterinput-bg.png);
     border: 0;
     font-family: "Bookman Regular", serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     margin: 0;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -1561,6 +1581,8 @@ div.time-picker li {
     cursor: pointer;
     height: 12px;
     font-family: "Bookman Regular", serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     font-size: 14px;
     padding: 4px 3px;
 }
