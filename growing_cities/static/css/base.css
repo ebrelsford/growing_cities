@@ -915,6 +915,12 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
+.howto-list .grid-cell {
+    border: 0;
+    overflow-x: auto;
+    padding: 15px;
+}
+
 /* Screenings page */
 .screening-list-wrapper {
     padding: 20px;
