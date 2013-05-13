@@ -386,8 +386,8 @@ body.loading .loading-indicator {
     background: url(/static/img/vimeo_icon.png);
 }
 
-.social-button.rss {
-    background: url(/static/img/rss_icon.png);
+.social-button.tumblr {
+    background: url(/static/img/tumblr_icon.png);
 }
 
 #sidebar {
