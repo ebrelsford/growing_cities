@@ -144,12 +144,12 @@
                     [bbox[3], bbox[2]],
                 ]);
 
-            if (instance.map.getZoom() <= 14) {
+            if (instance.map.getZoom() <= 11) {
                 instance.map.zoomOut();
             }
             else {
-                // Zoom back to 14 if we have zoomed in very far
-                instance.map.setZoom(14);
+                // Zoom back to 11 if we have zoomed in very far
+                instance.map.setZoom(11);
             }
         },
 
