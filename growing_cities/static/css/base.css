@@ -358,12 +358,17 @@ body.loading .loading-indicator {
 }
 
 #map-creator-attribution {
+    display: none;
     float: right;
     font-size: 16px;
     font-weight: normal;
     line-height: 24px;
     margin-top: -25px;
     padding-right: 20px;
+}
+
+.map-page #map-creator-attribution {
+    display: block;
 }
 
 #map-creator-attribution .meta {
