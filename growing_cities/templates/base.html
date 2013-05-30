@@ -86,70 +86,70 @@
     {% block scripts %}{% endblock %}
 </head>
 <body class="{% block body_class %}{{ fiber_page.title|slugify }}{% endblock %}">
-	<div id="application-pane-wrapper">
-    <div id="social-buttons">
-        <ul>
-            <li>
-                <a class="social-button facebook" href="http://facebook.com/growingcities" target="_blank"></a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a class="social-button twitter" href="http://twitter.com/GrowinCities" target="_blank"></a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a class="social-button vimeo" href="http://vimeo.com/growingcities" target="_blank"></a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a class="social-button tumblr" href="http://growingcitiesmovie.tumblr.com/" target="_blank"></a>
-            </li>
-        </ul>
-    </div>
-	<div id="application-pane">
-		<div>
+    <div id="application-pane-wrapper">
+        <div id="social-buttons">
+            <ul>
+                <li>
+                    <a class="social-button facebook" href="http://facebook.com/growingcities" target="_blank"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a class="social-button twitter" href="http://twitter.com/GrowinCities" target="_blank"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a class="social-button vimeo" href="http://vimeo.com/growingcities" target="_blank"></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a class="social-button tumblr" href="http://growingcitiesmovie.tumblr.com/" target="_blank"></a>
+                </li>
+            </ul>
+        </div>
+        <div id="application-pane">
+            <div>
 
-			<div id="sidebar" class="full-height">
-                <section id="logo">
-                    <h1>
-                        <a href="/">Growing<br />Cities</a>
-                    </h1>
-                </section>
-				<nav id="mainmenu" class="clearfix">
-					{% show_menu "mainmenu" 1 1 %}
-				</nav>
+                <div id="sidebar" class="full-height">
+                    <section id="logo">
+                        <h1>
+                            <a href="/">Growing<br />Cities</a>
+                        </h1>
+                    </section>
+                    <nav id="mainmenu" class="clearfix">
+                        {% show_menu "mainmenu" 1 1 %}
+                    </nav>
 
-                <a class="trailer-map-button" href="/the-film/"></a>
+                    <a class="trailer-map-button" href="/the-film/"></a>
 
-			</div>
-
-            <div id="content-wrapper" class="full-height">
-                <div id="mobile-menu-bar" class="mobile-only">
-                    <div>Growing Cities</div>
-                    <div class="meta">click for menu</div>
                 </div>
-                <div id="content" class="full-height">
-                    <article>
-                        {% block content %}
-                        {% show_page_content "main" %}
-                        {% endblock %}
-                    </article>
-                </div>
-			</div>
 
-		</div>
+                <div id="content-wrapper" class="full-height">
+                    <div id="mobile-menu-bar" class="mobile-only">
+                        <div>Growing Cities</div>
+                        <div class="meta">click for menu</div>
+                    </div>
+                    <div id="content" class="full-height">
+                        <article>
+                            {% block content %}
+                            {% show_page_content "main" %}
+                            {% endblock %}
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="terms">
+            {% show_content "terms" %}
+        </div>
+
         <div class="clear"></div>
-	</div>
-
-    <div class="terms">
-        {% show_content "terms" %}
     </div>
-
-    <div class="clear"></div>
-	</div>
 
     {% if buy_button %}
     <div id="buy-button">
