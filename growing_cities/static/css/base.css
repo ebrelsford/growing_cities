@@ -357,6 +357,28 @@ body.loading .loading-indicator {
     margin-bottom: 0;
 }
 
+#map-creator-attribution {
+    float: right;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 24px;
+    margin-top: -25px;
+    padding-right: 20px;
+}
+
+#map-creator-attribution .meta {
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 12px;
+}
+
+#map-creator-attribution .name {
+    font-family:"Acier BAT Text Solid", Futura, Arial, sans-serif;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal;
+    text-decoration: none;
+}
+
 #social-buttons {
     height: 25px;
     width: 100px;
