@@ -1,0 +1,2 @@
+gunicorn==0.17.4
+supervisor==3.0b2
