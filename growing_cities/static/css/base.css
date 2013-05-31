@@ -1398,7 +1398,9 @@ input[type="file"] {
 
 #map .leaflet-popup-content {
     margin: 0;
+    margin-bottom: 10px;
     padding: 40px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
