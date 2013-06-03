@@ -26,4 +26,4 @@ class Photo(models.Model):
     added_by = models.ForeignKey(User, null=True, blank=True)
 
     def __unicode__(self):
-        return self.name or u'%d' % self.pk
+        return self.name or 'no name'
