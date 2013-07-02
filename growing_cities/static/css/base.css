@@ -1088,6 +1088,12 @@ input[type="file"] {
     font-weight: bold;
 }
 
+.news-wordpress-container.is-loading {
+    background: url(/static/img/loading.gif) no-repeat;
+    height: 32px;
+    width: 32px;
+}
+
 .news-twitter {
     border-bottom: 1px solid #D5D3C7;
     padding: 20px;
