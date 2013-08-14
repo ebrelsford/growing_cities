@@ -1,6 +1,7 @@
 {% extends "pages/news.html" %}
 
 {% block news_content %}
+    <a href="{% url "pages_news" %}">Back to all news</a>
     <div class="wordpress-post">
         <div class="wordpress-title">
             {{ rssentry.title }}
