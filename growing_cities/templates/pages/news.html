@@ -1,5 +1,5 @@
 {% extends "pages/base.html" %}
-{% load cache fiber_tags twittersync_tags %}
+{% load cache fiber_tags %}
 
 {% block page_content %}
 <div class="news lead-in">
@@ -35,15 +35,9 @@
             <div>The Latest</div>
             <div class="meta twitter-via">via twitter</div>
 
-            {% get_latest_tweets "GrowinCities" 5 as "tweets" %}
-            <ul class="tweets">
-                {% for tweet in tweets %}
-                <li class="tweet">
-                    <div class="tweet-content">{{ tweet.content|urlize|safe }}</div>
-                    at <a class="twitter-date" href="{{ tweet.url }}" target="_blank">{{ tweet.created_date }}</a>
-                </li>
-                {% endfor %}
-            </ul>
+            <a class="twitter-timeline" href="https://twitter.com/GrowinCities" data-widget-id="366993982884032512">Tweets by @GrowinCities</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
         </div>
 
         <div class="news-blogroll">
