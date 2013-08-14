@@ -10,7 +10,8 @@
         <div class="meta wordpress-date">{{ entry.date|date:"F j, Y" }}</div>
         <div class="wordpress-summary">{{ entry.summary|safe }}</div>
         <div class="share-buttons">
-            {% show_bookmarks entry.title "http://"|add:current_site.domain|add:request.path %}
+            {% url "news:entry_detail" pk=entry.pk as entry_url %}
+            {% show_bookmarks entry.title "http://"|add:current_site.domain|add:entry_url %}
         </div>
     </div>
 {% endfor %}
