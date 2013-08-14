@@ -91,6 +91,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'growing_cities.context_processors.activities',
     'growing_cities.context_processors.buy_button',
     'growing_cities.context_processors.cities',
+    'growing_cities.context_processors.current_site',
     'growing_cities.context_processors.trailer',
 )
 
@@ -129,6 +130,7 @@ INSTALLED_APPS = (
     'inplace',
     'moderation',
     'mptt',
+    'social_bookmarking',
     'south',
     'twittersync',
 

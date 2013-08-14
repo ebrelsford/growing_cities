@@ -1,3 +1,5 @@
+from django.contrib.sites.models import Site
+
 from buttons.models import Button
 from growing_places.models import Activity, GrowingPlace
 from videos.models import Video
@@ -40,3 +42,7 @@ def trailer(request):
     except Exception:
         trailer = None
     return { 'trailer': trailer, }
+
+
+def current_site(request):
+    return { 'current_site': Site.objects.get_current }
