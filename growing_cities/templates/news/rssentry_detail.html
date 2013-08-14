@@ -1,0 +1,11 @@
+{% extends "pages/news.html" %}
+
+{% block news_content %}
+    <div class="wordpress-post">
+        <div class="wordpress-title">
+            {{ rssentry.title }}
+        </div>
+        <div class="meta wordpress-date">{{ rssentry.date|date:"F j, Y" }}</div>
+        <div class="wordpress-summary">{{ rssentry.summary|safe }}</div>
+    </div>
+{% endblock %}

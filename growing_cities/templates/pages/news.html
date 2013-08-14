@@ -46,10 +46,12 @@
     </div>
 
     <div class="grid grid-3-4 news-wordpress">
-        <div class="news-wordpress-container"></div>
-        <div class="news-wordpress-nav" style="display: none;">
-            <a href="{% url "news:entries_list" %}">next page</a>
-        </div>
+        {% block news_content %}
+            <div class="news-wordpress-container"></div>
+            <div class="news-wordpress-nav" style="display: none;">
+                <a href="{% url "news:entries_list" %}">next page</a>
+            </div>
+        {% endblock %}
     </div>
 
 </div>
