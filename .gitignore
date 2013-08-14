@@ -1,5 +1,6 @@
 *.pyc
 *.swp
+.project
 .ropeproject
 collected_static
 data
