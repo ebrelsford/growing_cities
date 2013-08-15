@@ -10,7 +10,7 @@ django-contact-form-gv==0.4.1
 -e git://github.com/ebrelsford/django-inplace.git@78f52385a166c135c8bb44e035838181869684fe#egg=django_inplace-dev
 -e git://github.com/ebrelsford/django-moderation.git@master#egg=django_moderation-dev
 django-mptt==0.5.5
-git+git://github.com/ebrelsford/django-social-bookmarking.git@e3a523b0
+git+git://github.com/ebrelsford/django-social-bookmarking.git@7b34758
 django-twittersync==0.5
 djangorestframework==2.1.17
 docutils==0.10
