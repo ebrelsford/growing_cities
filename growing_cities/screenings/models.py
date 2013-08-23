@@ -21,6 +21,10 @@ class Screening(ModeratedMixin, models.Model):
         null=True,
     )
     venue = models.ForeignKey('Venue')
+    url = models.URLField(_('url'),
+        blank=True,
+        null=True,
+    )
 
     def __unicode__(self):
         try:

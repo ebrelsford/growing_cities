@@ -5,7 +5,7 @@ from .models import Screening, Venue
 
 
 class ScreeningAdmin(SiteModerationAdmin):
-    list_display = ('time', 'price', 'venue',)
+    list_display = ('time', 'price', 'venue', 'url',)
 
 
 class VenueAdmin(admin.ModelAdmin):

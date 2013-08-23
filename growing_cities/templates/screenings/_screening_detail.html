@@ -11,6 +11,14 @@
         {{ screening.venue.city }}, {{ screening.venue.state_province }} &mdash;
         {{ screening.venue.name }}
     </div>
+
+    {% if screening.url %}
+        <div class="screening-url">
+            <a href="{{ screening.url }}" target="_blank">
+                {{ screening.url }}
+            </a>
+        </div>
+    {% endif %}
 </div>
 
 {% if 'change_screening' in perms %}

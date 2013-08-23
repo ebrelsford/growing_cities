@@ -16,6 +16,9 @@ class HostScreeningForm(forms.Form):
         decimal_places=2,
         required=False,
     )
+    url = forms.URLField(label=_("The screening's url"),
+        required=False,
+    )
     venue_name = forms.CharField(
         label=_('Location name'),
         max_length=256,
