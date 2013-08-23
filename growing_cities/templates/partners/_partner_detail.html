@@ -2,7 +2,11 @@
 
 <div>
     <a href="{{ partner.link }}">
-        {% thumbnail '150x150' partner.image -- alt=partner.name title=partner.name %}
+        {% if partner.image %}
+            {% thumbnail '150x150' partner.image -- alt=partner.name title=partner.name %}
+        {% else %}
+            {{ partner.name }}
+        {% endif %}
     </a>
 </div>
 
