@@ -26,6 +26,10 @@ body {
     font-weight: normal;
 }
 
+iframe {
+    border: none;
+}
+
 img {
     border: 0;
     height: auto;
