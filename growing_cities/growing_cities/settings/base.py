@@ -80,6 +80,7 @@ MIDDLEWARE_CLASSES = (
 
     'fiber.middleware.ObfuscateEmailAddressMiddleware',
     'fiber.middleware.AdminPageMiddleware',
+    'honeypot.middleware.HoneypotMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -126,6 +127,7 @@ INSTALLED_APPS = (
     'contact_form',
     'feedparser',
     'fiber',
+    'honeypot',
     'imagekit',
     'inplace',
     'moderation',
@@ -177,3 +179,5 @@ NEWSLETTER_VERTICAL_RESPONSE_WSDL = 'https://api.verticalresponse.com/wsdl/1.0/V
 NEWSLETTER_VERTICAL_RESPONSE_USERNAME = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_USERNAME')
 NEWSLETTER_VERTICAL_RESPONSE_PASSWORD = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_PASSWORD')
 NEWSLETTER_VERTICAL_RESPONSE_LIST_ID = get_env_variable('NEWSLETTER_VERTICAL_RESPONSE_LIST_ID')
+
+HONEYPOT_FIELD_NAME = 'homepage'
