@@ -80,7 +80,6 @@ MIDDLEWARE_CLASSES = (
 
     'fiber.middleware.ObfuscateEmailAddressMiddleware',
     'fiber.middleware.AdminPageMiddleware',
-    'honeypot.middleware.HoneypotMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

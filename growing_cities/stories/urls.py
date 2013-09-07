@@ -1,12 +1,14 @@
 from django.conf.urls.defaults import patterns, url
 from django.views.generic import TemplateView
 
+from honeypot.decorators import check_honeypot
+
 from .views import CreateStoryView, DetailStoryView, ListStoryView
 
 
 urlpatterns = patterns('',
     url('^story/add/$',
-        CreateStoryView.as_view(),
+        check_honeypot(CreateStoryView.as_view()),
         name='story_create'
     ),
     url('^story/add/success/$',
