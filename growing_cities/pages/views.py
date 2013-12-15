@@ -53,6 +53,7 @@ class ScreeningsPage(FiberPageMixin, TemplateView):
     def get_context_data(self):
         context = super(ScreeningsPage, self).get_context_data()
         context['screenings'] = Screening.objects.filter(time__gte=now()).order_by('time')
+        context['past_screenings'] = Screening.objects.filter(time__lt=now()).order_by('-time')
         return context
 
     def get_fiber_page_url(self):
