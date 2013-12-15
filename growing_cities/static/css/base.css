@@ -964,24 +964,9 @@ input[type="file"] {
 }
 
 /* Screenings page */
-.screening-list-wrapper {
-    padding: 20px;
-}
 
 .screening {
     margin-bottom: 50px;
-}
-
-.screenings-host-screening-wrapper {
-    border-left: 1px solid #D5D3C7;
-    padding: 20px;
-}
-
-@media (max-width: 800px) {
-    .screenings-host-screening-wrapper {
-        border-left: none;
-        border-top: 1px solid #D5D3C7;
-    }
 }
 
 .screening-location {

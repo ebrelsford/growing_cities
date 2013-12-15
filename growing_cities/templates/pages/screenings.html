@@ -15,7 +15,8 @@
     {% show_page_content "screenings-lead-in" %}
 </div>
 
-<div class="grid grid-1-2 screening-list-wrapper">
+<div class="screening-list-wrapper">
+    <h3>Find a Screening</h3>
     <ul class="screening-list">
     {% for screening in screenings %}
         <li class="screening">
@@ -29,7 +30,8 @@
     <div class="clear"></div>
 </div>
 
-<div class="grid grid-1-2 screenings-host-screening-wrapper">
+<div class="screenings-host-screening-wrapper">
+    <h3>Host a Screening</h3>
     <div class="host-screening lead-in">
         {% show_page_content "host-screening-lead-in" %}
         {% comment %}
@@ -46,4 +48,29 @@
         <div id="host-screening-form-wrapper" class="ajax-form-wrapper" data-form-url="{% url "screenings:host_screening_form" %}"></div>
     </div>
 </div>
+
+<div class="screening-tools-screenings-wrapper">
+    <h3>Screening Tools</h3>
+    <div class="screening-tools lead-in">
+        {% show_page_content "screening-tools-lead-in" %}
+    </div>
+    <div class="screening-tools-text">
+        {% show_page_content "screening-tools" %}
+    </div>
+</div>
+
+<div class="screenings-past-screenings-wrapper">
+    <h3>Past Screenings</h3>
+    <div class="past-screenings lead-in">
+        {% show_page_content "past-screenings-lead-in" %}
+    </div>
+    <ul class="screening-list">
+    {% for screening in past_screenings %}
+        <li class="screening">
+            {% include "screenings/_screening_detail.html" %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}
