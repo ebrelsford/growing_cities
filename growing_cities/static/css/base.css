@@ -1631,3 +1631,29 @@ div.time-picker li.selected {
     background: #0063CE;
     color: #fff;
 }
+
+
+/*
+ * Google Form styling
+ */
+
+.screenings-form ol {
+    margin-left: 0;
+}
+
+.screenings-form .ss-form-entry {
+    margin-bottom: 20px;
+}
+
+.screenings-form .ss-q-long,
+.screenings-form .ss-q-short {
+    width: 50%;
+}
+
+.screenings-form .ss-required-asterisk {
+    color: red;
+}
+
+.screenings-form .required-message {
+    display: none;
+}
