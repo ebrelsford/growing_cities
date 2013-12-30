@@ -1661,6 +1661,7 @@ div.time-picker li.selected {
 }
 
 .screenings-form .ss-secondary-text {
+    font-size: 14px;
     font-style: italic;
 }
 
