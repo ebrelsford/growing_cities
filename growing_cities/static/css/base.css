@@ -1641,8 +1641,14 @@ div.time-picker li.selected {
     margin-left: 0;
 }
 
+.screenings-form input,
+.screenings-form textarea {
+    font-size: 18px;
+    padding: 5px;
+}
+
 .screenings-form .ss-form-entry {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .screenings-form .ss-q-long,
@@ -1654,6 +1660,11 @@ div.time-picker li.selected {
     color: red;
 }
 
+.screenings-form .ss-secondary-text {
+    font-style: italic;
+}
+
+.screenings-form .error-message,
 .screenings-form .required-message {
     display: none;
 }
