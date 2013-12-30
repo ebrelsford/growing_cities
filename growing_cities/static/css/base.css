@@ -1637,6 +1637,10 @@ div.time-picker li.selected {
  * Google Form styling
  */
 
+.screenings-form {
+    margin-bottom: 100px;
+}
+
 .screenings-form ol {
     margin-left: 0;
 }
