@@ -429,13 +429,7 @@ GC.submenu = {
             }
             else {
                 var headerText = $(this).text();
-                var $target = $('#content h3:contains("' + headerText + '")');
-                if (!$target.is(':visible')) {
-                    $target = $target.parents(':visible:eq(0)');
-                }
-                $target.ScrollTo({
-                    offsetTop: $submenu.outerHeight(),
-                });
+                GC.submenu.scrollto(headerText);
             }
         });
 
@@ -458,6 +452,17 @@ GC.submenu = {
                     $submenu.width('100%');
                 }
             },
+        });
+    },
+
+    scrollto: function(headerText) {
+        var $submenu = $('.submenu');
+        var $target = $('#content h3:contains("' + headerText + '")');
+        if (!$target.is(':visible')) {
+            $target = $target.parents(':visible:eq(0)');
+        }
+        $target.ScrollTo({
+            offsetTop: $submenu.outerHeight(),
         });
     },
 
@@ -790,6 +795,7 @@ $(document).ready(function() {
      */
     GC.setHeights();
     GC.submenu.initialize();
+    GC.submenu.scrollto(window.location.hash.slice(1));
     GC.findLocationByIP();
     GC.updateWatchTheTrailerButton();
     $('input[type=text], textarea').placeholder();
