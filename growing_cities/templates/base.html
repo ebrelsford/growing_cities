@@ -174,7 +174,7 @@
 
     {% if buy_button %}
     <div id="buy-button">
-        <a class="buy-button-inner action-button action-button-b" href="{{ buy_button.url }}">
+        <a class="buy-button-inner action-button action-button-b no-ajax" href="{{ buy_button.url }}">
             {{ buy_button.text }}
         </a>
         {% if "buttons.change_button" in perms %}
