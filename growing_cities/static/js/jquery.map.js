@@ -43,17 +43,10 @@
             // Move attribution to the left
             instance.map.attributionControl.setPosition('bottomleft');
 
-            var cloudmade = new L.TileLayer(
-                'http://{s}.tile.cloudmade.com/{apiKey}/{styleId}/256/{z}/{x}/{y}.png', 
-                {
-                    apiKey: instance.options.apiKey,
-                    attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-                    maxZoom: 18,
-                    styleId: instance.options.styleId,
-                }
-            );
-
-            instance.map.addLayer(cloudmade);
+            L.tileLayer('https://{s}.tiles.mapbox.com/v3/dandal88.i29eb9n4/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+                maxZoom: 18,
+            }).addTo(instance.map);
 
             var latlngs = [];
             instance.feature_layer = new L.GeoJSON(null, {
