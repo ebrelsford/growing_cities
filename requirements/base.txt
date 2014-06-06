@@ -5,11 +5,11 @@ django-appconf==0.5
 django-ckeditor==3.6.2.1
 django-compressor==1.2
 django-contact-form-gv==0.4.1
--e git://github.com/ebrelsford/django-fiber.git@6cf9276c88e73e7c99b253a8ba7eb386c28d9a32#egg=django_fiber-dev
+git+git://github.com/ebrelsford/django-fiber.git@6cf9276c
 django-honeypot==0.3.0
--e git://github.com/jdriscoll/django-imagekit.git@261f16412763c69fba64f130c521192ad726d2c1#egg=django_imagekit-dev
--e git://github.com/ebrelsford/django-inplace.git@78f52385a166c135c8bb44e035838181869684fe#egg=django_inplace-dev
--e git://github.com/ebrelsford/django-moderation.git@master#egg=django_moderation-dev
+git+git://github.com/jdriscoll/django-imagekit.git@261f16412
+git+git://github.com/ebrelsford/django-inplace.git@78f52385a
+git+git://github.com/ebrelsford/django-moderation.git@master
 django-mptt==0.5.5
 git+git://github.com/ebrelsford/django-social-bookmarking.git@7b34758
 django-twittersync==0.5
@@ -18,7 +18,7 @@ docutils==0.10
 feedparser==5.1.3
 geojson==1.0.1
 ipython==0.13.1
--e git://github.com/Luluvise/johnny-cache.git@1ac599ae39e37ce7646e36cbf63b2a417ba4d5ea#egg=johnny_cache-dev
+git+git://github.com/Luluvise/johnny-cache.git@1ac599ae
 psycopg2==2.4.6
 python-dateutil==2.1
 python-memcached==1.48
