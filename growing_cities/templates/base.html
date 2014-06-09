@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load compress fiber_tags %}
+{% load compress fiber_tags static %}
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -228,13 +228,25 @@
     <div class="full-height" id="map-overlay" style="display: none;">
         <div class="map-overlay-content">
             <div class="map-overlay-title">
+                We Can Be On PBS!
+            </div>
+            <div class="map-overlay-description">
+                Help us share the good food movement with millions nationwide.
+            </div>
+            <a href="https://www.kickstarter.com/projects/growincities/growing-cities-lets-get-urban-farming-on-pbs" target="_blank" style="width: 254px; margin-left: auto; margin-right: auto; display: block; margin-top: 20px;">
+                <img src="{% static "img/kickstartersupportbutton.png" %}" />
+            </a>
+            {% comment %}
+            <div class="map-overlay-title">
                 Grow Where You Are
             </div>
             <div class="map-overlay-description">
                 Across the country, people are growing their own food. See what's growing near you.
             </div>
-            <div class="button map-overlay-hide">
-                GO
+            {% endcomment %}
+            <div class="button map-overlay-hide" style="max-width: 250px; width: 250px; height: 100px;">
+                {# GO #}
+                Continue to map
             </div>
         </div>
     </div>
