@@ -51,7 +51,8 @@ def migrate():
 
 @task
 def restart_django():
-    sudo('supervisorctl ~/supervisor/supervisord.conf restart fc_django')
+    with workon(server_virtualenv):
+        run('supervisorctl -c ~/supervisor/supervisord.conf restart django')
 
 
 @task
