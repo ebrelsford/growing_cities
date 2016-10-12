@@ -11,6 +11,11 @@
  * _base_
  */
 
+@font-face {
+    font-family: "Acier BAT Text Gris";
+    src: url("../fonts/acierdisplayweb-gris.woff");
+}
+
 * {
     margin: 0;
     padding: 0;
