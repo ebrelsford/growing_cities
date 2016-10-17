@@ -7,10 +7,10 @@ ADMINS = (
 )
 
 MANAGERS = (
-    ('Kate', 'katelynners@gmail.com'),
+    ('Info', 'info@growingcitiesmovie.com'),
 )
 
-DJANGO_MODERATION_MODERATORS = ('katelynners@gmail.com',)
+DJANGO_MODERATION_MODERATORS = ('info@growingcitiesmovie.com',)
 
 ALLOWED_HOSTS = [get_env_variable('GROWING_CITIES_ALLOWED_HOSTS')]
 
